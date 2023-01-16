@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.x3rmination.fantasy_trees.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "fantasy_trees.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
