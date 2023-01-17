@@ -66,7 +66,7 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', 'fantasy_trees'
 
             mods {
-                fantasytrees {
+                fantasy_trees {
                     source sourceSets.main
                 }
             }
@@ -82,7 +82,7 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', 'fantasy_trees'
 
             mods {
-                fantasytrees {
+                fantasy_trees {
                     source sourceSets.main
                 }
             }
@@ -101,7 +101,7 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', 'fantasy_trees'
 
             mods {
-                fantasytrees {
+                fantasy_trees {
                     source sourceSets.main
                 }
             }
@@ -115,10 +115,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'fantasytrees', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'fantasy_trees', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                fantasytrees {
+                fantasy_trees {
                     source sourceSets.main
                 }
             }
@@ -170,7 +170,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "fantasytrees",
+                "Specification-Title"     : "fantasy_trees",
                 "Specification-Vendor"    : "x3rmination",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,

@@ -18,8 +18,6 @@ import java.util.Map;
 public class BlockRegistry {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, FantasyTrees.MOD_ID);
-
-    public static final RegistryObject<Block> TEST_BLOCK = BLOCKS.register("test_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE)));
     public static final Material FANTASY_WOOD = new Material.Builder(MaterialColor.WOOD).build();
     public static final Map<String, RegistryObject<Block>> WOODS = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> LOGS = new HashMap<>();
@@ -34,6 +32,9 @@ public class BlockRegistry {
     public static final Map<String, RegistryObject<Block>> SAPLINGS = new HashMap<>();
     public static void registerFantasyBlocks() {
         WoodType.values().forEach(woodType -> {
+            if(woodType == WoodType.CRIMSON || woodType == WoodType.WARPED) {
+                return;
+            }
             String name = woodType.name();
 
             RegistryObject<Block> wood = BLOCKS.register(String.format("fantasy_%s_wood", name), FantasyLogBlock::new);
@@ -50,7 +51,7 @@ public class BlockRegistry {
             STAIRS.put(name, stairs);
             RegistryObject<Block> door = BLOCKS.register(String.format("fantasy_%s_door", name), FantasyDoorBlock::new);
             DOORS.put(name, door);
-            RegistryObject<Block> fence = BLOCKS.register(String.format("fantasy_%s_fence", name), FantasyFenceBlock::new);
+            RegistryObject<Block> fence = BLOCKS.register(String.format("fantasy_%s_fence", name), () -> new FenceBlock(BlockBehaviour.Properties.of(BlockRegistry.FANTASY_WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).lightLevel(value -> 7)));
             FENCES.put(name, fence);
             RegistryObject<Block> fence_gate = BLOCKS.register(String.format("fantasy_%s_fence_gate", name), () -> new FenceGateBlock(BlockBehaviour.Properties.of(FANTASY_WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).lightLevel(value -> 7)));
             FENCE_GATES.put(name, fence_gate);

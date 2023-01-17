@@ -1,6 +1,6 @@
 package com.github.x3rmination.fantasy_trees;
 
-import com.github.x3rmination.fantasy_trees.common.datagen.DataGenerators;
+import com.github.x3rmination.fantasy_trees.client.ClientEvents;
 import com.github.x3rmination.fantasy_trees.registry.BlockItemRegistry;
 import com.github.x3rmination.fantasy_trees.registry.BlockRegistry;
 import com.github.x3rmination.fantasy_trees.registry.ItemRegistry;
@@ -23,6 +23,8 @@ public class FantasyTrees {
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 
         modEventBus.addListener(this::setup);
+        modEventBus.addListener(ClientEvents::clientSetup);
+
         BlockRegistry.BLOCKS.register(modEventBus);
         BlockRegistry.registerFantasyBlocks();
         BlockItemRegistry.BLOCK_ITEMS.register(modEventBus);
@@ -30,6 +32,9 @@ public class FantasyTrees {
         ItemRegistry.ITEMS.register(modEventBus);
         ItemRegistry.registerFantasyItems();
         StructureRegistry.STRUCTURE_FEATURES.register(modEventBus);
+
+        modEventBus.addListener(ClientEvents::blockColorHandler);
+        modEventBus.addListener(ClientEvents::itemColorHandler);
 
 //        modEventBus.register(DataGenerators.class);
     }

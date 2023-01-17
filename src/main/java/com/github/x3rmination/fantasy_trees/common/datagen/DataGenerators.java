@@ -8,18 +8,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @Mod.EventBusSubscriber(modid = FantasyTrees.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-
 public class DataGenerators {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator dataGenerator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-
-        System.out.println("working here");
-        if(event.includeClient()) {
-            dataGenerator.addProvider(new FantasyBlockStateProvider(dataGenerator, existingFileHelper));
-        }
-//        dataGenerator.addProvider(new FantasyItemModelProvider(dataGenerator, existingFileHelper));
+        dataGenerator.addProvider(new FantasyBlockStateProvider(dataGenerator, existingFileHelper));
+        dataGenerator.addProvider(new FantasyItemModelProvider(dataGenerator, existingFileHelper));
     }
 }

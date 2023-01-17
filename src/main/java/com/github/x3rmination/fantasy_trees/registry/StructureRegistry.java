@@ -1,7 +1,7 @@
 package com.github.x3rmination.fantasy_trees.registry;
 
 import com.github.x3rmination.fantasy_trees.FantasyTrees;
-import com.github.x3rmination.fantasy_trees.structures.TreeStructures;
+import com.github.x3rmination.fantasy_trees.common.structures.TreeStructures;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

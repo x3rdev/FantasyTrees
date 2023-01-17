@@ -1,4 +1,4 @@
-package com.github.x3rmination.fantasy_trees.structures;
+package com.github.x3rmination.fantasy_trees.common.structures;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
