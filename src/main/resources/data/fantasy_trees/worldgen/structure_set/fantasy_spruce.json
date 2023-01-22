@@ -1,14 +1,14 @@
 {
   "structures": [
     {
-      "structure": "fantasy_trees:test_spruce",
+      "structure": "fantasy_trees:fantasy_spruce",
       "weight": 1
     }
   ],
   "placement": {
-    "salt": 16023745,
-    "spacing": 4,
-    "separation": 1,
+    "salt": 89072341,
+    "spacing": 40,
+    "separation": 30,
     "type": "minecraft:random_spread"
   }
 }

@@ -20,11 +20,7 @@ public class FantasyTrees {
 
     public FantasyTrees() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-
         modEventBus.addListener(this::setup);
-        modEventBus.addListener(ClientEvents::clientSetup);
-
         BlockRegistry.BLOCKS.register(modEventBus);
         BlockRegistry.registerFantasyBlocks();
         BlockItemRegistry.BLOCK_ITEMS.register(modEventBus);
@@ -32,11 +28,6 @@ public class FantasyTrees {
         ItemRegistry.ITEMS.register(modEventBus);
         ItemRegistry.registerFantasyItems();
         StructureRegistry.STRUCTURE_FEATURES.register(modEventBus);
-
-        modEventBus.addListener(ClientEvents::blockColorHandler);
-        modEventBus.addListener(ClientEvents::itemColorHandler);
-
-//        modEventBus.register(DataGenerators.class);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

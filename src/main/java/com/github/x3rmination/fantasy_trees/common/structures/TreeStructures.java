@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
@@ -30,7 +31,7 @@ public class TreeStructures extends StructureFeature<JigsawConfiguration> {
 
     @Override
     public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.VEGETAL_DECORATION;
+        return GenerationStep.Decoration.LOCAL_MODIFICATIONS;
     }
 
     public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
@@ -41,15 +42,17 @@ public class TreeStructures extends StructureFeature<JigsawConfiguration> {
         if(!TreeStructures.isFeatureChunk(context)) {
             return Optional.empty();
         }
-        BlockPos blockPos = context.chunkPos().getMiddleBlockPosition(0);
-        blockPos.above(60);
+        int x = context.chunkPos().getBlockX(0);
+        int z = context.chunkPos().getBlockZ(0);
+        BlockPos centerPos = new BlockPos(x, context.chunkGenerator().getFirstFreeHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor()) - 10, z);
+        centerPos.below(9);
         Optional<PieceGenerator<JigsawConfiguration>> structurePiecesGenerator =
                 JigsawPlacement.addPieces(
                   context,
                   PoolElementStructurePiece::new,
-                  blockPos,
+                  centerPos,
                   false,
-                  true
+                  false
                 );
         return structurePiecesGenerator;
     }

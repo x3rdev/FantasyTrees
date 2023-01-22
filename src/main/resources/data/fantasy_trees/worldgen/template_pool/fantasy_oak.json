@@ -1,11 +1,11 @@
 {
-  "name": "fantasy_trees:test_oak",
+  "name": "fantasy_trees:fantasy_oak",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "fantasy_trees:test_oak",
+        "location": "fantasy_trees:fantasy_oak",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

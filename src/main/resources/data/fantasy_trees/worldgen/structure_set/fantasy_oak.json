@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "fantasy_trees:fantasy_oak",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 1396766123,
+    "spacing": 40,
+    "separation": 30,
+    "type": "minecraft:random_spread",
+    "exclusion_zone": {
+      "chunk_count": 20,
+      "other_set": "fantasy_trees:fantasy_spruce"
+    }
+  }
+}
