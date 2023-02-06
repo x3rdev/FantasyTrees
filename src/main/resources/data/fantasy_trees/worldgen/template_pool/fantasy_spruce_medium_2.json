@@ -1,0 +1,15 @@
+{
+  "name": "fantasy_trees:fantasy_spruce_medium_2",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "fantasy_trees:fantasy_spruce_medium_2",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

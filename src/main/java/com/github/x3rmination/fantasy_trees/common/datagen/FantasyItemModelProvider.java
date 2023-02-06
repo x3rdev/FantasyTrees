@@ -29,7 +29,6 @@ public class FantasyItemModelProvider extends ItemModelProvider {
             if(((BlockItem) itemRegistryObject.get()).getBlock() instanceof FenceBlock) {
                 String name = itemRegistryObject.get().getRegistryName().getPath().substring(8);
                 name = name.replace(name.substring(name.length() - 6), "");
-                System.out.println(name);
                 fenceInventory(itemRegistryObject.get().getRegistryName().getPath(), new ResourceLocation(FantasyTrees.MOD_ID, String.format("block/fantasy_%s_planks", name)));
                 return;
             }

@@ -16,7 +16,7 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 
 import java.util.Optional;
 
-public class TreeStructures extends StructureFeature<JigsawConfiguration> {
+public class MediumTreeStructures extends StructureFeature<JigsawConfiguration> {
 
     public static final Codec<JigsawConfiguration> CODEC = RecordCodecBuilder.create((codec) -> {
         return codec.group(
@@ -25,8 +25,8 @@ public class TreeStructures extends StructureFeature<JigsawConfiguration> {
         ).apply(codec, JigsawConfiguration::new);
     });
 
-    public TreeStructures() {
-        super(CODEC, TreeStructures::createPiecesGenerator, PostPlacementProcessor.NONE);
+    public MediumTreeStructures() {
+        super(CODEC, MediumTreeStructures::createPiecesGenerator, PostPlacementProcessor.NONE);
     }
 
     @Override
@@ -34,18 +34,18 @@ public class TreeStructures extends StructureFeature<JigsawConfiguration> {
         return GenerationStep.Decoration.LOCAL_MODIFICATIONS;
     }
 
+
     public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
         return true;
     }
 
     public static Optional<PieceGenerator<JigsawConfiguration>> createPiecesGenerator(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
-        if(!TreeStructures.isFeatureChunk(context)) {
+        if(!MediumTreeStructures.isFeatureChunk(context)) {
             return Optional.empty();
         }
-        int x = context.chunkPos().getBlockX(0);
-        int z = context.chunkPos().getBlockZ(0);
-        BlockPos centerPos = new BlockPos(x, context.chunkGenerator().getFirstFreeHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor()) - 10, z);
-        centerPos.below(9);
+        int x = context.chunkPos().getMiddleBlockX();
+        int z = context.chunkPos().getMiddleBlockZ();
+        BlockPos centerPos = new BlockPos(x - 24, context.chunkGenerator().getFirstFreeHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor()) - 3, z - 24);
         Optional<PieceGenerator<JigsawConfiguration>> structurePiecesGenerator =
                 JigsawPlacement.addPieces(
                   context,
@@ -56,4 +56,6 @@ public class TreeStructures extends StructureFeature<JigsawConfiguration> {
                 );
         return structurePiecesGenerator;
     }
+
+
 }
