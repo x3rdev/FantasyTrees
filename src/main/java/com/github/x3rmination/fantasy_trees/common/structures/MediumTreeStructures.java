@@ -3,6 +3,8 @@ package com.github.x3rmination.fantasy_trees.common.structures;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.NoiseColumn;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
@@ -36,23 +38,26 @@ public class MediumTreeStructures extends StructureFeature<JigsawConfiguration> 
 
 
     public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
-        return true;
+        BlockPos pos = context.chunkPos().getWorldPosition();
+        int landHeight = context.chunkGenerator().getFirstOccupiedHeight(pos.getX(), pos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
+        NoiseColumn column = context.chunkGenerator().getBaseColumn(pos.getX(), pos.getZ(), context.heightAccessor());
+        BlockState topBlock = column.getBlock(landHeight);
+        return topBlock.getFluidState().isEmpty();
     }
 
     public static Optional<PieceGenerator<JigsawConfiguration>> createPiecesGenerator(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
         if(!MediumTreeStructures.isFeatureChunk(context)) {
             return Optional.empty();
         }
-        int x = context.chunkPos().getMiddleBlockX();
-        int z = context.chunkPos().getMiddleBlockZ();
-        BlockPos centerPos = new BlockPos(x - 24, context.chunkGenerator().getFirstFreeHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor()) - 3, z - 24);
+        BlockPos centerPos = context.chunkPos().getMiddleBlockPosition(0);
+        BlockPos blockPos = new BlockPos(centerPos.getX(), context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor()) - 5, centerPos.getZ());
         Optional<PieceGenerator<JigsawConfiguration>> structurePiecesGenerator =
                 JigsawPlacement.addPieces(
-                  context,
-                  PoolElementStructurePiece::new,
-                  centerPos,
-                  false,
-                  false
+                        context,
+                        PoolElementStructurePiece::new,
+                        blockPos,
+                        false,
+                        false
                 );
         return structurePiecesGenerator;
     }
