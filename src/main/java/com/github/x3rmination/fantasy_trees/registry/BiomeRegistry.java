@@ -10,7 +10,6 @@ import net.minecraft.world.level.biome.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import terrablender.api.ParameterUtils;
 
 public class BiomeRegistry {
 
