@@ -21,12 +21,12 @@ public class BiomeRegistry {
     public static Biome buildFantasyTaiga() {
         float temp = 0.25F;
         BiomeGenerationSettings.Builder genBuilder = new BiomeGenerationSettings.Builder();
-        BiomeDefaultFeatures.addFossilDecoration(genBuilder);
         globalOverworldGeneration(genBuilder);
-        BiomeDefaultFeatures.addDefaultOres(genBuilder);
+        BiomeDefaultFeatures.addTaigaTrees(genBuilder);
         BiomeDefaultFeatures.addDefaultSoftDisks(genBuilder);
         BiomeDefaultFeatures.addDefaultFlowers(genBuilder);
         BiomeDefaultFeatures.addTaigaGrass(genBuilder);
+
         return (new Biome.BiomeBuilder()
                 .precipitation(Biome.Precipitation.RAIN)
                 .biomeCategory(Biome.BiomeCategory.TAIGA)
@@ -47,13 +47,13 @@ public class BiomeRegistry {
     }
 
 
-    private static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder)
-    {
+    private static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
         BiomeDefaultFeatures.addDefaultCarversAndLakes(builder);
         BiomeDefaultFeatures.addDefaultCrystalFormations(builder);
-        BiomeDefaultFeatures.addDefaultMonsterRoom(builder);
         BiomeDefaultFeatures.addDefaultUndergroundVariety(builder);
         BiomeDefaultFeatures.addDefaultSprings(builder);
         BiomeDefaultFeatures.addSurfaceFreezing(builder);
+        BiomeDefaultFeatures.addFossilDecoration(builder);
+        BiomeDefaultFeatures.addDefaultOres(builder);
     }
 }

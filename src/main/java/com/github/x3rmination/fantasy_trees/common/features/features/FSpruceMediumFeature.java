@@ -3,6 +3,7 @@ package com.github.x3rmination.fantasy_trees.common.features.features;
 import com.github.x3rmination.fantasy_trees.common.features.configuration.FSpruceMediumConfiguration;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -21,12 +22,8 @@ public class FSpruceMediumFeature extends Feature<FSpruceMediumConfiguration> {
     }
 
     public static boolean isFeatureChunk(FeaturePlaceContext<FSpruceMediumConfiguration> context) {
-        BlockPos pos = context.origin();
-        WorldGenLevel worldgenlevel = context.level();
-        int landHeight = context.chunkGenerator().getFirstOccupiedHeight(pos.getX(), pos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, worldgenlevel);
-        NoiseColumn column = context.chunkGenerator().getBaseColumn(pos.getX(), pos.getZ(), worldgenlevel);
-        BlockState topBlock = column.getBlock(landHeight);
-        return topBlock.getFluidState().isEmpty();
+        BlockState topBlock = context.level().getBlockState(context.origin().below());
+        return topBlock.is(BlockTags.DIRT);
     }
     @Override
     public boolean place(FeaturePlaceContext<FSpruceMediumConfiguration> pContext) {
@@ -42,9 +39,18 @@ public class FSpruceMediumFeature extends Feature<FSpruceMediumConfiguration> {
             return false;
         }
         BlockPos placePos = new BlockPos(x, y, z);
-        structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, new StructurePlaceSettings(), pContext.random(), 4);
-        //for testing
+
+        //for testing, if redstone does not spawn, the tree is in the right spot
         worldgenlevel.setBlock(pContext.origin(), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
+
+        structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, new StructurePlaceSettings(), pContext.random(), 4);
         return true;
+    }
+
+    //Should be used for trees with roots in which case modifying the nbt file would not work
+    public static int getYOffset(int tree) {
+        return switch (tree) {
+            default -> 0;
+        };
     }
 }
