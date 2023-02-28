@@ -20,8 +20,7 @@ public class ConfiguredFeatureRegistry {
             new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_6"),
             new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_7"),
             new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_8"),
-            new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_9"),
-            new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_10")
+            new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_9")
     );
 
     public static final Holder<ConfiguredFeature<FSpruceMediumConfiguration, ?>> FANTASY_SPRUCE_MEDIUM = FeatureUtils.register(
