@@ -24,7 +24,7 @@ public class FantasyTreesRegion extends Region {
         Climate.ParameterPoint fantasy_taiga_point = new Climate.ParameterPoint(
                 ParameterUtils.Temperature.COOL.parameter(),
                 ParameterUtils.Humidity.NEUTRAL.parameter(),
-                ParameterUtils.Continentalness.INLAND.parameter(),
+                ParameterUtils.Continentalness.FAR_INLAND.parameter(),
                 ParameterUtils.Erosion.EROSION_0.parameter(),
                 ParameterUtils.Depth.FLOOR.parameter(),
                 ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING.parameter(),

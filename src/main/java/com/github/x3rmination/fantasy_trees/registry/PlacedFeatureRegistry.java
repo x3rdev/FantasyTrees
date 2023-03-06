@@ -9,6 +9,6 @@ import net.minecraft.world.level.levelgen.placement.*;
 public class PlacedFeatureRegistry {
 
     public static final Holder<PlacedFeature> FANTASY_SPRUCE_MEDIUM_PLACED = PlacementUtils.register("fantasy_spruce_medium_placed",
-            ConfiguredFeatureRegistry.FANTASY_SPRUCE_MEDIUM, RarityFilter.onAverageOnceEvery(1),
+            ConfiguredFeatureRegistry.FANTASY_SPRUCE_MEDIUM, RarityFilter.onAverageOnceEvery(2),
             CountPlacement.of(1), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 }
