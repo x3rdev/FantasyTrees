@@ -16,7 +16,7 @@ public class ConfiguredFeatureRegistry {
             new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_2"),
             new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_3"),
             new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_4"),
-            new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_5"),
+//            new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_5"),
             new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_6"),
             new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_7"),
             new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_8"),

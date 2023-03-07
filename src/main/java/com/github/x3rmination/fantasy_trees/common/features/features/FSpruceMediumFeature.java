@@ -36,7 +36,7 @@ public class FSpruceMediumFeature extends Feature<FSpruceMediumConfiguration> {
         if(!isFeatureChunk(pContext)) {
             return false;
         }
-        BlockPos placePos = new BlockPos(x, y - getYOffset(i), z);
+        BlockPos placePos = new BlockPos(x, y + getYOffset(i), z);
 
         //for testing, if redstone does not spawn, the tree is in the right spot
         worldgenlevel.setBlock(pContext.origin(), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
