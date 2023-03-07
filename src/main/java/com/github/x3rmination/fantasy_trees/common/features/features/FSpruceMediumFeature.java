@@ -36,7 +36,7 @@ public class FSpruceMediumFeature extends Feature<FSpruceMediumConfiguration> {
         if(!isFeatureChunk(pContext)) {
             return false;
         }
-        BlockPos placePos = new BlockPos(x, y, z);
+        BlockPos placePos = new BlockPos(x, y - getYOffset(i), z);
 
         //for testing, if redstone does not spawn, the tree is in the right spot
         worldgenlevel.setBlock(pContext.origin(), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
@@ -48,6 +48,8 @@ public class FSpruceMediumFeature extends Feature<FSpruceMediumConfiguration> {
     //Should be used for trees with roots in which case modifying the nbt file would not work
     public static int getYOffset(int tree) {
         return switch (tree) {
+            case 1 -> -2;
+            case 2, 5 -> -3;
             default -> 0;
         };
     }
