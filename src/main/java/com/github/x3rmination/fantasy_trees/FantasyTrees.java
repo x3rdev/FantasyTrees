@@ -47,7 +47,7 @@ public class FantasyTrees {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            Regions.register(new FantasyTreesRegion(new ResourceLocation(MOD_ID, "overworld"), 1));
+            Regions.register(new FantasyTreesRegion(new ResourceLocation(MOD_ID, "overworld"), 3));
         });
     }
 
