@@ -1,6 +1,7 @@
 package com.github.x3rmination.fantasy_trees.common.structures;
 
 import com.github.x3rmination.fantasy_trees.FantasyTrees;
+import com.github.x3rmination.fantasy_trees.common.util.StructureUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -44,10 +45,9 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         int landHeight = context.chunkGenerator().getFirstOccupiedHeight(pos.getX(), pos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
         NoiseColumn column = context.chunkGenerator().getBaseColumn(pos.getX(), pos.getZ(), context.heightAccessor());
         BlockState topBlock = column.getBlock(landHeight);
+
         return topBlock.getFluidState().isEmpty();
     }
-
-
 
     public static Optional<PieceGenerator<JigsawConfiguration>> createPiecesGenerator(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
         if(!LargeTreeStructures.isFeatureChunk(context)) {
@@ -55,7 +55,8 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         }
 
         BlockPos centerPos = context.chunkPos().getWorldPosition();
-        BlockPos blockPos = new BlockPos(centerPos.getX() - 24, context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor()) - 5, centerPos.getZ() - 24);
+        int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
+        BlockPos blockPos = new BlockPos(centerPos.getX() - 24, y - 5, centerPos.getZ() - 24);
         Optional<PieceGenerator<JigsawConfiguration>> structurePiecesGenerator =
                 JigsawPlacement.addPieces(
                   context,
