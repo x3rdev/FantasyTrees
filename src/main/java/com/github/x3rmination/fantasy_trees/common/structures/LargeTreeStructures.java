@@ -41,16 +41,17 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         if(!context.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG)) {
             return false;
         }
-        BlockPos pos = context.chunkPos().getWorldPosition();
-        int landHeight = context.chunkGenerator().getFirstOccupiedHeight(pos.getX() + 24, pos.getZ() + 24, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
-        NoiseColumn column = context.chunkGenerator().getBaseColumn(pos.getX(), pos.getZ(), context.heightAccessor());
-        BlockState topBlock = column.getBlock(landHeight);
-
-        return topBlock.getFluidState().isEmpty();
+        if(!StructureUtils.isChunkDry(context)) {
+            return false;
+        }
+        if(!StructureUtils.isChunkAreaFlat(context, 1, 4)) {
+            return false;
+        }
+        return true;
     }
 
     public static Optional<PieceGenerator<JigsawConfiguration>> createPiecesGenerator(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
-        if(!LargeTreeStructures.isFeatureChunk(context) && StructureUtils.isChunkAreaFlat(context, 1, 6)) {
+        if(!LargeTreeStructures.isFeatureChunk(context)) {
             return Optional.empty();
         }
 

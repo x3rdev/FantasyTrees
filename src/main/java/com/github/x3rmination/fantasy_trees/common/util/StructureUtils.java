@@ -1,7 +1,15 @@
 package com.github.x3rmination.fantasy_trees.common.util;
 
+import com.github.x3rmination.fantasy_trees.common.features.configuration.FSpruceMediumConfiguration;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.LevelHeightAccessor;
+import net.minecraft.world.level.NoiseColumn;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 
@@ -39,5 +47,33 @@ public final class StructureUtils {
             max = Math.max(height, max);
         }
         return new int[]{min, max};
+    }
+
+    public static boolean isChunkDry(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
+        return isChunkDry(context.chunkPos().getWorldPosition(), context.chunkGenerator(), context.heightAccessor());
+    }
+
+    public static boolean isChunkDry(FeaturePlaceContext<?> context) {
+        return isChunkDry(context.origin(), context.chunkGenerator(), context.level());
+    }
+
+    public static boolean isChunkDry(BlockPos origin, ChunkGenerator chunkGenerator, LevelHeightAccessor heightAccessor) {
+        for(int i = 0; i < 15; i+=2) {
+            int landHeight = chunkGenerator.getFirstOccupiedHeight(origin.getX()+i, origin.getZ()+i, Heightmap.Types.WORLD_SURFACE_WG, heightAccessor);
+            NoiseColumn column = chunkGenerator.getBaseColumn(origin.getX()+i, origin.getZ()+i, heightAccessor);
+            BlockState topBlock = column.getBlock(landHeight);
+            if(!topBlock.getFluidState().isEmpty()) {
+                return false;
+            }
+        }
+        for(int i = 0; i < 15; i+=2) {
+            int landHeight = chunkGenerator.getFirstOccupiedHeight(origin.getX()+15-i, origin.getZ()+15-i, Heightmap.Types.WORLD_SURFACE_WG, heightAccessor);
+            NoiseColumn column = chunkGenerator.getBaseColumn(origin.getX()+i, origin.getZ()+i, heightAccessor);
+            BlockState topBlock = column.getBlock(landHeight);
+            if(!topBlock.getFluidState().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

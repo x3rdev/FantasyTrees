@@ -1,6 +1,7 @@
 package com.github.x3rmination.fantasy_trees.common.features.features;
 
 import com.github.x3rmination.fantasy_trees.common.features.configuration.FSpruceMediumConfiguration;
+import com.github.x3rmination.fantasy_trees.common.util.StructureUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -21,7 +22,7 @@ public class FSpruceMediumFeature extends Feature<FSpruceMediumConfiguration> {
 
     public static boolean isFeatureChunk(FeaturePlaceContext<FSpruceMediumConfiguration> context) {
         BlockState topBlock = context.level().getBlockState(context.origin().below());
-        return topBlock.is(BlockTags.DIRT);
+        return topBlock.is(BlockTags.DIRT) && StructureUtils.isChunkDry(context);
     }
     @Override
     public boolean place(FeaturePlaceContext<FSpruceMediumConfiguration> pContext) {
