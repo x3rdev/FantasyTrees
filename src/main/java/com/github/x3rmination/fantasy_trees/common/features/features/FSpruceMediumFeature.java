@@ -25,24 +25,24 @@ public class FSpruceMediumFeature extends Feature<FSpruceMediumConfiguration> {
         return topBlock.is(BlockTags.DIRT) && StructureUtils.isChunkDry(context);
     }
     @Override
-    public boolean place(FeaturePlaceContext<FSpruceMediumConfiguration> pContext) {
-        WorldGenLevel worldgenlevel = pContext.level();
-        FSpruceMediumConfiguration treeConfiguration = pContext.config();
+    public boolean place(FeaturePlaceContext<FSpruceMediumConfiguration> context) {
+        WorldGenLevel worldgenlevel = context.level();
+        FSpruceMediumConfiguration treeConfiguration = context.config();
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
-        int i = pContext.random().nextInt(treeConfiguration.trees.size());
+        int i = context.random().nextInt(treeConfiguration.trees.size());
         StructureTemplate structuretemplate = structuremanager.getOrCreate(treeConfiguration.trees.get(i));
-        int x = pContext.origin().getX() - (structuretemplate.getSize().getX() / 2);
-        int z = pContext.origin().getZ() - (structuretemplate.getSize().getZ() / 2);
-        int y = pContext.origin().getY();
-        if(!isFeatureChunk(pContext)) {
+        int x = context.origin().getX() - (structuretemplate.getSize().getX() / 2);
+        int z = context.origin().getZ() - (structuretemplate.getSize().getZ() / 2);
+        int y = context.origin().getY();
+        if(!isFeatureChunk(context)) {
             return false;
         }
         BlockPos placePos = new BlockPos(x, y + getYOffset(i), z);
 
         //for testing, if redstone does not spawn, the tree is in the right spot
-        worldgenlevel.setBlock(pContext.origin(), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
+        worldgenlevel.setBlock(context.origin(), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
 
-        structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, new StructurePlaceSettings(), pContext.random(), 4);
+        structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, new StructurePlaceSettings(), context.random(), 4);
         return true;
     }
 
