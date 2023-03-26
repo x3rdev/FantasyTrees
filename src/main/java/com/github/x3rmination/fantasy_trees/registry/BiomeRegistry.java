@@ -15,8 +15,11 @@ public class BiomeRegistry {
 
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, FantasyTrees.MOD_ID);
     public static final ResourceKey<Biome> FANTASY_TAIGA = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_taiga"));
+    public static final ResourceKey<Biome> FANTASY_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_forest"));
+
 
     public static final RegistryObject<Biome> FANTASY_TAIGA_BIOME = BIOMES.register("fantasy_taiga", BiomeRegistry::buildFantasyTaiga);
+    public static final RegistryObject<Biome> FANTASY_FOREST_BIOME = BIOMES.register("fantasy_forest", BiomeRegistry::buildFantasyForest);
 
     public static Biome buildFantasyTaiga() {
         float temp = 0.25F;
@@ -30,6 +33,27 @@ public class BiomeRegistry {
         return (new Biome.BiomeBuilder()
                 .precipitation(Biome.Precipitation.RAIN)
                 .biomeCategory(Biome.BiomeCategory.TAIGA)
+                .temperature(temp)
+                .temperatureAdjustment(Biome.TemperatureModifier.NONE)
+                .downfall(0.8F)
+                .specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(calculateSkyColor(temp)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build())
+                .mobSpawnSettings(new MobSpawnSettings.Builder().build())
+                .generationSettings(genBuilder.build())
+                .build());
+    }
+
+    //TODO get this to actually be accurate to whatever vanilla plains is
+    public static Biome buildFantasyForest() {
+        float temp = 0.25F;
+        BiomeGenerationSettings.Builder genBuilder = new BiomeGenerationSettings.Builder();
+        globalOverworldGeneration(genBuilder);
+        BiomeDefaultFeatures.addForestFlowers(genBuilder);
+        BiomeDefaultFeatures.addDefaultSoftDisks(genBuilder);
+        BiomeDefaultFeatures.addForestGrass(genBuilder);
+
+        return (new Biome.BiomeBuilder()
+                .precipitation(Biome.Precipitation.RAIN)
+                .biomeCategory(Biome.BiomeCategory.FOREST)
                 .temperature(temp)
                 .temperatureAdjustment(Biome.TemperatureModifier.NONE)
                 .downfall(0.8F)

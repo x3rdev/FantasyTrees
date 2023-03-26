@@ -15,18 +15,18 @@ import terrablender.api.RegionType;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class FantasyTreesRegion extends Region {
+public class FantasyOakRegion extends Region {
 
-    public FantasyTreesRegion(ResourceLocation name, int weight) {
+    public FantasyOakRegion(ResourceLocation name, int weight) {
         super(name, RegionType.OVERWORLD, weight);
     }
 
     @Override
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
-            builder.replaceBiome(Biomes.TAIGA, BiomeRegistry.FANTASY_TAIGA);
+            builder.replaceBiome(Biomes.FOREST, BiomeRegistry.FANTASY_FOREST);
 
-            List<Climate.ParameterPoint> fantasyTaigaPoints = new ParameterUtils.ParameterPointListBuilder()
+            List<Climate.ParameterPoint> fantasyForestPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(ParameterUtils.Temperature.ICY, ParameterUtils.Temperature.COOL, ParameterUtils.Temperature.NEUTRAL)
                     .humidity(ParameterUtils.Humidity.ARID, ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL, ParameterUtils.Humidity.WET, ParameterUtils.Humidity.HUMID)
                     .continentalness(ParameterUtils.Continentalness.span(ParameterUtils.Continentalness.COAST, ParameterUtils.Continentalness.FAR_INLAND), ParameterUtils.Continentalness.span(ParameterUtils.Continentalness.MID_INLAND, ParameterUtils.Continentalness.FAR_INLAND))
@@ -35,7 +35,7 @@ public class FantasyTreesRegion extends Region {
                     .weirdness(ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.PEAK_VARIANT, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_DESCENDING)
                     .build();
 
-            fantasyTaigaPoints.forEach(parameterPoint -> builder.replaceBiome(parameterPoint, BiomeRegistry.FANTASY_TAIGA));
+            fantasyForestPoints.forEach(parameterPoint -> builder.replaceBiome(parameterPoint, BiomeRegistry.FANTASY_FOREST));
         });
     }
 }

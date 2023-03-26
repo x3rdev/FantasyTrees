@@ -7,15 +7,15 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 
 import java.util.List;
 
-public class FSpruceMediumConfiguration implements FeatureConfiguration {
+public class TreeConfiguration implements FeatureConfiguration {
 
-    public static final Codec<FSpruceMediumConfiguration> CODEC = RecordCodecBuilder.create((instance) -> {
+    public static final Codec<TreeConfiguration> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(ResourceLocation.CODEC.listOf().fieldOf("trees").forGetter(o -> {
             return o.trees;
-        })).apply(instance, FSpruceMediumConfiguration::new);
+        })).apply(instance, TreeConfiguration::new);
     });
     public final List<ResourceLocation> trees;
-    public FSpruceMediumConfiguration(List<ResourceLocation> trees) {
+    public TreeConfiguration(List<ResourceLocation> trees) {
         this.trees = trees;
     }
 }
