@@ -56,7 +56,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         }
 
         BlockPos centerPos = context.chunkPos().getWorldPosition();
-        int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX() + 24, centerPos.getZ() + 24, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
+        int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
         BlockPos blockPos = new BlockPos(centerPos.getX(), y - 5, centerPos.getZ());
         Optional<PieceGenerator<JigsawConfiguration>> structurePiecesGenerator =
                 JigsawPlacement.addPieces(

@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import terrablender.api.Regions;
 
 import java.util.List;
+import java.util.Objects;
 
 @Mod("fantasy_trees")
 public class FantasyTrees {
@@ -45,17 +46,17 @@ public class FantasyTrees {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            Regions.register(new FantasyOakRegion(new ResourceLocation(MOD_ID, "oak_region"), 3));
-            Regions.register(new FantasySpruceRegion(new ResourceLocation(MOD_ID, "spruce_region"), 3));
+            Regions.register(new FantasyOakRegion(new ResourceLocation(MOD_ID, "oak_region"), 4));
+            Regions.register(new FantasySpruceRegion(new ResourceLocation(MOD_ID, "spruce_region"), 4));
         });
     }
 
     private void generateTrees(final BiomeLoadingEvent event) {
         List<Holder<PlacedFeature>> base = event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-        if(BiomeRegistry.FANTASY_TAIGA_BIOME.get().getRegistryName().equals(event.getName())) {
+        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_TAIGA_BIOME.get().getRegistryName())) {
             base.add(PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_PLACED);
         }
-        if(BiomeRegistry.FANTASY_FOREST_BIOME.get().getRegistryName().equals(event.getName())) {
+        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_FOREST_BIOME.get().getRegistryName())) {
             base.add(PlacedFeatureRegistry.FANTASY_OAK_SMALL_PLACED);
             base.add(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_PLACED);
         }
