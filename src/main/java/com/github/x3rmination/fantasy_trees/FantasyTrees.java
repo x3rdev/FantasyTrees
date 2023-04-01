@@ -46,8 +46,8 @@ public class FantasyTrees {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            Regions.register(new FantasyOakRegion(new ResourceLocation(MOD_ID, "oak_region"), 4));
-            Regions.register(new FantasySpruceRegion(new ResourceLocation(MOD_ID, "spruce_region"), 4));
+            Regions.register(new FantasyOakRegion(new ResourceLocation(MOD_ID, "oak_region"), 5));
+            Regions.register(new FantasySpruceRegion(new ResourceLocation(MOD_ID, "spruce_region"), 5));
         });
     }
 
@@ -58,7 +58,7 @@ public class FantasyTrees {
         }
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_FOREST_BIOME.get().getRegistryName())) {
             base.add(PlacedFeatureRegistry.FANTASY_OAK_SMALL_PLACED);
-//            base.add(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_PLACED);
+            base.add(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_PLACED);
         }
     }
 }

@@ -18,6 +18,6 @@ public class PlacedFeatureRegistry {
             CountPlacement.of(1), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 
     public static final Holder<PlacedFeature> FANTASY_OAK_MEDIUM_PLACED = PlacementUtils.register("fantasy_oak_medium_placed",
-            ConfiguredFeatureRegistry.FANTASY_OAK_MEDIUM, RarityFilter.onAverageOnceEvery(1),
+            ConfiguredFeatureRegistry.FANTASY_OAK_MEDIUM, RarityFilter.onAverageOnceEvery(6),
             CountPlacement.of(1), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 }

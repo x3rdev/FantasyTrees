@@ -25,8 +25,8 @@ public final class StructureUtils {
     public static boolean isChunkAreaFlat(ChunkPos origin, ChunkGenerator chunkGenerator, LevelHeightAccessor heightAccessor, int chunkRadius, int tolerance) {
         int min = 256;
         int max = 0;
-        for(int i = -chunkRadius; i < chunkRadius; i+=2) {
-            for(int j = -chunkRadius; j < chunkRadius; j+=2) {
+        for(int i = -chunkRadius; i < chunkRadius + 1; i+=2) {
+            for(int j = -chunkRadius; j < chunkRadius + 1; j+=2) {
                 ChunkPos chunkPos = new ChunkPos(origin.x + i, origin.z + j);
                 int[] range = guessSurfaceHeightRange(chunkPos, chunkGenerator, heightAccessor);
                 min = Math.min(range[0], min);
