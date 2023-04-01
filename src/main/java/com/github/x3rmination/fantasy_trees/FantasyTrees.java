@@ -58,7 +58,7 @@ public class FantasyTrees {
         }
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_FOREST_BIOME.get().getRegistryName())) {
             base.add(PlacedFeatureRegistry.FANTASY_OAK_SMALL_PLACED);
-            base.add(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_PLACED);
+//            base.add(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_PLACED);
         }
     }
 }

@@ -53,12 +53,12 @@ public final class StructureUtils {
         return new int[]{min, max};
     }
 
-    public static boolean isChunkDry(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
+    public static boolean isChunkDry(PieceGeneratorSupplier.Context<JigsawConfiguration> context, BlockPos origin) {
         return isChunkDry(context.chunkPos().getWorldPosition(), context.chunkGenerator(), context.heightAccessor());
     }
 
-    public static boolean isChunkDry(FeaturePlaceContext<?> context) {
-        return isChunkDry(context.origin(), context.chunkGenerator(), context.level());
+    public static boolean isChunkDry(FeaturePlaceContext<?> context, BlockPos origin) {
+        return isChunkDry(origin, context.chunkGenerator(), context.level());
     }
 
     public static boolean isChunkDry(BlockPos origin, ChunkGenerator chunkGenerator, LevelHeightAccessor heightAccessor) {

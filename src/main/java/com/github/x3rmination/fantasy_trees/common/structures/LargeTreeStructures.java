@@ -41,7 +41,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         if(!context.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG)) {
             return false;
         }
-        if(!StructureUtils.isChunkDry(context)) {
+        if(!StructureUtils.isChunkDry(context, context.chunkPos().getWorldPosition())) {
             return false;
         }
         if(!StructureUtils.isChunkAreaFlat(context, 1, 4)) {
