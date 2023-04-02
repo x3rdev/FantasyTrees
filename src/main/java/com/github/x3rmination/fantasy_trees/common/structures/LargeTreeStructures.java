@@ -1,9 +1,11 @@
 package com.github.x3rmination.fantasy_trees.common.structures;
 
+import com.github.x3rmination.fantasy_trees.FantasyTrees;
 import com.github.x3rmination.fantasy_trees.common.util.StructureUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -16,6 +18,7 @@ import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.pools.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
 import java.util.Optional;
 
@@ -54,10 +57,14 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         if(!LargeTreeStructures.isFeatureChunk(context)) {
             return Optional.empty();
         }
+        ResourceLocation location = context.config().startPool().value().getName();
+        StructureTemplate structuretemplate = context.structureManager().getOrCreate(location);
+        BlockPos pos = context.chunkPos().getWorldPosition();
+        int y = context.chunkGenerator().getFirstOccupiedHeight(pos.getX() + (structuretemplate.getSize().getX()/2), pos.getZ() + (structuretemplate.getSize().getZ()/2), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
+        BlockPos blockPos = new BlockPos(pos.getX(), y - 5, pos.getZ());
 
-        BlockPos centerPos = context.chunkPos().getWorldPosition();
-        int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
-        BlockPos blockPos = new BlockPos(centerPos.getX(), y - 5, centerPos.getZ());
+
+
         Optional<PieceGenerator<JigsawConfiguration>> structurePiecesGenerator =
                 JigsawPlacement.addPieces(
                   context,

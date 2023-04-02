@@ -9,10 +9,10 @@ import java.util.List;
 
 public class TreeConfiguration implements FeatureConfiguration {
 
-    public static final Codec<TreeConfiguration> CODEC = RecordCodecBuilder.create((instance) -> {
-        return instance.group(ResourceLocation.CODEC.listOf().fieldOf("trees").forGetter(o -> {
+    public static final Codec<TreeConfiguration> CODEC = RecordCodecBuilder.create((codec) -> {
+        return codec.group(ResourceLocation.CODEC.listOf().fieldOf("trees").forGetter(o -> {
             return o.trees;
-        })).apply(instance, TreeConfiguration::new);
+        })).apply(codec, TreeConfiguration::new);
     });
     public final List<ResourceLocation> trees;
     public TreeConfiguration(List<ResourceLocation> trees) {
