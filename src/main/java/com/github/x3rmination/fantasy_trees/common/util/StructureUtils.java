@@ -96,6 +96,13 @@ public final class StructureUtils {
     }
 
     public static boolean isAreaDry(BlockPos blockPos, ChunkGenerator chunkGenerator, LevelHeightAccessor heightAccessor, int radius) {
+
+        int firstOccupiedHeight = chunkGenerator.getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, heightAccessor);
+        NoiseColumn firstColumn = chunkGenerator.getBaseColumn(blockPos.getX(), blockPos.getZ(), heightAccessor);
+        if(!firstColumn.getBlock(firstOccupiedHeight).getFluidState().isEmpty()) {
+            return false;
+        }
+
         for(int i = 0; i < radius; i++) {
             for(Direction direction : Direction.values()) {
                 if(direction.getStepY() == 0) {
