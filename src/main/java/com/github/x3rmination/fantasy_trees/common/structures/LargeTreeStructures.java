@@ -40,30 +40,29 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         return GenerationStep.Decoration.LOCAL_MODIFICATIONS;
     }
 
-    public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
+    public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context, BlockPos blockPos) {
         if(!context.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG)) {
             return false;
         }
-        if(!StructureUtils.isChunkDry(context, context.chunkPos().getWorldPosition())) {
+        if(!StructureUtils.isAreaDry(context, blockPos, 10)) {
             return false;
         }
-        if(!StructureUtils.isChunkAreaFlat(context, 1, 4)) {
+        if(!StructureUtils.isAreaFlat(blockPos, context, 10, 5)) {
             return false;
         }
         return true;
     }
 
     public static Optional<PieceGenerator<JigsawConfiguration>> createPiecesGenerator(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
-        if(!LargeTreeStructures.isFeatureChunk(context)) {
-            return Optional.empty();
-        }
         ResourceLocation location = context.config().startPool().value().getName();
         StructureTemplate structuretemplate = context.structureManager().getOrCreate(location);
         BlockPos pos = context.chunkPos().getWorldPosition();
         int y = context.chunkGenerator().getFirstOccupiedHeight(pos.getX() + (structuretemplate.getSize().getX()/2), pos.getZ() + (structuretemplate.getSize().getZ()/2), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
         BlockPos blockPos = new BlockPos(pos.getX(), y - 5, pos.getZ());
 
-
+        if(!LargeTreeStructures.isFeatureChunk(context, blockPos)) {
+            return Optional.empty();
+        }
 
         Optional<PieceGenerator<JigsawConfiguration>> structurePiecesGenerator =
                 JigsawPlacement.addPieces(

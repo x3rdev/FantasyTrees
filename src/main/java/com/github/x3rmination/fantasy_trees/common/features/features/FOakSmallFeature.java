@@ -14,7 +14,7 @@ public class FOakSmallFeature extends SmallTreeFeature {
             case 1 -> -2;
             case 2 -> -2;
             case 3 -> -3;
-            case 4 -> -7;
+            case 4 -> -5;
             case 5 -> 0;
             case 6 -> -3;
             case 7 -> -3;

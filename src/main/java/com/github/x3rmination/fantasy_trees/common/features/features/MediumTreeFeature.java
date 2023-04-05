@@ -23,7 +23,7 @@ public class MediumTreeFeature extends Feature<TreeConfiguration> {
 
     public boolean isFeatureChunk(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
         BlockState topBlock = context.level().getBlockState(pos);
-        return topBlock.is(BlockTags.DIRT) && StructureUtils.isChunkDry(context, pos) && StructureUtils.isChunkAreaFlat(context, 0, 8);
+        return topBlock.is(BlockTags.DIRT) && StructureUtils.isAreaDry(context, pos, 5) && StructureUtils.isAreaFlat(pos, context, 7, 5);
     }
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
@@ -32,8 +32,8 @@ public class MediumTreeFeature extends Feature<TreeConfiguration> {
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
         int i = context.random().nextInt(treeConfiguration.trees.size());
         StructureTemplate structuretemplate = structuremanager.getOrCreate(treeConfiguration.trees.get(i));
-        int x = context.origin().getX() + 3 - context.random().nextInt(6);
-        int z = context.origin().getZ() + 3 - context.random().nextInt(6);
+        int x = context.origin().getX();
+        int z = context.origin().getZ();
         int y = context.chunkGenerator().getFirstOccupiedHeight(x + (structuretemplate.getSize().getX()/2), z + (structuretemplate.getSize().getZ()/2), Heightmap.Types.WORLD_SURFACE_WG, context.level());
         BlockPos placePos = new BlockPos(x, y, z);
         if(!isFeatureChunk(context, placePos)) {
