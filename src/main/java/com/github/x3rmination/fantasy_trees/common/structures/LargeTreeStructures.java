@@ -47,7 +47,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         if(!StructureUtils.isAreaDry(context, blockPos, 10)) {
             return false;
         }
-        if(!StructureUtils.isAreaFlat(blockPos, context, 10, 5)) {
+        if(!StructureUtils.isAreaFlat(blockPos, context, 6, 5)) {
             return false;
         }
         return true;

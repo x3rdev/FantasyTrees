@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:forest",
-    "minecraft:plains"
+    "fantasy_trees:fantasy_forest"
   ]
 }

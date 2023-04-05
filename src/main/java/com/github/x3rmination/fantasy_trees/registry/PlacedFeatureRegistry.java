@@ -9,12 +9,12 @@ public class PlacedFeatureRegistry {
 
     public static final Holder<PlacedFeature> FANTASY_SPRUCE_MEDIUM_PLACED = PlacementUtils.register("fantasy_spruce_medium_placed",
             ConfiguredFeatureRegistry.FANTASY_SPRUCE_MEDIUM, RarityFilter.onAverageOnceEvery(1),
-            CountPlacement.of(1), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread());
+            CountPlacement.of(1), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 
     public static final Holder<PlacedFeature> FANTASY_OAK_SMALL_PLACED = PlacementUtils.register("fantasy_oak_small_placed",
             ConfiguredFeatureRegistry.FANTASY_OAK_SMALL, VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1)));
 
     public static final Holder<PlacedFeature> FANTASY_OAK_MEDIUM_PLACED = PlacementUtils.register("fantasy_oak_medium_placed",
             ConfiguredFeatureRegistry.FANTASY_OAK_MEDIUM, RarityFilter.onAverageOnceEvery(3),
-            CountPlacement.of(1), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread());
+            CountPlacement.of(1), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 }

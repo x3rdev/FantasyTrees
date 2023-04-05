@@ -23,7 +23,7 @@ public class MediumTreeFeature extends Feature<TreeConfiguration> {
 
     public boolean isFeatureChunk(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
         BlockState topBlock = context.level().getBlockState(pos);
-        return topBlock.is(BlockTags.DIRT) && StructureUtils.isAreaDry(context, pos, 5) && StructureUtils.isAreaFlat(pos, context, 7, 5);
+        return topBlock.is(BlockTags.DIRT) && StructureUtils.isAreaDry(context, pos, 5) && StructureUtils.isAreaFlat(pos, context, 5, 5);
     }
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
@@ -34,12 +34,11 @@ public class MediumTreeFeature extends Feature<TreeConfiguration> {
         StructureTemplate structuretemplate = structuremanager.getOrCreate(treeConfiguration.trees.get(i));
         int x = context.origin().getX();
         int z = context.origin().getZ();
-        int y = context.chunkGenerator().getFirstOccupiedHeight(x + (structuretemplate.getSize().getX()/2), z + (structuretemplate.getSize().getZ()/2), Heightmap.Types.WORLD_SURFACE_WG, context.level());
-        BlockPos placePos = new BlockPos(x, y, z);
-        if(!isFeatureChunk(context, placePos)) {
+        int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.level());
+        if(!isFeatureChunk(context, new BlockPos(x, y, z))) {
             return false;
         }
-        placePos.offset(0, getYOffset(i), 0);
+        BlockPos placePos = new BlockPos(x - (structuretemplate.getSize().getX()/2), y + getYOffset(i), z - (structuretemplate.getSize().getZ()/2));
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
         structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;

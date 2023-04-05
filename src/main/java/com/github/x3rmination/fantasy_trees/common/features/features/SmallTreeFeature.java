@@ -35,15 +35,13 @@ public class SmallTreeFeature extends Feature<TreeConfiguration> {
         StructureTemplate structuretemplate = structuremanager.getOrCreate(treeConfiguration.trees.get(i));
         int x = context.origin().getX() + 6 - context.random().nextInt(12);
         int z = context.origin().getZ() + 6 - context.random().nextInt(12);
-        int y = context.chunkGenerator().getFirstFreeHeight(x + (structuretemplate.getSize().getX()/2), z + (structuretemplate.getSize().getZ()/2), Heightmap.Types.WORLD_SURFACE_WG, context.level());
-        BlockPos placePos = new BlockPos(x, y, z);
-        if(!isFeatureChunk(context, placePos)) {
+        int y = context.chunkGenerator().getFirstFreeHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.level());
+        if(!isFeatureChunk(context, new BlockPos(x, y, z))) {
             return false;
         }
-        BlockPos finalPos = placePos.offset(0, getYOffset(i), 0);
+        BlockPos placePos = new BlockPos(x - (structuretemplate.getSize().getX()/2), y + getYOffset(i), z - (structuretemplate.getSize().getZ()/2));
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
-        structuretemplate.placeInWorld(worldgenlevel, finalPos, finalPos, settings, context.random(), 4);
-//        context.level().setBlock(new BlockPos(x + (structuretemplate.getSize().getX()/2), y, z + (structuretemplate.getSize().getZ()/2)), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
+        structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;
     }
     public int getYOffset(int tree) {

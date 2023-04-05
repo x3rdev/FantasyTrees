@@ -38,7 +38,8 @@ public class ConfiguredFeatureRegistry {
             new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_small_8")
     );
     public static final List<ResourceLocation> FANTASY_OAK_MEDIUM_LIST = List.of(
-            new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_medium_1")
+            new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_medium_1"),
+            new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_medium_2")
     );
 
     public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> FANTASY_SPRUCE_MEDIUM = FeatureUtils.register(
