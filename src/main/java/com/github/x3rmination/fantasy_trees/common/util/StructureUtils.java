@@ -1,20 +1,14 @@
 package com.github.x3rmination.fantasy_trees.common.util;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
-import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
-
-import java.util.Arrays;
-import java.util.Random;
 
 public final class StructureUtils {
 
@@ -71,15 +65,11 @@ public final class StructureUtils {
     public static boolean isAreaFlat(final BlockPos blockPos, final ChunkGenerator chunkGenerator, final LevelHeightAccessor levelHeightAccessor, int radius, int tolerance) {
         final int[] min = {blockPos.getY()};
         final int[] max = {blockPos.getY()};
-        for(int i = 0; i < radius; i++) {
-            for(Direction direction : Direction.values()) {
-                if(direction.getStepY() == 0) {
-                    BlockPos checkPos = blockPos.relative(direction, i);
-                    int h = chunkGenerator.getFirstFreeHeight(checkPos.getX(), checkPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, levelHeightAccessor);
-                    min[0] = Math.min(min[0], h);
-                    max[0] = Math.max(max[0], h);
-                }
-            }
+        for(int i = -radius; i < radius; i++) {
+            BlockPos checkPos = blockPos.offset(i, 0, i);
+            int h = chunkGenerator.getFirstFreeHeight(checkPos.getX(), checkPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, levelHeightAccessor);
+            min[0] = Math.min(min[0], h);
+            max[0] = Math.max(max[0], h);
             if(Math.abs(min[0] - max[0]) > tolerance) {
                 return false;
             }
@@ -103,16 +93,12 @@ public final class StructureUtils {
             return false;
         }
 
-        for(int i = 0; i < radius; i++) {
-            for(Direction direction : Direction.values()) {
-                if(direction.getStepY() == 0) {
-                    BlockPos checkPos = blockPos.relative(direction, i);
-                    int h = chunkGenerator.getFirstOccupiedHeight(checkPos.getX(), checkPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, heightAccessor);
-                    NoiseColumn column = chunkGenerator.getBaseColumn(checkPos.getX(), checkPos.getZ(), heightAccessor);
-                    if(!column.getBlock(h).getFluidState().isEmpty()) {
-                        return false;
-                    }
-                }
+        for(int i = -radius; i < radius; i++) {
+            BlockPos checkPos = blockPos.offset(i, 0, i);
+            int h = chunkGenerator.getFirstOccupiedHeight(checkPos.getX(), checkPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, heightAccessor);
+            NoiseColumn column = chunkGenerator.getBaseColumn(checkPos.getX(), checkPos.getZ(), heightAccessor);
+            if(!column.getBlock(h).getFluidState().isEmpty()) {
+                return false;
             }
         }
         return true;
