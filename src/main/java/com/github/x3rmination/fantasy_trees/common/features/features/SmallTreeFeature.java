@@ -32,13 +32,15 @@ public class SmallTreeFeature extends FantasyTreeFeature {
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
         ResourceLocation resourceLocation = treeConfiguration.getRandomTree(context.random());
         StructureTemplate structuretemplate = structuremanager.getOrCreate(resourceLocation);
-        int x = context.origin().getX() + 8 - context.random().nextInt(16);
-        int z = context.origin().getZ() + 8 - context.random().nextInt(16);
+        int x = context.origin().getX();
+//                + 8 - context.random().nextInt(16);
+        int z = context.origin().getZ();
+//                + 8 - context.random().nextInt(16);
         int y = context.chunkGenerator().getFirstFreeHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.level());
-        if(!isFeaturePosition(context, new BlockPos(x, y, z))) {
+        if(!isFeaturePosition(context, new BlockPos(x + (structuretemplate.getSize().getX()/2), y, z + (structuretemplate.getSize().getZ()/2)))) {
             return false;
         }
-        BlockPos placePos = new BlockPos(x - (structuretemplate.getSize().getX()/2), y + getYOffset(treeConfiguration.trees, resourceLocation), z - (structuretemplate.getSize().getZ()/2));
+        BlockPos placePos = new BlockPos(x, y + getYOffset(treeConfiguration.trees, resourceLocation), z);
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
         structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;

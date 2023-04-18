@@ -37,10 +37,10 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         int x = context.origin().getX();
         int z = context.origin().getZ();
         int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.level());
-        if (!isFeaturePosition(context, new BlockPos(x, y, z))) {
+        if (!isFeaturePosition(context, new BlockPos(x + (structuretemplate.getSize().getX() / 2), y, z + (structuretemplate.getSize().getZ() / 2)))) {
             return false;
         }
-        BlockPos placePos = new BlockPos(x - (structuretemplate.getSize().getX() / 2), y + getYOffset(treeConfiguration.trees, resourceLocation), z - (structuretemplate.getSize().getZ() / 2));
+        BlockPos placePos = new BlockPos(x, y + getYOffset(treeConfiguration.trees, resourceLocation), z);
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX() / 2, 0, structuretemplate.getSize().getZ() / 2)).setRotation(Rotation.getRandom(context.random()));
         structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;
