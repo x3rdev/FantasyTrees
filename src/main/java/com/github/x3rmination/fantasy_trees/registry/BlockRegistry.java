@@ -12,6 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,8 +31,10 @@ public class BlockRegistry {
     public static final Map<String, RegistryObject<Block>> FENCE_GATES = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> CRAFTING_TABLES = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> SAPLINGS = new HashMap<>();
+
+    public static final WoodType[] WOOD_TYPES = {WoodType.OAK, WoodType.SPRUCE, WoodType.BIRCH, WoodType.ACACIA, WoodType.JUNGLE, WoodType.DARK_OAK};
     public static void registerFantasyBlocks() {
-        WoodType.values().forEach(woodType -> {
+        Arrays.stream(WOOD_TYPES).forEach(woodType -> {
             if(woodType == WoodType.CRIMSON || woodType == WoodType.WARPED) {
                 return;
             }
