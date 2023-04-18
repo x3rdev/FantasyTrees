@@ -10,7 +10,6 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
@@ -22,7 +21,7 @@ public class SmallTreeFeature extends FantasyTreeFeature {
         super(pCodec);
     }
 
-    public boolean isFeatureChunk(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
+    public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
         BlockState topBlock = context.level().getBlockState(pos.below());
         return topBlock.is(BlockTags.DIRT) && StructureUtils.isAreaDry(context, pos, 0) && StructureUtils.isAreaFlat(pos, context, 2, 4);
     }
@@ -36,7 +35,7 @@ public class SmallTreeFeature extends FantasyTreeFeature {
         int x = context.origin().getX() + 8 - context.random().nextInt(16);
         int z = context.origin().getZ() + 8 - context.random().nextInt(16);
         int y = context.chunkGenerator().getFirstFreeHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.level());
-        if(!isFeatureChunk(context, new BlockPos(x, y, z))) {
+        if(!isFeaturePosition(context, new BlockPos(x, y, z))) {
             return false;
         }
         BlockPos placePos = new BlockPos(x - (structuretemplate.getSize().getX()/2), y + getYOffset(treeConfiguration.trees, resourceLocation), z - (structuretemplate.getSize().getZ()/2));

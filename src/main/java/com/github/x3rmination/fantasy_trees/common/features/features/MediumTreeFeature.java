@@ -21,10 +21,12 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         super(pCodec);
     }
 
-    public boolean isFeatureChunk(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
+    public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
         BlockState topBlock = context.level().getBlockState(pos);
         return topBlock.is(BlockTags.DIRT) && StructureUtils.isAreaDry(context, pos, 5) && StructureUtils.isAreaFlat(pos, context, 5, 5);
     }
+
+
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
         WorldGenLevel worldgenlevel = context.level();
@@ -35,7 +37,7 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         int x = context.origin().getX();
         int z = context.origin().getZ();
         int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.level());
-        if (!isFeatureChunk(context, new BlockPos(x, y, z))) {
+        if (!isFeaturePosition(context, new BlockPos(x, y, z))) {
             return false;
         }
         BlockPos placePos = new BlockPos(x - (structuretemplate.getSize().getX() / 2), y + getYOffset(treeConfiguration.trees, resourceLocation), z - (structuretemplate.getSize().getZ() / 2));
