@@ -37,7 +37,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
 
     @Override
     public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.LOCAL_MODIFICATIONS;
+        return GenerationStep.Decoration.VEGETAL_DECORATION;
     }
 
     public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context, BlockPos blockPos) {
