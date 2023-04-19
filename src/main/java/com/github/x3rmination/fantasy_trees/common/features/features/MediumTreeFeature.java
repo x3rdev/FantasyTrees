@@ -26,7 +26,6 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         return topBlock.is(BlockTags.DIRT) && StructureUtils.isAreaDry(context, pos, 5) && StructureUtils.isAreaFlat(pos, context, 5, 5);
     }
 
-
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
         WorldGenLevel worldgenlevel = context.level();
@@ -37,10 +36,10 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         int x = context.origin().getX();
         int z = context.origin().getZ();
         int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.level());
-        if (!isFeaturePosition(context, new BlockPos(x + (structuretemplate.getSize().getX() / 2), y, z + (structuretemplate.getSize().getZ() / 2)))) {
+        if (!isFeaturePosition(context, new BlockPos(x, y, z))) {
             return false;
         }
-        BlockPos placePos = new BlockPos(x, y + getYOffset(treeConfiguration.trees, resourceLocation), z);
+        BlockPos placePos = new BlockPos(x - (structuretemplate.getSize().getX() / 2), y + getYOffset(treeConfiguration.trees, resourceLocation), z - (structuretemplate.getSize().getZ() / 2) + 1);
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX() / 2, 0, structuretemplate.getSize().getZ() / 2)).setRotation(Rotation.getRandom(context.random()));
         structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;
