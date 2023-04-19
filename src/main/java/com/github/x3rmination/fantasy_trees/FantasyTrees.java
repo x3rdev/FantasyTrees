@@ -5,10 +5,7 @@ import com.github.x3rmination.fantasy_trees.common.biome.region.FantasySpruceReg
 import com.github.x3rmination.fantasy_trees.registry.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.MinecraftForge;

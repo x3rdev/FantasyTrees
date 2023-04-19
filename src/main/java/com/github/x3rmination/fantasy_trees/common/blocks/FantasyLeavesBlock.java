@@ -13,7 +13,7 @@ import net.minecraft.world.level.material.MaterialColor;
 public class FantasyLeavesBlock extends LeavesBlock {
     public FantasyLeavesBlock() {
         super(BlockBehaviour.Properties.of((new Material.Builder(MaterialColor.PLANT)).notSolidBlocking().destroyOnPush().build())
-                .strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(Blocks::ocelotOrParrot).isSuffocating(Blocks::never).isViewBlocking(Blocks::never).lightLevel(value -> 15));
+                .strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(Blocks::ocelotOrParrot).isSuffocating(Blocks::never).isViewBlocking(Blocks::never));
     }
 
     @Override
