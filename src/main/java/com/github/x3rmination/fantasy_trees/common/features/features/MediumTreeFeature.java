@@ -40,7 +40,7 @@ public class MediumTreeFeature extends FantasyTreeFeature {
             return false;
         }
         BlockPos placePos = new BlockPos(x - (structuretemplate.getSize().getX() / 2), y + getYOffset(treeConfiguration.trees, resourceLocation), z - (structuretemplate.getSize().getZ() / 2) + 1);
-        StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX() / 2, 0, structuretemplate.getSize().getZ() / 2)).setRotation(Rotation.getRandom(context.random()));
+        StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX(), 0, structuretemplate.getSize().getZ())).setRotation(Rotation.getRandom(context.random()));
         structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;
     }
