@@ -33,14 +33,11 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
         ResourceLocation resourceLocation = treeConfiguration.getRandomTree(context.random());
         StructureTemplate structuretemplate = structuremanager.getOrCreate(resourceLocation);
-        int x = context.origin().getX();
-        int z = context.origin().getZ();
-        int y = context.chunkGenerator().getFirstOccupiedHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, context.level());
-        if (!isFeaturePosition(context, new BlockPos(x, y, z))) {
+        if(!isFeaturePosition(context, context.origin())) {
             return false;
         }
-        BlockPos placePos = new BlockPos(x - (structuretemplate.getSize().getX() / 2), y + getYOffset(treeConfiguration.trees, resourceLocation), z - (structuretemplate.getSize().getZ() / 2) + 1);
-        StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX(), 0, structuretemplate.getSize().getZ())).setRotation(Rotation.getRandom(context.random()));
+        BlockPos placePos = new BlockPos(context.origin().getX() - structuretemplate.getSize().getX()/2, context.origin().getY() + getYOffset(treeConfiguration.trees, resourceLocation), context.origin().getZ() - structuretemplate.getSize().getZ()/2);
+        StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(context.origin().getX(), 0, context.origin().getZ())).setRotation(Rotation.getRandom(context.random()));
         structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;
     }
