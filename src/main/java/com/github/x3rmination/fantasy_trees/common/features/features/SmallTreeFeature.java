@@ -23,7 +23,7 @@ public class SmallTreeFeature extends FantasyTreeFeature {
 
     public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
         BlockState topBlock = context.level().getBlockState(pos.below());
-        return topBlock.is(BlockTags.DIRT) && StructureUtils.isAreaDry(context, pos, 0) && StructureUtils.isAreaFlat(pos, context, 2, 4);
+        return topBlock.is(BlockTags.DIRT) && StructureUtils.isAreaDry(context, pos, 0) && StructureUtils.isAreaFlat(pos, context, 1, 6);
     }
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
@@ -36,8 +36,8 @@ public class SmallTreeFeature extends FantasyTreeFeature {
             return false;
         }
         BlockPos placePos = new BlockPos(context.origin().getX(), context.origin().getY() + getYOffset(treeConfiguration.trees, resourceLocation), context.origin().getZ());
-        StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
-        structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
+//        StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
+        structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, new StructurePlaceSettings(), context.random(), 4);
         return true;
     }
 
