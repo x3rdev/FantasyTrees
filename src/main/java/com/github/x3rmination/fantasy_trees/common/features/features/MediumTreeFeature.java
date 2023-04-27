@@ -6,14 +6,15 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import terrablender.api.ParameterUtils;
 
 public class MediumTreeFeature extends FantasyTreeFeature {
 
@@ -23,7 +24,7 @@ public class MediumTreeFeature extends FantasyTreeFeature {
 
     public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
         BlockState topBlock = context.level().getBlockState(pos);
-        return topBlock.is(BlockTags.DIRT) && StructureUtils.isAreaDry(context, pos, 5) && StructureUtils.isAreaFlat(pos, context, 2, 6);
+        return topBlock.is(BlockTags.DIRT) && StructureUtils.isChunkFlat(new ChunkPos(pos), context.chunkGenerator(), ParameterUtils.Weirdness.span(ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_VARIANT_ASCENDING));
     }
 
     @Override
@@ -36,11 +37,12 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         if(!isFeaturePosition(context, context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2))) {
             return false;
         }
+//        if(structuretemplate.getSize().getX() > 30 || structuretemplate.getSize().getZ() > 30) {
+//            System.out.println("Structure larger than permissible bounds" + resourceLocation);
+//        }
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
         BlockPos placePos = new BlockPos(context.origin().getX(), context.origin().getY() + getYOffset(treeConfiguration.trees, resourceLocation), context.origin().getZ());
         structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
-
-        worldgenlevel.setBlock(context.origin().above(20), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
         return true;
     }
 }

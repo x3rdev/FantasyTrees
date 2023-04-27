@@ -4,7 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
+import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
@@ -102,5 +104,11 @@ public final class StructureUtils {
             }
         }
         return true;
+    }
+
+    public static boolean isChunkFlat(ChunkPos chunkPos, ChunkGenerator chunkGenerator, Climate.Parameter acceptableWeird) {
+        DensityFunction densityFunction = chunkGenerator.climateSampler().weirdness();
+        double weirdness =  densityFunction.compute(new DensityFunction.SinglePointContext(chunkPos.getMiddleBlockX(), 0, chunkPos.getMiddleBlockZ()));
+        return Climate.unquantizeCoord(acceptableWeird.min()) <= weirdness && Climate.unquantizeCoord(acceptableWeird.max()) >= weirdness;
     }
 }

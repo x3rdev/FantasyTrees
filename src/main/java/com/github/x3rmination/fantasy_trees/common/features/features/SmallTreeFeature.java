@@ -6,6 +6,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import terrablender.api.ParameterUtils;
 
 public class SmallTreeFeature extends FantasyTreeFeature {
 
@@ -23,7 +25,7 @@ public class SmallTreeFeature extends FantasyTreeFeature {
 
     public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
         BlockState topBlock = context.level().getBlockState(pos.below());
-        return topBlock.is(BlockTags.DIRT) && StructureUtils.isAreaDry(context, pos, 0) && StructureUtils.isAreaFlat(pos, context, 1, 6);
+        return topBlock.is(BlockTags.DIRT) && StructureUtils.isChunkFlat(new ChunkPos(pos), context.chunkGenerator(), ParameterUtils.Weirdness.span(ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_VARIANT_ASCENDING));
     }
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
