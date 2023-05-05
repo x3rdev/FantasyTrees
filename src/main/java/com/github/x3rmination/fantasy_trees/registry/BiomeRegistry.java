@@ -43,15 +43,11 @@ public class BiomeRegistry {
                 .build());
     }
 
-    //TODO get this to actually be accurate to whatever vanilla plains is
     public static Biome buildFantasyForest() {
         float temp = 0.6F;
         BiomeGenerationSettings.Builder genBuilder = new BiomeGenerationSettings.Builder();
         globalOverworldGeneration(genBuilder);
-        BiomeDefaultFeatures.addForestFlowers(genBuilder);
-        BiomeDefaultFeatures.addOtherBirchTrees(genBuilder);
         BiomeDefaultFeatures.addDefaultSoftDisks(genBuilder);
-        BiomeDefaultFeatures.addForestGrass(genBuilder);
         return (new Biome.BiomeBuilder()
                 .precipitation(Biome.Precipitation.RAIN)
                 .biomeCategory(Biome.BiomeCategory.FOREST)

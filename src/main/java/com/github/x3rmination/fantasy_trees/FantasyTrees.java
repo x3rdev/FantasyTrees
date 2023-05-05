@@ -49,13 +49,16 @@ public class FantasyTrees {
     }
 
     private void generateTrees(final BiomeLoadingEvent event) {
-        List<Holder<PlacedFeature>> base = event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
+        List<Holder<PlacedFeature>> vegetal_decoration = event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
+        List<Holder<PlacedFeature>> top_layer = event.getGeneration().getFeatures(GenerationStep.Decoration.TOP_LAYER_MODIFICATION);
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_TAIGA_BIOME.get().getRegistryName())) {
-            base.add(PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_PLACED);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_PLACED);
         }
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_FOREST_BIOME.get().getRegistryName())) {
-            base.add(PlacedFeatureRegistry.FANTASY_OAK_SMALL_PLACED);
-            base.add(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_PLACED);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_OAK_SMALL_PLACED);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_PLACED);
+            top_layer.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
+            top_layer.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
         }
     }
 }

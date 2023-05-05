@@ -6,6 +6,8 @@ import com.github.x3rmination.fantasy_trees.common.features.features.FOakMediumF
 import com.github.x3rmination.fantasy_trees.common.features.features.FOakSmallFeature;
 import com.github.x3rmination.fantasy_trees.common.features.features.FSpruceMediumFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.RandomPatchFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -20,4 +22,10 @@ public class FeatureRegistry {
             () -> new FOakSmallFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<TreeConfiguration>> FANTASY_OAK_MEDIUM = FEATURES.register("fantasy_oak_medium",
             () -> new FOakMediumFeature(TreeConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<RandomPatchConfiguration>> FANTASY_FOREST_GRASS = FEATURES.register("fantasy_forest_grass",
+            () -> new RandomPatchFeature(RandomPatchConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<RandomPatchConfiguration>> FANTASY_FLOWERS = FEATURES.register("fantasy_forest_flowers",
+            () -> new RandomPatchFeature(RandomPatchConfiguration.CODEC));
 }

@@ -6,7 +6,10 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
@@ -41,6 +44,10 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
 
     public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context, BlockPos blockPos) {
         if(!context.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG)) {
+            return false;
+        }
+        BlockState topBlock = context.chunkGenerator().getBaseColumn(context.chunkPos().getMiddleBlockX(), context.chunkPos().getMiddleBlockZ(), context.heightAccessor()).getBlock(context.chunkGenerator().getFirstOccupiedHeight(context.chunkPos().getMiddleBlockX(), context.chunkPos().getMiddleBlockZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor()));
+        if(!topBlock.is(BlockTags.DIRT)) {
             return false;
         }
         if(!StructureUtils.isChunkFlat(context.chunkPos(), context.chunkGenerator(), ParameterUtils.Weirdness.span(ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_VARIANT_ASCENDING))) {

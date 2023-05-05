@@ -29,6 +29,7 @@ public class SmallTreeFeature extends FantasyTreeFeature {
     }
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
+        context.random().setSeed(context.random().nextInt(1000000));
         WorldGenLevel worldgenlevel = context.level();
         TreeConfiguration treeConfiguration = context.config();
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
@@ -37,10 +38,9 @@ public class SmallTreeFeature extends FantasyTreeFeature {
         if(!isFeaturePosition(context, context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2))) {
             return false;
         }
+        StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
         BlockPos placePos = new BlockPos(context.origin().getX(), context.origin().getY() + getYOffset(treeConfiguration.trees, resourceLocation), context.origin().getZ());
-//        StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
-        structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, new StructurePlaceSettings(), context.random(), 4);
+        structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;
     }
-
 }

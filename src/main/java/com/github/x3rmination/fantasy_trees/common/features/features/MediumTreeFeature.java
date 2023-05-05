@@ -29,6 +29,7 @@ public class MediumTreeFeature extends FantasyTreeFeature {
 
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
+        context.random().setSeed(context.random().nextInt(1000000));
         WorldGenLevel worldgenlevel = context.level();
         TreeConfiguration treeConfiguration = context.config();
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
@@ -37,9 +38,6 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         if(!isFeaturePosition(context, context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2))) {
             return false;
         }
-//        if(structuretemplate.getSize().getX() > 30 || structuretemplate.getSize().getZ() > 30) {
-//            System.out.println("Structure larger than permissible bounds" + resourceLocation);
-//        }
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
         BlockPos placePos = new BlockPos(context.origin().getX(), context.origin().getY() + getYOffset(treeConfiguration.trees, resourceLocation), context.origin().getZ());
         structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
