@@ -46,11 +46,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         if(!context.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG)) {
             return false;
         }
-        BlockState topBlock = context.chunkGenerator().getBaseColumn(context.chunkPos().getMiddleBlockX(), context.chunkPos().getMiddleBlockZ(), context.heightAccessor()).getBlock(context.chunkGenerator().getFirstOccupiedHeight(context.chunkPos().getMiddleBlockX(), context.chunkPos().getMiddleBlockZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor()));
-        if(!topBlock.is(BlockTags.DIRT)) {
-            return false;
-        }
-        if(!StructureUtils.isChunkFlat(context.chunkPos(), context.chunkGenerator(), ParameterUtils.Weirdness.span(ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_VARIANT_ASCENDING))) {
+        if(!StructureUtils.isChunkFlat(context.chunkPos(), context.chunkGenerator(), ParameterUtils.Weirdness.span(ParameterUtils.Weirdness.HIGH_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_ASCENDING))) {
             return false;
         }
         if(!StructureUtils.isAreaDry(context, blockPos, 4)) {

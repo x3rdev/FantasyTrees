@@ -50,7 +50,7 @@ public class FantasyTrees {
 
     private void generateTrees(final BiomeLoadingEvent event) {
         List<Holder<PlacedFeature>> vegetal_decoration = event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-        List<Holder<PlacedFeature>> top_layer = event.getGeneration().getFeatures(GenerationStep.Decoration.TOP_LAYER_MODIFICATION);
+        List<Holder<PlacedFeature>> top_layer = event.getGeneration().getFeatures(GenerationStep.Decoration.FLUID_SPRINGS);
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_TAIGA_BIOME.get().getRegistryName())) {
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_PLACED);
         }
