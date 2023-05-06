@@ -35,9 +35,6 @@ public class BlockRegistry {
     public static final WoodType[] WOOD_TYPES = {WoodType.OAK, WoodType.SPRUCE, WoodType.BIRCH, WoodType.ACACIA, WoodType.JUNGLE, WoodType.DARK_OAK};
     public static void registerFantasyBlocks() {
         Arrays.stream(WOOD_TYPES).forEach(woodType -> {
-            if(woodType == WoodType.CRIMSON || woodType == WoodType.WARPED) {
-                return;
-            }
             String name = woodType.name();
 
             RegistryObject<Block> wood = BLOCKS.register(String.format("fantasy_%s_wood", name), FantasyLogBlock::new);

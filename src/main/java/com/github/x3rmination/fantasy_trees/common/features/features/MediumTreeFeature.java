@@ -29,7 +29,7 @@ public class MediumTreeFeature extends FantasyTreeFeature {
 
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
-        context.random().setSeed((long) (context.origin().asLong() + Math.random() * 10000));
+        context.random().setSeed((long) (Math.random() * 10000));
         WorldGenLevel worldgenlevel = context.level();
         TreeConfiguration treeConfiguration = context.config();
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
