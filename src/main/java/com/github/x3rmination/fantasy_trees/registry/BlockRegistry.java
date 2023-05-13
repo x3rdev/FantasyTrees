@@ -32,7 +32,7 @@ public class BlockRegistry {
     public static final Map<String, RegistryObject<Block>> CRAFTING_TABLES = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> SAPLINGS = new HashMap<>();
 
-    public static final WoodType[] WOOD_TYPES = {WoodType.OAK, WoodType.SPRUCE, WoodType.BIRCH, WoodType.ACACIA, WoodType.JUNGLE, WoodType.DARK_OAK};
+    protected static final WoodType[] WOOD_TYPES = {WoodType.OAK, WoodType.SPRUCE, WoodType.BIRCH, WoodType.ACACIA, WoodType.JUNGLE, WoodType.DARK_OAK};
     public static void registerFantasyBlocks() {
         Arrays.stream(WOOD_TYPES).forEach(woodType -> {
             String name = woodType.name();

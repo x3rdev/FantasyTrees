@@ -18,5 +18,7 @@ public class DataGenerators {
         dataGenerator.addProvider(new FantasyItemModelProvider(dataGenerator, existingFileHelper));
         dataGenerator.addProvider(new FantasyLanguageProvider(dataGenerator));
         dataGenerator.addProvider(new FantasyRecipeProvider(dataGenerator));
+        dataGenerator.addProvider(new FantasyLootTableProvider(dataGenerator));
+        dataGenerator.addProvider(new FantasyTagProvider(dataGenerator, existingFileHelper));
     }
 }

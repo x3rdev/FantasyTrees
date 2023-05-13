@@ -22,11 +22,11 @@ public class FantasyItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         BlockItemRegistry.BLOCK_ITEMS.getEntries().forEach(itemRegistryObject -> {
-            if(((BlockItem) itemRegistryObject.get()).getBlock() instanceof FantasyDoorBlock || ((BlockItem) itemRegistryObject.get()).getBlock() instanceof FantasySaplingBlock) {
+            if (((BlockItem) itemRegistryObject.get()).getBlock() instanceof FantasyDoorBlock || ((BlockItem) itemRegistryObject.get()).getBlock() instanceof FantasySaplingBlock) {
                 basicItem(itemRegistryObject.get());
                 return;
             }
-            if(((BlockItem) itemRegistryObject.get()).getBlock() instanceof FenceBlock) {
+            if (((BlockItem) itemRegistryObject.get()).getBlock() instanceof FenceBlock) {
                 String name = itemRegistryObject.get().getRegistryName().getPath().substring(8);
                 name = name.replace(name.substring(name.length() - 6), "");
                 fenceInventory(itemRegistryObject.get().getRegistryName().getPath(), new ResourceLocation(FantasyTrees.MOD_ID, String.format("block/fantasy_%s_planks", name)));

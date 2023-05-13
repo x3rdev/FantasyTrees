@@ -13,4 +13,6 @@ public class FantasyLogBlock extends RotatedPillarBlock {
         super(BlockBehaviour.Properties.of(BlockRegistry.FANTASY_WOOD)
                 .strength(2.0F).sound(SoundType.WOOD).lightLevel(value -> 15));
     }
+
+
 }
