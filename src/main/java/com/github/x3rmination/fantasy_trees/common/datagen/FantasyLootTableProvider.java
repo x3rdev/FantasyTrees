@@ -25,6 +25,8 @@ public class FantasyLootTableProvider extends LootTableProvider {
 
     private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>>
             loot_tables = ImmutableList.of(Pair.of(FantasyBlockLoot::new, LootContextParamSets.BLOCK));
+
+    private static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
     public FantasyLootTableProvider(DataGenerator pGenerator) {
         super(pGenerator);
     }
@@ -53,9 +55,9 @@ public class FantasyLootTableProvider extends LootTableProvider {
             }
             for (RegistryObject<Block> leaves : BlockRegistry.LEAVES.values()) {
                 this.add(leaves.get(), (block -> {
-                    String name = leaves.get().getRegistryName().getPath().substring(8);
+                    String name = block.getRegistryName().getPath().substring(8);
                     name = name.replace(name.substring(name.length() - 7), "");
-                    return createLeavesDrops(block, BlockRegistry.SAPLINGS.get(name).get());
+                    return createLeavesDrops(block, BlockRegistry.SAPLINGS.get(name).get(), NORMAL_LEAVES_SAPLING_CHANCES);
                 }));
             }
             for (RegistryObject<Block> block : BlockRegistry.PLANKS.values()) {
