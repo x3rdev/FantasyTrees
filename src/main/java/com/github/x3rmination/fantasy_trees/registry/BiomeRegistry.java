@@ -47,6 +47,7 @@ public class BiomeRegistry {
         float temp = 0.6F;
         BiomeGenerationSettings.Builder genBuilder = new BiomeGenerationSettings.Builder();
         globalOverworldGeneration(genBuilder);
+        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_BIRCH_AND_OAK);
         BiomeDefaultFeatures.addDefaultSoftDisks(genBuilder);
         return (new Biome.BiomeBuilder()
                 .precipitation(Biome.Precipitation.RAIN)

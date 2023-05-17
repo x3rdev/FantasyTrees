@@ -25,11 +25,10 @@ public class SmallTreeFeature extends FantasyTreeFeature {
 
     public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
         BlockState topBlock = context.level().getBlockState(pos.below());
-        return topBlock.is(BlockTags.DIRT) && StructureUtils.isChunkFlat(new ChunkPos(pos), context.chunkGenerator(), ParameterUtils.Weirdness.span(ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_VARIANT_ASCENDING));
+        return topBlock.is(BlockTags.DIRT) && StructureUtils.isChunkFlat(new ChunkPos(pos), context.chunkGenerator(), ParameterUtils.Weirdness.FULL_RANGE.parameter());
     }
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
-        context.random().setSeed((long) (Math.random() * 10000));
         WorldGenLevel worldgenlevel = context.level();
         TreeConfiguration treeConfiguration = context.config();
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
