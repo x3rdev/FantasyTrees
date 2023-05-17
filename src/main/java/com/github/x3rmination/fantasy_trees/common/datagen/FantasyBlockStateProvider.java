@@ -4,6 +4,7 @@ import com.github.x3rmination.fantasy_trees.FantasyTrees;
 import com.github.x3rmination.fantasy_trees.common.blocks.FantasyDoorBlock;
 import com.github.x3rmination.fantasy_trees.common.blocks.FantasyLogBlock;
 import com.github.x3rmination.fantasy_trees.common.blocks.FantasySaplingBlock;
+import com.github.x3rmination.fantasy_trees.common.blocks.FantasyTrapDoorBlock;
 import com.github.x3rmination.fantasy_trees.registry.BlockRegistry;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
@@ -24,11 +25,13 @@ public class FantasyBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         BlockRegistry.WOODS.forEach((name, blockRegistryObject) -> woodBlock((FantasyLogBlock) blockRegistryObject.get()));
         BlockRegistry.LOGS.forEach((name, blockRegistryObject) -> logBlock((FantasyLogBlock) blockRegistryObject.get()));
+        BlockRegistry.STRIPPED_WOODS.forEach((name, blockRegistryObject) -> woodBlock((FantasyLogBlock) blockRegistryObject.get()));
         BlockRegistry.STRIPPED_LOGS.forEach((name, blockRegistryObject) -> logBlock((FantasyLogBlock) blockRegistryObject.get()));
         BlockRegistry.LEAVES.forEach((name, blockRegistryObject) -> leavesBlock(((LeavesBlock) blockRegistryObject.get()), new ResourceLocation(FantasyTrees.MOD_ID, String.format("block/fantasy_%s_leaves", name))));
         BlockRegistry.PLANKS.forEach((name, blockRegistryObject) -> simpleBlock(blockRegistryObject.get()));
         BlockRegistry.STAIRS.forEach((name, blockRegistryObject) -> stairsBlock(((StairBlock) blockRegistryObject.get()), new ResourceLocation(FantasyTrees.MOD_ID, String.format("block/fantasy_%s_planks", name))));
         BlockRegistry.DOORS.forEach((name, blockRegistryObject) -> doorBlock(((FantasyDoorBlock) blockRegistryObject.get()), new ResourceLocation(FantasyTrees.MOD_ID, String.format("block/fantasy_%s_door_bottom", name)), new ResourceLocation(FantasyTrees.MOD_ID, String.format("block/fantasy_%s_door_top", name))));
+        BlockRegistry.TRAPDOORS.forEach((name, blockRegistryObject) -> trapdoorBlock((FantasyTrapDoorBlock) blockRegistryObject.get(), new ResourceLocation(FantasyTrees.MOD_ID, String.format("block/fantasy_%s_planks", name)), true));
         BlockRegistry.FENCES.forEach((name, blockRegistryObject) -> fenceBlock(((FenceBlock) blockRegistryObject.get()), new ResourceLocation(FantasyTrees.MOD_ID, String.format("block/fantasy_%s_planks", name))));
         BlockRegistry.FENCE_GATES.forEach((name, blockRegistryObject) -> fenceGateBlock(((FenceGateBlock) blockRegistryObject.get()), new ResourceLocation(FantasyTrees.MOD_ID, String.format("block/fantasy_%s_planks", name))));
         BlockRegistry.CRAFTING_TABLES.forEach((name, blockRegistryObject) -> craftingTableBlock(((CraftingTableBlock) blockRegistryObject.get()), new ResourceLocation(FantasyTrees.MOD_ID, String.format("block/fantasy_%s_crafting_table", name))));

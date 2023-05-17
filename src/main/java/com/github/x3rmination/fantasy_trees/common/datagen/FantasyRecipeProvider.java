@@ -53,6 +53,18 @@ public class FantasyRecipeProvider extends RecipeProvider implements IConditionB
                     .unlockedBy("has_" + name + "_log", has(log))
                     .save(recipeConsumer);
         }
+        for (RegistryObject<Block> wood : BlockRegistry.STRIPPED_WOODS.values()) {
+            String name = wood.get().getRegistryName().getPath().substring(17);
+            name = name.replace(name.substring(name.length() - 5), "");
+            FantasyLogBlock log = (FantasyLogBlock) BlockRegistry.STRIPPED_LOGS.get(name).get();
+            ShapedRecipeBuilder.shaped(wood.get(), 3)
+                    .define('l', log.asItem())
+                    .pattern("   ")
+                    .pattern("ll ")
+                    .pattern("ll ")
+                    .unlockedBy("has_" + name + "_log", has(log))
+                    .save(recipeConsumer);
+        }
         for (RegistryObject<Block> stairs : BlockRegistry.STAIRS.values()) {
             String name = stairs.get().getRegistryName().getPath().substring(8);
             name = name.replace(name.substring(name.length() - 7), "");
@@ -74,6 +86,18 @@ public class FantasyRecipeProvider extends RecipeProvider implements IConditionB
                     .pattern("pp ")
                     .pattern("pp ")
                     .pattern("pp ")
+                    .unlockedBy("has_" + name + "_planks", has(planks))
+                    .save(recipeConsumer);
+        }
+        for (RegistryObject<Block> trapdoor : BlockRegistry.TRAPDOORS.values()) {
+            String name = trapdoor.get().getRegistryName().getPath().substring(8);
+            name = name.replace(name.substring(name.length() - 9), "");
+            FantasyPlanksBlock planks = (FantasyPlanksBlock) BlockRegistry.PLANKS.get(name).get();
+            ShapedRecipeBuilder.shaped(trapdoor.get(), 3)
+                    .define('p', planks.asItem())
+                    .pattern("   ")
+                    .pattern("ppp")
+                    .pattern("ppp")
                     .unlockedBy("has_" + name + "_planks", has(planks))
                     .save(recipeConsumer);
         }

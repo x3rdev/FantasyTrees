@@ -32,6 +32,9 @@ public class BlockRegistry {
     public static final Map<String, RegistryObject<Block>> CRAFTING_TABLES = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> SAPLINGS = new HashMap<>();
 
+    public static final Map<String, RegistryObject<Block>> STRIPPED_WOODS = new HashMap<>();
+    public static final Map<String, RegistryObject<Block>> TRAPDOORS = new HashMap<>();
+
     protected static final WoodType[] WOOD_TYPES = {WoodType.OAK, WoodType.SPRUCE, WoodType.BIRCH, WoodType.ACACIA, WoodType.JUNGLE, WoodType.DARK_OAK};
     public static void registerFantasyBlocks() {
         Arrays.stream(WOOD_TYPES).forEach(woodType -> {
@@ -41,6 +44,8 @@ public class BlockRegistry {
             WOODS.put(name, wood);
             RegistryObject<Block> log = BLOCKS.register(String.format("fantasy_%s_log", name), FantasyLogBlock::new);
             LOGS.put(name, log);
+            RegistryObject<Block> stripped_wood = BLOCKS.register(String.format("fantasy_stripped_%s_wood", name), FantasyLogBlock::new);
+            STRIPPED_WOODS.put(name, stripped_wood);
             RegistryObject<Block> stripped_log = BLOCKS.register(String.format("fantasy_stripped_%s_log", name), FantasyLogBlock::new);
             STRIPPED_LOGS.put(name, stripped_log);
             RegistryObject<Block> leaves = BLOCKS.register(String.format("fantasy_%s_leaves", name), FantasyLeavesBlock::new);
@@ -51,6 +56,8 @@ public class BlockRegistry {
             STAIRS.put(name, stairs);
             RegistryObject<Block> door = BLOCKS.register(String.format("fantasy_%s_door", name), FantasyDoorBlock::new);
             DOORS.put(name, door);
+            RegistryObject<Block> trapdoor = BLOCKS.register(String.format("fantasy_%s_trapdoor", name), FantasyTrapDoorBlock::new);
+            TRAPDOORS.put(name, trapdoor);
             RegistryObject<Block> fence = BLOCKS.register(String.format("fantasy_%s_fence", name), () -> new FenceBlock(BlockBehaviour.Properties.of(BlockRegistry.FANTASY_WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).lightLevel(value -> 7)));
             FENCES.put(name, fence);
             RegistryObject<Block> fence_gate = BLOCKS.register(String.format("fantasy_%s_fence_gate", name), () -> new FenceGateBlock(BlockBehaviour.Properties.of(FANTASY_WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).lightLevel(value -> 7)));

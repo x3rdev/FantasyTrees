@@ -50,6 +50,9 @@ public class FantasyLootTableProvider extends LootTableProvider {
             for (RegistryObject<Block> block : BlockRegistry.LOGS.values()) {
                 this.dropSelf(block.get());
             }
+            for (RegistryObject<Block> block : BlockRegistry.STRIPPED_WOODS.values()) {
+                this.dropSelf(block.get());
+            }
             for (RegistryObject<Block> block : BlockRegistry.STRIPPED_LOGS.values()) {
                 this.dropSelf(block.get());
             }
@@ -68,6 +71,9 @@ public class FantasyLootTableProvider extends LootTableProvider {
             }
             for (RegistryObject<Block> door : BlockRegistry.DOORS.values()) {
                 this.add(door.get(), block -> createDoorTable(door.get()));
+            }
+            for (RegistryObject<Block> block : BlockRegistry.TRAPDOORS.values()) {
+                this.dropSelf(block.get());
             }
             for (RegistryObject<Block> block : BlockRegistry.FENCES.values()) {
                 this.dropSelf(block.get());

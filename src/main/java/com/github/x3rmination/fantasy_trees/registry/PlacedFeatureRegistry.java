@@ -1,9 +1,13 @@
 package com.github.x3rmination.fantasy_trees.registry;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.placement.*;
 
 public class PlacedFeatureRegistry {
@@ -19,6 +23,11 @@ public class PlacedFeatureRegistry {
     public static final Holder<PlacedFeature> FANTASY_OAK_MEDIUM_PLACED = PlacementUtils.register("fantasy_oak_medium_placed",
             ConfiguredFeatureRegistry.FANTASY_OAK_MEDIUM, RarityFilter.onAverageOnceEvery(2),
             CountPlacement.of(1), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+
+    public static final Holder<PlacedFeature> FANTASY_FOREST_VANILLA_TREES = PlacementUtils.register("fantasy_forest_vanilla_trees",
+            TreeFeatures.OAK, RarityFilter.onAverageOnceEvery(1),
+            CountPlacement.of(2), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread(),
+            BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)));
 
     public static final Holder<PlacedFeature> FANTASY_FOREST_GRASS_PLACED = PlacementUtils.register("fantasy_forest_grass_placed",
             ConfiguredFeatureRegistry.FANTASY_FOREST_GRASS, RarityFilter.onAverageOnceEvery(1),

@@ -58,6 +58,7 @@ public class FantasyTrees {
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_FOREST_BIOME.get().getRegistryName())) {
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_OAK_SMALL_PLACED);
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_PLACED);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_VANILLA_TREES);
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
         }
