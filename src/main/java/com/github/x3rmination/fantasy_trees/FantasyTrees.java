@@ -1,5 +1,6 @@
 package com.github.x3rmination.fantasy_trees;
 
+import com.github.x3rmination.fantasy_trees.common.biome.region.FantasyBirchRegion;
 import com.github.x3rmination.fantasy_trees.common.biome.region.FantasyOakRegion;
 import com.github.x3rmination.fantasy_trees.common.biome.region.FantasySpruceRegion;
 import com.github.x3rmination.fantasy_trees.registry.*;
@@ -46,6 +47,7 @@ public class FantasyTrees {
         event.enqueueWork(() -> {
             Regions.register(new FantasyOakRegion(new ResourceLocation(MOD_ID, "oak_region"), 5));
             Regions.register(new FantasySpruceRegion(new ResourceLocation(MOD_ID, "spruce_region"), 5));
+            Regions.register(new FantasyBirchRegion(new ResourceLocation(MOD_ID, "birch_region"), 5));
         });
     }
 
@@ -61,6 +63,12 @@ public class FantasyTrees {
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_VANILLA_TREES);
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
+        }
+        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_BIRCH_FOREST_BIOME.get().getRegistryName())) {
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_BIRCH_SMALL_PLACED);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_BIRCH_MEDIUM_PLACED);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_VANILLA_TREES);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
         }
     }
 }

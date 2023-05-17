@@ -24,6 +24,14 @@ public class PlacedFeatureRegistry {
             ConfiguredFeatureRegistry.FANTASY_OAK_MEDIUM, RarityFilter.onAverageOnceEvery(2),
             CountPlacement.of(1), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 
+    public static final Holder<PlacedFeature> FANTASY_BIRCH_SMALL_PLACED = PlacementUtils.register("fantasy_birch_small_placed",
+            ConfiguredFeatureRegistry.FANTASY_BIRCH_SMALL, RarityFilter.onAverageOnceEvery(1),
+            CountPlacement.of(3), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread());
+
+    public static final Holder<PlacedFeature> FANTASY_BIRCH_MEDIUM_PLACED = PlacementUtils.register("fantasy_birch_medium_placed",
+            ConfiguredFeatureRegistry.FANTASY_BIRCH_MEDIUM, RarityFilter.onAverageOnceEvery(2),
+            CountPlacement.of(1), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+
     public static final Holder<PlacedFeature> FANTASY_FOREST_VANILLA_TREES = PlacementUtils.register("fantasy_forest_vanilla_trees",
             TreeFeatures.OAK, RarityFilter.onAverageOnceEvery(1),
             CountPlacement.of(2), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread(),

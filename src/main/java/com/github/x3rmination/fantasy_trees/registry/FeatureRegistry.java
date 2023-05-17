@@ -2,9 +2,7 @@ package com.github.x3rmination.fantasy_trees.registry;
 
 import com.github.x3rmination.fantasy_trees.FantasyTrees;
 import com.github.x3rmination.fantasy_trees.common.features.configuration.TreeConfiguration;
-import com.github.x3rmination.fantasy_trees.common.features.features.FOakMediumFeature;
-import com.github.x3rmination.fantasy_trees.common.features.features.FOakSmallFeature;
-import com.github.x3rmination.fantasy_trees.common.features.features.FSpruceMediumFeature;
+import com.github.x3rmination.fantasy_trees.common.features.features.*;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.RandomPatchFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
@@ -22,6 +20,12 @@ public class FeatureRegistry {
             () -> new FOakSmallFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<TreeConfiguration>> FANTASY_OAK_MEDIUM = FEATURES.register("fantasy_oak_medium",
             () -> new FOakMediumFeature(TreeConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<TreeConfiguration>> FANTASY_BIRCH_SMALL = FEATURES.register("fantasy_birch_small",
+            () -> new FBirchSmallFeature(TreeConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<TreeConfiguration>> FANTASY_BIRCH_MEDIUM = FEATURES.register("fantasy_birch_medium",
+            () -> new FBirchMediumFeature(TreeConfiguration.CODEC));
 
     public static final RegistryObject<Feature<RandomPatchConfiguration>> FANTASY_FOREST_GRASS = FEATURES.register("fantasy_forest_grass",
             () -> new RandomPatchFeature(RandomPatchConfiguration.CODEC));
