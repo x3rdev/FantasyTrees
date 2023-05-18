@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:birch_forest",
-    "minecraft:old_growth_birch_forest",
-    "minecraft:meadow"
+    "fantasy_trees:fantasy_birch_forest"
   ]
 }
