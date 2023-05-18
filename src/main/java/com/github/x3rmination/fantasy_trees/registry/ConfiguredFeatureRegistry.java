@@ -54,13 +54,13 @@ public class ConfiguredFeatureRegistry {
 
     public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_BIRCH_SMALL_LIST = Map.ofEntries(
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_1"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_2"), new Pair<>(5, 0)),
+            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_2"), new Pair<>(2, 0)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_3"), new Pair<>(5, 0)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_4"), new Pair<>(5, 0)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_5"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_6"), new Pair<>(5, 0)),
+//            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_6"), new Pair<>(5, 0)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_7"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_8"), new Pair<>(5, 0))
+            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_8"), new Pair<>(2, 0))
 
     );
 
