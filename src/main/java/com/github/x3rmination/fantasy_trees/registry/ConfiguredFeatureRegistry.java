@@ -58,7 +58,7 @@ public class ConfiguredFeatureRegistry {
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_3"), new Pair<>(5, 0)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_4"), new Pair<>(5, 0)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_5"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_6"), new Pair<>(5, 0)),
+            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_6"), new Pair<>(2, -3)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_7"), new Pair<>(5, 0)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_8"), new Pair<>(5, 0)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_9"), new Pair<>(5, 0)),

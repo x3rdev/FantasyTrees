@@ -24,7 +24,7 @@ public class MediumTreeFeature extends FantasyTreeFeature {
 
     public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
         BlockState topBlock = context.level().getBlockState(pos);
-        return topBlock.is(BlockTags.DIRT) && StructureUtils.isChunkFlat(new ChunkPos(pos), context.chunkGenerator(), ParameterUtils.Weirdness.FULL_RANGE.parameter());
+        return topBlock.is(BlockTags.DIRT);
     }
 
     @Override
