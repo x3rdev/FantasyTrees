@@ -18,7 +18,7 @@ public class PlacedFeatureRegistry {
 
     public static final Holder<PlacedFeature> FANTASY_OAK_SMALL_PLACED = PlacementUtils.register("fantasy_oak_small_placed",
             ConfiguredFeatureRegistry.FANTASY_OAK_SMALL, RarityFilter.onAverageOnceEvery(1),
-            CountPlacement.of(3), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread());
+            CountPlacement.of(4), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread());
 
     public static final Holder<PlacedFeature> FANTASY_OAK_MEDIUM_PLACED = PlacementUtils.register("fantasy_oak_medium_placed",
             ConfiguredFeatureRegistry.FANTASY_OAK_MEDIUM, RarityFilter.onAverageOnceEvery(2),
@@ -26,7 +26,7 @@ public class PlacedFeatureRegistry {
 
     public static final Holder<PlacedFeature> FANTASY_BIRCH_SMALL_PLACED = PlacementUtils.register("fantasy_birch_small_placed",
             ConfiguredFeatureRegistry.FANTASY_BIRCH_SMALL, RarityFilter.onAverageOnceEvery(1),
-            CountPlacement.of(3), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread());
+            CountPlacement.of(4), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread());
 
     public static final Holder<PlacedFeature> FANTASY_BIRCH_MEDIUM_PLACED = PlacementUtils.register("fantasy_birch_medium_placed",
             ConfiguredFeatureRegistry.FANTASY_BIRCH_MEDIUM, RarityFilter.onAverageOnceEvery(2),
