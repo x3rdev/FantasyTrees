@@ -29,10 +29,10 @@ public class FantasyBirchRegion extends Region {
             List<Climate.ParameterPoint> fantasyForestPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(ParameterUtils.Temperature.COOL)
                     .humidity(ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL)
-                    .continentalness(ParameterUtils.Continentalness.FULL_RANGE)
+                    .continentalness(Climate.Parameter.span(0.25F, 1.0F))
                     .erosion(ParameterUtils.Erosion.FULL_RANGE)
                     .depth(ParameterUtils.Depth.SURFACE)
-                    .weirdness(ParameterUtils.Weirdness.FULL_RANGE)
+                    .weirdness(Climate.Parameter.span(-0.4F, 0.4F))
                     .build();
 
             fantasyForestPoints.forEach(parameterPoint -> builder.replaceBiome(parameterPoint, BiomeRegistry.FANTASY_BIRCH_FOREST));

@@ -24,9 +24,11 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import terrablender.api.ParameterUtils;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
 
+    private static Random random = new Random();
     public static final Codec<JigsawConfiguration> CODEC = RecordCodecBuilder.create((codec) -> {
         return codec.group(
                 StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(JigsawConfiguration::startPool),
@@ -79,7 +81,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
                         pos.atY(y),
                         false,
                         false,
-                        Rotation.NONE
+                        Rotation.getRandom(random)
                 );
 
         return structurePiecesGenerator;

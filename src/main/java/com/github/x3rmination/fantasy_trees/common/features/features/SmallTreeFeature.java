@@ -9,6 +9,7 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
@@ -21,7 +22,7 @@ public class SmallTreeFeature extends FantasyTreeFeature {
     }
 
     public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
-        return context.level().getBlockState(pos).is(BlockTags.DIRT);
+        return context.level().getBlockState(pos.below()).is(BlockTags.DIRT);
     }
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
@@ -30,14 +31,14 @@ public class SmallTreeFeature extends FantasyTreeFeature {
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
         ResourceLocation resourceLocation = treeConfiguration.getRandomTree(context.random());
         StructureTemplate structuretemplate = structuremanager.getOrCreate(resourceLocation);
+        BlockPos center = context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2);
+        center = center.atY(context.chunkGenerator().getFirstFreeHeight(center.getX(), center.getZ(), Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, context.level()));
 
-//        context.level().setBlock(context.origin(), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
-
-        if(!isFeaturePosition(context, context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2))) {
+        if(!isFeaturePosition(context, center)) {
             return false;
         }
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
-        BlockPos placePos = new BlockPos(context.origin().getX(), context.origin().getY() + getYOffset(treeConfiguration.trees, resourceLocation), context.origin().getZ());
+        BlockPos placePos = new BlockPos(context.origin().getX(), center.getY() - 1 + getYOffset(treeConfiguration.trees, resourceLocation), context.origin().getZ());
         structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;
     }

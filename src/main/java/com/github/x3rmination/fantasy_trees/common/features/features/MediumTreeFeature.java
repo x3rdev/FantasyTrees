@@ -25,8 +25,7 @@ public class MediumTreeFeature extends FantasyTreeFeature {
     }
 
     public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
-        BlockState topBlock = context.level().getBlockState(pos);
-        return topBlock.is(BlockTags.DIRT);
+        return context.level().getBlockState(pos.below()).is(BlockTags.DIRT);
     }
 
     @Override
@@ -36,14 +35,14 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
         ResourceLocation resourceLocation = treeConfiguration.getRandomTree(context.random());
         StructureTemplate structuretemplate = structuremanager.getOrCreate(resourceLocation);
+        BlockPos center = context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2);
+        center = center.atY(context.chunkGenerator().getFirstFreeHeight(center.getX(), center.getZ(), Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, context.level()));
 
-//        context.level().setBlock(context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
-
-        if(!isFeaturePosition(context, context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2))) {
+        if(!isFeaturePosition(context, center)) {
             return false;
         }
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2)).setRotation(Rotation.getRandom(context.random()));
-        BlockPos placePos = new BlockPos(context.origin().getX(), context.origin().getY() + getYOffset(treeConfiguration.trees, resourceLocation), context.origin().getZ());
+        BlockPos placePos = new BlockPos(context.origin().getX(), center.getY() - 1 + getYOffset(treeConfiguration.trees, resourceLocation), context.origin().getZ());
         structuretemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;
     }
