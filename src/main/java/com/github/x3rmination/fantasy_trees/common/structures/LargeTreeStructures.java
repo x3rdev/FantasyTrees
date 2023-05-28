@@ -62,18 +62,14 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         ResourceLocation location = context.config().startPool().value().getName();
         StructureTemplate structuretemplate = context.structureManager().getOrCreate(location);
         BlockPos pos = context.chunkPos().getWorldPosition();
+        Rotation rotation = Rotation.getRandom(random);
         BlockPos centerPos = new BlockPos(pos.getX() + (structuretemplate.getSize().getX()/2), pos.getY(), pos.getZ() + (structuretemplate.getSize().getZ()/2));
+        centerPos = centerPos.rotate(rotation);
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
         if(!LargeTreeStructures.isFeatureChunk(context, centerPos.atY(y - 5))) {
             return Optional.empty();
         }
-//        try {
-//            Field size = structuretemplate.getClass().getDeclaredField("size");
-//            size.setAccessible(true);
-//            ((Vec3i) size.get(structuretemplate)).above(40);
-//        } catch (IllegalAccessException | NoSuchFieldException e) {
-//            throw new RuntimeException(e);
-//        }
+
         Optional<PieceGenerator<JigsawConfiguration>> structurePiecesGenerator =
                 FantasyJigsawPlacement.addPieces(
                         context,
@@ -81,7 +77,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
                         pos.atY(y),
                         false,
                         false,
-                        Rotation.getRandom(random)
+                        rotation
                 );
 
         return structurePiecesGenerator;

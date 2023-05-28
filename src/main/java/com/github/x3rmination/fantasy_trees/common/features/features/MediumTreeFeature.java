@@ -36,7 +36,7 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         ResourceLocation resourceLocation = treeConfiguration.getRandomTree(context.random());
         StructureTemplate structuretemplate = structuremanager.getOrCreate(resourceLocation);
         BlockPos center = context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2);
-        center = center.atY(context.chunkGenerator().getFirstFreeHeight(center.getX(), center.getZ(), Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, context.level()));
+        center = center.atY(context.chunkGenerator().getFirstFreeHeight(center.getX(), center.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.level()));
 
         if(!isFeaturePosition(context, center)) {
             return false;
