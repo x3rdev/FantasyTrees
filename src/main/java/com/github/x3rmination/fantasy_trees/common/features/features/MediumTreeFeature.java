@@ -8,8 +8,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
@@ -34,6 +36,9 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
         ResourceLocation resourceLocation = treeConfiguration.getRandomTree(context.random());
         StructureTemplate structuretemplate = structuremanager.getOrCreate(resourceLocation);
+
+//        context.level().setBlock(context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
+
         if(!isFeaturePosition(context, context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2))) {
             return false;
         }

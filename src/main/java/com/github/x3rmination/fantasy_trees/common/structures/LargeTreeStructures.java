@@ -7,6 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -46,7 +47,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         if(!context.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG)) {
             return false;
         }
-        if(!StructureUtils.isChunkFlat(context.chunkPos(), context.chunkGenerator(), ParameterUtils.Weirdness.span(ParameterUtils.Weirdness.HIGH_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_ASCENDING))) {
+        if(!StructureUtils.isChunkFlat(context.chunkPos(), context.chunkGenerator(), Climate.Parameter.span(-0.4F, 0.4F))) {
             return false;
         }
         if(!StructureUtils.isAreaDry(context, blockPos, 4)) {

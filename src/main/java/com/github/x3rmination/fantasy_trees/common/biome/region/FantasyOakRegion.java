@@ -29,10 +29,10 @@ public class FantasyOakRegion extends Region {
             List<Climate.ParameterPoint> fantasyForestPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(ParameterUtils.Temperature.COOL)
                     .humidity(ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL)
-                    .continentalness(ParameterUtils.Continentalness.span(ParameterUtils.Continentalness.NEAR_INLAND, ParameterUtils.Continentalness.INLAND))
-                    .erosion(ParameterUtils.Erosion.span(ParameterUtils.Erosion.EROSION_0, ParameterUtils.Erosion.EROSION_2))
+                    .continentalness(ParameterUtils.Continentalness.FULL_RANGE)
+                    .erosion(ParameterUtils.Erosion.FULL_RANGE)
                     .depth(ParameterUtils.Depth.SURFACE)
-                    .weirdness(ParameterUtils.Weirdness.span(ParameterUtils.Weirdness.LOW_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.LOW_SLICE_VARIANT_ASCENDING))
+                    .weirdness(ParameterUtils.Weirdness.FULL_RANGE)
                     .build();
 
             fantasyForestPoints.forEach(parameterPoint -> builder.replaceBiome(parameterPoint, BiomeRegistry.FANTASY_FOREST));

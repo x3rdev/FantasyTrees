@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -20,8 +21,7 @@ public class SmallTreeFeature extends FantasyTreeFeature {
     }
 
     public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
-        BlockState topBlock = context.level().getBlockState(pos.below());
-        return topBlock.is(BlockTags.DIRT);
+        return context.level().getBlockState(pos).is(BlockTags.DIRT);
     }
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
@@ -30,6 +30,9 @@ public class SmallTreeFeature extends FantasyTreeFeature {
         StructureManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
         ResourceLocation resourceLocation = treeConfiguration.getRandomTree(context.random());
         StructureTemplate structuretemplate = structuremanager.getOrCreate(resourceLocation);
+
+//        context.level().setBlock(context.origin(), Blocks.REDSTONE_BLOCK.defaultBlockState(), 4);
+
         if(!isFeaturePosition(context, context.origin().offset(structuretemplate.getSize().getX()/2, 0, structuretemplate.getSize().getZ()/2))) {
             return false;
         }
