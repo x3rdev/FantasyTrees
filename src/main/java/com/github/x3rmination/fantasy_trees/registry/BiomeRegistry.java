@@ -23,7 +23,6 @@ public class BiomeRegistry {
 
     public static final ResourceKey<Biome> FANTASY_TAIGA = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_taiga"));
     public static final ResourceKey<Biome> FANTASY_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_forest"));
-
     public static final ResourceKey<Biome> FANTASY_BIRCH_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_forest"));
 
 

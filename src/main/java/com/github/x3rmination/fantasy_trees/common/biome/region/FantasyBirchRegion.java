@@ -28,7 +28,7 @@ public class FantasyBirchRegion extends Region {
 
             List<Climate.ParameterPoint> fantasyForestPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(Climate.Parameter.span(-0.3F, 0F))
-                    .humidity(ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.WET)
+                    .humidity(ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL)
                     .continentalness(Climate.Parameter.span(0.25F, 1.0F))
                     .erosion(ParameterUtils.Erosion.FULL_RANGE)
                     .depth(ParameterUtils.Depth.SURFACE)

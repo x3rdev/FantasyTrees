@@ -45,14 +45,14 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         return GenerationStep.Decoration.TOP_LAYER_MODIFICATION;
     }
 
-    public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context, BlockPos blockPos) {
+    public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context, BlockPos pos) {
         if(!context.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG)) {
             return false;
         }
-        if(!StructureUtils.isChunkFlat(blockPos, context.chunkGenerator(), Climate.Parameter.span(-0.35F, 0.35F))) {
+        if(!StructureUtils.isChunkFlat(pos, context.chunkGenerator(), Climate.Parameter.span(-0.2F, 0.2F), Climate.Parameter.span(-0.4F, 0.4F))) {
             return false;
         }
-        if(!StructureUtils.isAreaDry(context, blockPos, 3)) {
+        if(!StructureUtils.isAreaDry(context, pos, 4)) {
             return false;
         }
         return true;
@@ -63,9 +63,10 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         StructureTemplate structuretemplate = context.structureManager().getOrCreate(location);
         BlockPos pos = context.chunkPos().getWorldPosition();
         Rotation rotation = Rotation.getRandom(random);
-        BlockPos centerPos = new BlockPos(pos.getX() + (structuretemplate.getSize().getX()/2), pos.getY(), pos.getZ() + (structuretemplate.getSize().getZ()/2));
-        centerPos = centerPos.rotate(rotation);
+        BlockPos centerOffset = new BlockPos((structuretemplate.getSize().getX()/2), pos.getY(), (structuretemplate.getSize().getZ()/2)).rotate(rotation);
+        BlockPos centerPos = pos.offset(centerOffset);
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
+        centerPos = centerPos.atY(y);
         if(!LargeTreeStructures.isFeatureChunk(context, centerPos)) {
             return Optional.empty();
         }
