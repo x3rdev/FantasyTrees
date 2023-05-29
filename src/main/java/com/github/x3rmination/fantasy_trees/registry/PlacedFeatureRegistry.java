@@ -28,7 +28,7 @@ public class PlacedFeatureRegistry {
             BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)));
 
     public static final Holder<PlacedFeature> FANTASY_BIRCH_SMALL_PLACED = PlacementUtils.register("fantasy_birch_small_placed",
-            ConfiguredFeatureRegistry.FANTASY_BIRCH_SMALL,
+            ConfiguredFeatureRegistry.FANTASY_BIRCH_SMALL, RarityFilter.onAverageOnceEvery(2),
             CountPlacement.of(4), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread(),
             BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(Blocks.OAK_SAPLING.defaultBlockState(), BlockPos.ZERO)));
 

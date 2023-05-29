@@ -42,17 +42,17 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
 
     @Override
     public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.TOP_LAYER_MODIFICATION;
+        return GenerationStep.Decoration.FLUID_SPRINGS;
     }
 
     public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context, BlockPos blockPos) {
         if(!context.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG)) {
             return false;
         }
-        if(!StructureUtils.isChunkFlat(blockPos, context.chunkGenerator(), Climate.Parameter.span(-0.4F, 0.4F))) {
+        if(!StructureUtils.isChunkFlat(blockPos, context.chunkGenerator(), Climate.Parameter.span(-0.35F, 0.35F))) {
             return false;
         }
-        if(!StructureUtils.isAreaDry(context, blockPos, 4)) {
+        if(!context.chunkGenerator().getBaseColumn(blockPos.getX(), blockPos.getZ(), context.heightAccessor()).getBlock(blockPos.getY()).is(BlockTags.DIRT)) {
             return false;
         }
         return true;
