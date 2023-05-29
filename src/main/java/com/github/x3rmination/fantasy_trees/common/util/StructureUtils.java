@@ -106,9 +106,9 @@ public final class StructureUtils {
         return true;
     }
 
-    public static boolean isChunkFlat(ChunkPos chunkPos, ChunkGenerator chunkGenerator, Climate.Parameter acceptableWeird) {
+    public static boolean isChunkFlat(BlockPos pos, ChunkGenerator chunkGenerator, Climate.Parameter acceptableWeird) {
         DensityFunction densityFunction = chunkGenerator.climateSampler().weirdness();
-        double weirdness =  densityFunction.compute(new DensityFunction.SinglePointContext(chunkPos.getMiddleBlockX(), 0, chunkPos.getMiddleBlockZ()));
+        double weirdness =  densityFunction.compute(new DensityFunction.SinglePointContext(pos.getX(), pos.getY(), pos.getZ()));
         return weirdness >= Climate.unquantizeCoord(acceptableWeird.min()) && weirdness <= Climate.unquantizeCoord(acceptableWeird.max());
     }
 }

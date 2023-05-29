@@ -32,7 +32,7 @@ public class FantasyOakRegion extends Region {
                     .continentalness(Climate.Parameter.span(0.25F, 1.0F))
                     .erosion(ParameterUtils.Erosion.FULL_RANGE)
                     .depth(ParameterUtils.Depth.SURFACE)
-                    .weirdness(Climate.Parameter.span(-0.4F, 0.4F))
+                    .weirdness(Climate.Parameter.span(-0.35F, 0.35F))
                     .build();
 
             fantasyForestPoints.forEach(parameterPoint -> builder.replaceBiome(parameterPoint, BiomeRegistry.FANTASY_FOREST));

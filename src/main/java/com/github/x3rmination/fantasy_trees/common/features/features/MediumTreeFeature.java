@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,7 +26,7 @@ public class MediumTreeFeature extends FantasyTreeFeature {
     }
 
     public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
-        return context.level().getBlockState(pos.below()).is(BlockTags.DIRT);
+        return context.level().getBlockState(pos.below()).is(BlockTags.DIRT) && StructureUtils.isChunkFlat(pos, context.chunkGenerator(), Climate.Parameter.span(-0.35F, 0.35F));
     }
 
     @Override

@@ -49,7 +49,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         if(!context.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG)) {
             return false;
         }
-        if(!StructureUtils.isChunkFlat(context.chunkPos(), context.chunkGenerator(), Climate.Parameter.span(-0.4F, 0.4F))) {
+        if(!StructureUtils.isChunkFlat(blockPos, context.chunkGenerator(), Climate.Parameter.span(-0.4F, 0.4F))) {
             return false;
         }
         if(!StructureUtils.isAreaDry(context, blockPos, 4)) {
@@ -66,7 +66,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         BlockPos centerPos = new BlockPos(pos.getX() + (structuretemplate.getSize().getX()/2), pos.getY(), pos.getZ() + (structuretemplate.getSize().getZ()/2));
         centerPos = centerPos.rotate(rotation);
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
-        if(!LargeTreeStructures.isFeatureChunk(context, centerPos.atY(y - 5))) {
+        if(!LargeTreeStructures.isFeatureChunk(context, centerPos)) {
             return Optional.empty();
         }
 
@@ -74,7 +74,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
                 FantasyJigsawPlacement.addPieces(
                         context,
                         PoolElementStructurePiece::new,
-                        pos.atY(y),
+                        pos.atY(y - 5),
                         false,
                         false,
                         rotation
