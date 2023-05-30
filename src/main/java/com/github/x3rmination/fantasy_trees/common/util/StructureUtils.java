@@ -1,6 +1,9 @@
 package com.github.x3rmination.fantasy_trees.common.util;
 
+import com.github.x3rmination.fantasy_trees.common.features.configuration.TreeConfiguration;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
@@ -115,7 +118,9 @@ public final class StructureUtils {
         return f0 && f1;
     }
 
-    public static boolean isSuitableTreePos(BlockPos blockPos, PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
-        return false;
+    public static boolean isSuitableTreePos(BlockPos pos, FeaturePlaceContext<TreeConfiguration> context) {
+        boolean f0 = context.level().getBlockState(pos.below()).is(BlockTags.DIRT);
+        boolean f1 = !context.level().getBlockState(pos).isCollisionShapeFullBlock(context.level(), pos);
+        return f0 && f1;
     }
 }

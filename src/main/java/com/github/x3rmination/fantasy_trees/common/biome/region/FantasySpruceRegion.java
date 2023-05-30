@@ -28,11 +28,11 @@ public class FantasySpruceRegion extends Region {
 
             List<Climate.ParameterPoint> fantasyTaigaPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(ParameterUtils.Temperature.COOL)
-                    .humidity(ParameterUtils.Humidity.WET)
-                    .continentalness(ParameterUtils.Continentalness.span(ParameterUtils.Continentalness.NEAR_INLAND, ParameterUtils.Continentalness.INLAND))
-                    .erosion(ParameterUtils.Erosion.span(ParameterUtils.Erosion.EROSION_0, ParameterUtils.Erosion.EROSION_3))
+                    .humidity(ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL)
+                    .continentalness(Climate.Parameter.span(0.25F, 1.0F))
+                    .erosion(ParameterUtils.Erosion.FULL_RANGE)
                     .depth(ParameterUtils.Depth.SURFACE)
-                    .weirdness(ParameterUtils.Weirdness.span(ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_VARIANT_ASCENDING))
+                    .weirdness(Climate.Parameter.span(-0.35F, 0.35F))
                     .build();
 
             fantasyTaigaPoints.forEach(parameterPoint -> builder.replaceBiome(parameterPoint, BiomeRegistry.FANTASY_TAIGA));

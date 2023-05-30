@@ -52,7 +52,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         if(!StructureUtils.isChunkFlat(pos, context.chunkGenerator(), Climate.Parameter.span(-0.2F, 0.2F), Climate.Parameter.span(-0.4F, 0.4F))) {
             return false;
         }
-        if(!StructureUtils.isAreaDry(context, pos, 4)) {
+        if(!StructureUtils.isAreaDry(context, pos, 5)) {
             return false;
         }
         return true;
