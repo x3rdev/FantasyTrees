@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "fantasy_trees:fantasy_dark_oak_large_1",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 234781523,
+    "spacing": 4,
+    "separation": 3,
+    "type": "minecraft:random_spread"
+  }
+}

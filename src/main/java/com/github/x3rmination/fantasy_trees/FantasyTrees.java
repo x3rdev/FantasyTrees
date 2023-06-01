@@ -1,6 +1,7 @@
 package com.github.x3rmination.fantasy_trees;
 
 import com.github.x3rmination.fantasy_trees.common.biome.region.FantasyBirchRegion;
+import com.github.x3rmination.fantasy_trees.common.biome.region.FantasyDarkOakRegion;
 import com.github.x3rmination.fantasy_trees.common.biome.region.FantasyOakRegion;
 import com.github.x3rmination.fantasy_trees.common.biome.region.FantasySpruceRegion;
 import com.github.x3rmination.fantasy_trees.registry.*;
@@ -48,6 +49,7 @@ public class FantasyTrees {
             Regions.register(new FantasyOakRegion(new ResourceLocation(MOD_ID, "oak_region"), 10));
             Regions.register(new FantasySpruceRegion(new ResourceLocation(MOD_ID, "spruce_region"), 10));
             Regions.register(new FantasyBirchRegion(new ResourceLocation(MOD_ID, "birch_region"), 10));
+            Regions.register(new FantasyDarkOakRegion(new ResourceLocation(MOD_ID, "dark_oak_region"), 10));
         });
     }
 

@@ -3,6 +3,7 @@ package com.github.x3rmination.fantasy_trees.registry;
 import com.github.x3rmination.fantasy_trees.FantasyTrees;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.biome.OverworldBiomes;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -21,10 +22,12 @@ public class BiomeRegistry {
     public static final RegistryObject<Biome> FANTASY_FOREST_BIOME = BIOMES.register("fantasy_forest", BiomeRegistry::buildFantasyForest);
     public static final RegistryObject<Biome> FANTASY_BIRCH_FOREST_BIOME = BIOMES.register("fantasy_birch_forest", BiomeRegistry::buildFantasyBirchForest);
 
+    public static final RegistryObject<Biome> FANTASY_DARK_FOREST_BIOME = BIOMES.register("fantasy_dark_forest", OverworldBiomes::darkForest);
+
     public static final ResourceKey<Biome> FANTASY_TAIGA = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_taiga"));
     public static final ResourceKey<Biome> FANTASY_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_forest"));
     public static final ResourceKey<Biome> FANTASY_BIRCH_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_forest"));
-
+    public static final ResourceKey<Biome> FANTASY_DARK_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_dark_forest"));
 
     public static Biome buildFantasyTaiga() {
         float temp = 0.25F;
