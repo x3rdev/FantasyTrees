@@ -26,7 +26,7 @@ public class SmallTreeFeature extends FantasyTreeFeature {
     }
 
     public boolean isFeaturePosition(FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
-        return context.level().getBlockState(pos.below()).is(BlockTags.DIRT) && StructureUtils.isChunkFlat(pos, context.chunkGenerator(), Climate.Parameter.span(-0.2F, 0.2F), Climate.Parameter.span(-0.4F, 0.4F));
+        return StructureUtils.isSuitableTreePos(pos, context) && StructureUtils.isChunkFlat(pos, context.chunkGenerator(), Climate.Parameter.span(-0.2F, 0.2F), Climate.Parameter.span(-0.4F, 0.4F));
     }
     @Override
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {

@@ -72,5 +72,8 @@ public class FantasyTrees {
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
         }
+        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_DARK_FOREST_BIOME.get().getRegistryName())) {
+            vegetal_decoration.add(VegetationPlacements.DARK_FOREST_VEGETATION);
+        }
     }
 }
