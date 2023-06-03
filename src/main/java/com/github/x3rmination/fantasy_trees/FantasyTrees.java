@@ -1,9 +1,6 @@
 package com.github.x3rmination.fantasy_trees;
 
-import com.github.x3rmination.fantasy_trees.common.biome.region.FantasyBirchRegion;
-import com.github.x3rmination.fantasy_trees.common.biome.region.FantasyDarkOakRegion;
-import com.github.x3rmination.fantasy_trees.common.biome.region.FantasyOakRegion;
-import com.github.x3rmination.fantasy_trees.common.biome.region.FantasySpruceRegion;
+import com.github.x3rmination.fantasy_trees.common.biome.region.*;
 import com.github.x3rmination.fantasy_trees.registry.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.Holder;
@@ -50,6 +47,7 @@ public class FantasyTrees {
             Regions.register(new FantasySpruceRegion(new ResourceLocation(MOD_ID, "spruce_region"), 10));
             Regions.register(new FantasyBirchRegion(new ResourceLocation(MOD_ID, "birch_region"), 10));
             Regions.register(new FantasyDarkOakRegion(new ResourceLocation(MOD_ID, "dark_oak_region"), 10));
+            Regions.register(new FantasyJungleRegion(new ResourceLocation(MOD_ID, "jungle_region"), 10));
         });
     }
 
@@ -74,6 +72,9 @@ public class FantasyTrees {
         }
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_DARK_FOREST_BIOME.get().getRegistryName())) {
             vegetal_decoration.add(VegetationPlacements.DARK_FOREST_VEGETATION);
+        }
+        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_JUNGLE_BIOME.get().getRegistryName())) {
+            vegetal_decoration.add(VegetationPlacements.TREES_JUNGLE);
         }
     }
 }

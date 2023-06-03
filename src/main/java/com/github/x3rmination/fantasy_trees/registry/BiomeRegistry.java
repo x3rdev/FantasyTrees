@@ -21,13 +21,15 @@ public class BiomeRegistry {
     public static final RegistryObject<Biome> FANTASY_TAIGA_BIOME = BIOMES.register("fantasy_taiga", BiomeRegistry::buildFantasyTaiga);
     public static final RegistryObject<Biome> FANTASY_FOREST_BIOME = BIOMES.register("fantasy_forest", BiomeRegistry::buildFantasyForest);
     public static final RegistryObject<Biome> FANTASY_BIRCH_FOREST_BIOME = BIOMES.register("fantasy_birch_forest", BiomeRegistry::buildFantasyBirchForest);
-
     public static final RegistryObject<Biome> FANTASY_DARK_FOREST_BIOME = BIOMES.register("fantasy_dark_forest", BiomeRegistry::buildFantasyDarkForest);
+    public static final RegistryObject<Biome> FANTASY_JUNGLE_BIOME = BIOMES.register("fantasy_jungle", BiomeRegistry::buildFantasyJungle);
 
     public static final ResourceKey<Biome> FANTASY_TAIGA = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_taiga"));
     public static final ResourceKey<Biome> FANTASY_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_forest"));
     public static final ResourceKey<Biome> FANTASY_BIRCH_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_forest"));
     public static final ResourceKey<Biome> FANTASY_DARK_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_dark_forest"));
+    public static final ResourceKey<Biome> FANTASY_JUNGLE = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_jungle"));
+
 
     public static Biome buildFantasyTaiga() {
         float temp = 0.25F;
@@ -108,6 +110,30 @@ public class BiomeRegistry {
         return (new Biome.BiomeBuilder()
                 .precipitation(Biome.Precipitation.RAIN)
                 .biomeCategory(Biome.BiomeCategory.FOREST)
+                .temperature(temp)
+                .temperatureAdjustment(Biome.TemperatureModifier.NONE)
+                .downfall(0.8F)
+                .specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(calculateSkyColor(temp)).grassColorModifier(BiomeSpecialEffects.GrassColorModifier.DARK_FOREST).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build())
+                .mobSpawnSettings(mobspawnsettings$builder.build())
+                .generationSettings(genBuilder.build())
+                .build());
+    }
+
+    public static Biome buildFantasyJungle() {
+        float temp = 0.9F;
+        MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
+        BiomeDefaultFeatures.baseJungleSpawns(mobspawnsettings$builder);
+        BiomeGenerationSettings.Builder genBuilder = new BiomeGenerationSettings.Builder();
+        globalOverworldGeneration(genBuilder);
+        BiomeDefaultFeatures.addWarmFlowers(genBuilder);
+        BiomeDefaultFeatures.addJungleGrass(genBuilder);
+        BiomeDefaultFeatures.addDefaultMushrooms(genBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(genBuilder);
+        BiomeDefaultFeatures.addJungleVines(genBuilder);
+        BiomeDefaultFeatures.addJungleMelons(genBuilder);
+        return (new Biome.BiomeBuilder()
+                .precipitation(Biome.Precipitation.RAIN)
+                .biomeCategory(Biome.BiomeCategory.JUNGLE)
                 .temperature(temp)
                 .temperatureAdjustment(Biome.TemperatureModifier.NONE)
                 .downfall(0.8F)
