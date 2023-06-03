@@ -75,12 +75,19 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
                 FantasyJigsawPlacement.addPieces(
                         context,
                         PoolElementStructurePiece::new,
-                        pos.atY(y - 5),
+                        pos.atY(y - 5 + getOffset(location)),
                         false,
                         false,
                         rotation
                 );
 
         return structurePiecesGenerator;
+    }
+
+    private static int getOffset(ResourceLocation resourceLocation) {
+//        if(resourceLocation.getPath().equals("fantasy_dark_oak_large_1")) {
+//            return -15;
+//        }
+        return 0;
     }
 }

@@ -3,12 +3,24 @@
     {
       "structure": "fantasy_trees:fantasy_dark_oak_large_1",
       "weight": 1
+    },
+    {
+      "structure": "fantasy_trees:fantasy_dark_oak_large_2",
+      "weight": 1
+    },
+    {
+      "structure": "fantasy_trees:fantasy_dark_oak_large_3",
+      "weight": 1
+    },
+    {
+      "structure": "fantasy_trees:fantasy_dark_oak_large_4",
+      "weight": 1
     }
   ],
   "placement": {
     "salt": 234481523,
-    "spacing": 4,
-    "separation": 3,
+    "spacing": 6,
+    "separation": 5,
     "type": "minecraft:random_spread"
   }
 }
