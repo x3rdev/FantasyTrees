@@ -23,12 +23,16 @@ public class BiomeRegistry {
     public static final RegistryObject<Biome> FANTASY_BIRCH_FOREST_BIOME = BIOMES.register("fantasy_birch_forest", BiomeRegistry::buildFantasyBirchForest);
     public static final RegistryObject<Biome> FANTASY_DARK_FOREST_BIOME = BIOMES.register("fantasy_dark_forest", BiomeRegistry::buildFantasyDarkForest);
     public static final RegistryObject<Biome> FANTASY_JUNGLE_BIOME = BIOMES.register("fantasy_jungle", BiomeRegistry::buildFantasyJungle);
+    public static final RegistryObject<Biome> FANTASY_SAVANNA_BIOME = BIOMES.register("fantasy_savanna", BiomeRegistry::buildFantasySavanna);
+
 
     public static final ResourceKey<Biome> FANTASY_TAIGA = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_taiga"));
     public static final ResourceKey<Biome> FANTASY_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_forest"));
     public static final ResourceKey<Biome> FANTASY_BIRCH_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_forest"));
     public static final ResourceKey<Biome> FANTASY_DARK_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_dark_forest"));
     public static final ResourceKey<Biome> FANTASY_JUNGLE = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_jungle"));
+    public static final ResourceKey<Biome> FANTASY_SAVANNA = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_savanna"));
+
 
 
     public static Biome buildFantasyTaiga() {
@@ -137,6 +141,23 @@ public class BiomeRegistry {
                 .temperature(temp)
                 .temperatureAdjustment(Biome.TemperatureModifier.NONE)
                 .downfall(0.8F)
+                .specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(calculateSkyColor(temp)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build())
+                .mobSpawnSettings(mobspawnsettings$builder.build())
+                .generationSettings(genBuilder.build())
+                .build());
+    }
+
+    public static Biome buildFantasySavanna() {
+        float temp = 2.0F;
+        MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
+        BiomeGenerationSettings.Builder genBuilder = new BiomeGenerationSettings.Builder();
+        globalOverworldGeneration(genBuilder);
+        return (new Biome.BiomeBuilder()
+                .precipitation(Biome.Precipitation.RAIN)
+                .biomeCategory(Biome.BiomeCategory.SAVANNA)
+                .temperature(temp)
+                .temperatureAdjustment(Biome.TemperatureModifier.NONE)
+                .downfall(0.0F)
                 .specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(calculateSkyColor(temp)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build())
                 .mobSpawnSettings(mobspawnsettings$builder.build())
                 .generationSettings(genBuilder.build())

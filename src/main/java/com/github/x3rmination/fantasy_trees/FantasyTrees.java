@@ -48,6 +48,7 @@ public class FantasyTrees {
             Regions.register(new FantasyBirchRegion(new ResourceLocation(MOD_ID, "birch_region"), 10));
             Regions.register(new FantasyDarkOakRegion(new ResourceLocation(MOD_ID, "dark_oak_region"), 10));
             Regions.register(new FantasyJungleRegion(new ResourceLocation(MOD_ID, "jungle_region"), 10));
+            Regions.register(new FantasySavanna(new ResourceLocation(MOD_ID, "savanna_region"), 10));
         });
     }
 
@@ -75,6 +76,9 @@ public class FantasyTrees {
         }
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_JUNGLE_BIOME.get().getRegistryName())) {
             vegetal_decoration.add(VegetationPlacements.TREES_JUNGLE);
+        }
+        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_SAVANNA_BIOME.get().getRegistryName())) {
+            vegetal_decoration.add(VegetationPlacements.TREES_SAVANNA);
         }
     }
 }

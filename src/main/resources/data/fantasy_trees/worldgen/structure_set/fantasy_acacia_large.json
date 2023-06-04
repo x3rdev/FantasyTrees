@@ -1,0 +1,22 @@
+{
+  "structures": [
+    {
+      "structure": "fantasy_trees:fantasy_acacia_large_1",
+      "weight": 1
+    },
+    {
+      "structure": "fantasy_trees:fantasy_acacia_large_2",
+      "weight": 1
+    },
+    {
+      "structure": "fantasy_trees:fantasy_acacia_large_3",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 261284137,
+    "spacing": 3,
+    "separation": 2,
+    "type": "minecraft:random_spread"
+  }
+}
