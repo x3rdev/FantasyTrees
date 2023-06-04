@@ -125,19 +125,19 @@ public class BiomeRegistry {
         BiomeDefaultFeatures.baseJungleSpawns(mobspawnsettings$builder);
         BiomeGenerationSettings.Builder genBuilder = new BiomeGenerationSettings.Builder();
         globalOverworldGeneration(genBuilder);
-        BiomeDefaultFeatures.addWarmFlowers(genBuilder);
-        BiomeDefaultFeatures.addJungleGrass(genBuilder);
-        BiomeDefaultFeatures.addDefaultMushrooms(genBuilder);
-        BiomeDefaultFeatures.addDefaultExtraVegetation(genBuilder);
-        BiomeDefaultFeatures.addJungleVines(genBuilder);
-        BiomeDefaultFeatures.addJungleMelons(genBuilder);
+//        BiomeDefaultFeatures.addWarmFlowers(genBuilder);
+//        BiomeDefaultFeatures.addJungleGrass(genBuilder);
+//        BiomeDefaultFeatures.addDefaultMushrooms(genBuilder);
+//        BiomeDefaultFeatures.addDefaultExtraVegetation(genBuilder);
+//        BiomeDefaultFeatures.addJungleVines(genBuilder);
+//        BiomeDefaultFeatures.addJungleMelons(genBuilder);
         return (new Biome.BiomeBuilder()
                 .precipitation(Biome.Precipitation.RAIN)
                 .biomeCategory(Biome.BiomeCategory.JUNGLE)
                 .temperature(temp)
                 .temperatureAdjustment(Biome.TemperatureModifier.NONE)
                 .downfall(0.8F)
-                .specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(calculateSkyColor(temp)).grassColorModifier(BiomeSpecialEffects.GrassColorModifier.DARK_FOREST).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build())
+                .specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(calculateSkyColor(temp)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build())
                 .mobSpawnSettings(mobspawnsettings$builder.build())
                 .generationSettings(genBuilder.build())
                 .build());

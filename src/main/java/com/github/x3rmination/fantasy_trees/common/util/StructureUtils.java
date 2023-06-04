@@ -98,7 +98,7 @@ public final class StructureUtils {
             return false;
         }
 
-        for(int i = -radius; i < radius; i+=2) {
+        for(int i = -radius; i < radius; i+=3) {
             BlockPos checkPos = blockPos.offset(i, 0, i);
             int h = chunkGenerator.getFirstOccupiedHeight(checkPos.getX(), checkPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, heightAccessor);
             NoiseColumn column = chunkGenerator.getBaseColumn(checkPos.getX(), checkPos.getZ(), heightAccessor);

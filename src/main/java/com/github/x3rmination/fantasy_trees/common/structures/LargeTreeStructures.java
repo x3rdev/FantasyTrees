@@ -7,6 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.valueproviders.BiasedToBottomInt;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
@@ -46,6 +47,9 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
     }
 
     public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context, BlockPos pos) {
+        if(!context.validBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG)) {
+            return false;
+        }
         if(!StructureUtils.isChunkFlat(pos, context.chunkGenerator(), Climate.Parameter.span(-0.2F, 0.2F), Climate.Parameter.span(-0.6F, 0.6F))) {
             return false;
         }
@@ -60,8 +64,10 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         StructureTemplate structuretemplate = context.structureManager().getOrCreate(location);
         BlockPos pos = context.chunkPos().getWorldPosition();
         Rotation rotation = Rotation.getRandom(random);
+        int xO = random.nextInt(5);
+        int zO = random.nextInt(5);
         BlockPos centerOffset = new BlockPos((structuretemplate.getSize().getX()/2), pos.getY(), (structuretemplate.getSize().getZ()/2)).rotate(rotation);
-        BlockPos centerPos = pos.offset(centerOffset);
+        BlockPos centerPos = pos.offset(centerOffset).offset(xO, 0, zO);
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
         centerPos = centerPos.atY(y);
         if(!LargeTreeStructures.isFeatureChunk(context, centerPos)) {

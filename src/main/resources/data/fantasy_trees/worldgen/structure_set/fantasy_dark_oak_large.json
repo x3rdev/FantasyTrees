@@ -6,21 +6,21 @@
     },
     {
       "structure": "fantasy_trees:fantasy_dark_oak_large_2",
-      "weight": 1
+      "weight": 3
     },
     {
       "structure": "fantasy_trees:fantasy_dark_oak_large_3",
-      "weight": 1
+      "weight": 3
     },
     {
       "structure": "fantasy_trees:fantasy_dark_oak_large_4",
-      "weight": 1
+      "weight": 3
     }
   ],
   "placement": {
     "salt": 234481523,
-    "spacing": 5,
-    "separation": 4,
+    "spacing": 4,
+    "separation": 3,
     "type": "minecraft:random_spread"
   }
 }
