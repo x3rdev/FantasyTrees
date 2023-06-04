@@ -73,12 +73,15 @@ public class FantasyTrees {
         }
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_DARK_FOREST_BIOME.get().getRegistryName())) {
             vegetal_decoration.add(VegetationPlacements.DARK_FOREST_VEGETATION);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
         }
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_JUNGLE_BIOME.get().getRegistryName())) {
             vegetal_decoration.add(VegetationPlacements.TREES_JUNGLE);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
         }
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_SAVANNA_BIOME.get().getRegistryName())) {
             vegetal_decoration.add(VegetationPlacements.TREES_SAVANNA);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
         }
     }
 }

@@ -64,8 +64,8 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         StructureTemplate structuretemplate = context.structureManager().getOrCreate(location);
         BlockPos pos = context.chunkPos().getWorldPosition();
         Rotation rotation = Rotation.getRandom(random);
-        int xO = random.nextInt(32) - 16;
-        int zO = random.nextInt(32) - 16;
+        int xO = random.nextInt(16) - 8;
+        int zO = random.nextInt(16) - 8;
         BlockPos centerOffset = new BlockPos((structuretemplate.getSize().getX()/2), pos.getY(), (structuretemplate.getSize().getZ()/2)).rotate(rotation);
         BlockPos centerPos = pos.offset(centerOffset).offset(xO, 0, zO);
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
@@ -90,6 +90,9 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
     private static int getOffset(ResourceLocation resourceLocation) {
         if(resourceLocation.getPath().equals("fantasy_dark_oak_large_1")) {
             return -15;
+        }
+        if(resourceLocation.getPath().equals("fantasy_acacia_large_2")) {
+            return 4;
         }
         return 0;
     }
