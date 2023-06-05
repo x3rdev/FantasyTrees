@@ -64,10 +64,8 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
         StructureTemplate structuretemplate = context.structureManager().getOrCreate(location);
         BlockPos pos = context.chunkPos().getWorldPosition();
         Rotation rotation = Rotation.getRandom(random);
-        int xO = random.nextInt(16) - 8;
-        int zO = random.nextInt(16) - 8;
         BlockPos centerOffset = new BlockPos((structuretemplate.getSize().getX()/2), pos.getY(), (structuretemplate.getSize().getZ()/2)).rotate(rotation);
-        BlockPos centerPos = pos.offset(centerOffset).offset(xO, 0, zO);
+        BlockPos centerPos = pos.offset(centerOffset);
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
         centerPos = centerPos.atY(y);
         if(!LargeTreeStructures.isFeatureChunk(context, centerPos)) {
@@ -78,7 +76,7 @@ public class LargeTreeStructures extends StructureFeature<JigsawConfiguration> {
                 FantasyJigsawPlacement.addPieces(
                         context,
                         PoolElementStructurePiece::new,
-                        pos.offset(xO, 0, zO).atY(y - 5 + getOffset(location)),
+                        pos.atY(y - 5 + getOffset(location)),
                         false,
                         false,
                         rotation

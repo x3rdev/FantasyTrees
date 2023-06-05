@@ -91,19 +91,14 @@ public final class StructureUtils {
     }
 
     public static boolean isAreaDry(BlockPos blockPos, ChunkGenerator chunkGenerator, LevelHeightAccessor heightAccessor, int radius) {
-
-        int firstOccupiedHeight = chunkGenerator.getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, heightAccessor);
-        NoiseColumn firstColumn = chunkGenerator.getBaseColumn(blockPos.getX(), blockPos.getZ(), heightAccessor);
-        if(!firstColumn.getBlock(firstOccupiedHeight).getFluidState().isEmpty()) {
-            return false;
-        }
-
-        for(int i = -radius; i < radius; i+=3) {
-            BlockPos checkPos = blockPos.offset(i, 0, i);
-            int h = chunkGenerator.getFirstOccupiedHeight(checkPos.getX(), checkPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, heightAccessor);
-            NoiseColumn column = chunkGenerator.getBaseColumn(checkPos.getX(), checkPos.getZ(), heightAccessor);
-            if(!column.getBlock(h).getFluidState().isEmpty()) {
-                return false;
+        for(Direction direction : Direction.values()) {
+            if(direction.getAxis().isHorizontal()) {
+                BlockPos checkPos = blockPos.relative(direction, radius);
+                int h = chunkGenerator.getFirstOccupiedHeight(checkPos.getX(), checkPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, heightAccessor);
+                NoiseColumn column = chunkGenerator.getBaseColumn(checkPos.getX(), checkPos.getZ(), heightAccessor);
+                if(!column.getBlock(h).getFluidState().isEmpty()) {
+                    return false;
+                }
             }
         }
         return true;
