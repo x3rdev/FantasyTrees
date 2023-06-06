@@ -1,5 +1,6 @@
 package com.github.x3rmination.fantasy_trees.common.util;
 
+import com.github.x3rmination.fantasy_trees.FantasyTreesConfig;
 import com.github.x3rmination.fantasy_trees.common.features.configuration.TreeConfiguration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -63,7 +64,7 @@ public final class StructureUtils {
         return f0 && f1;
     }
 
-    public static boolean placeStructure(ResourceLocation resourceLocation, ServerLevel level, BlockPos pos) {
+    public static boolean placeStructure(ResourceLocation resourceLocation, ServerLevel level, BlockPos pos, int offset) {
         if(resourceLocation != null && level.getStructureManager().get(resourceLocation).isPresent()) {
             StructureTemplate structuretemplate = level.getStructureManager().get(resourceLocation).orElse(null);
             try {
@@ -74,8 +75,8 @@ public final class StructureUtils {
                 paletteList.forEach(palette -> blocks.addAll(palette.blocks()));
                 for(StructureTemplate.StructureBlockInfo info : blocks) {
                     Scheduler.schedule(() -> {
-                        level.setBlock(pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2), -5, -(structuretemplate.getSize().getZ()/2)), info.state, 18);
-                    }, info.pos.getY() * 3);
+                        level.setBlock(pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2), offset, -(structuretemplate.getSize().getZ()/2)), info.state, 18);
+                    }, info.pos.getY() * FantasyTreesConfig.growth_delay.get());
                 }
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 throw new RuntimeException(e);

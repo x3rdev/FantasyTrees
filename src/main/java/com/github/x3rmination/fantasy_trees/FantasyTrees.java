@@ -11,7 +11,9 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
@@ -28,6 +30,7 @@ public class FantasyTrees {
     public FantasyTrees() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+
         modEventBus.addListener(this::setup);
         forgeEventBus.addListener(this::generateTrees);
         BlockRegistry.BLOCKS.register(modEventBus);
@@ -39,6 +42,9 @@ public class FantasyTrees {
         StructureRegistry.STRUCTURE_FEATURES.register(modEventBus);
         FeatureRegistry.FEATURES.register(modEventBus);
         BiomeRegistry.BIOMES.register(modEventBus);
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FantasyTreesConfig.SPEC, "fantasy_trees-common.toml");
+
     }
 
     private void setup(final FMLCommonSetupEvent event) {

@@ -1,6 +1,7 @@
 package com.github.x3rmination.fantasy_trees.common.blocks.grower;
 
 import com.github.x3rmination.fantasy_trees.FantasyTrees;
+import com.github.x3rmination.fantasy_trees.FantasyTreesConfig;
 import com.github.x3rmination.fantasy_trees.common.features.configuration.TreeConfiguration;
 import com.github.x3rmination.fantasy_trees.common.util.StructureUtils;
 import com.github.x3rmination.fantasy_trees.registry.BlockRegistry;
@@ -39,8 +40,11 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
 
     @Override
     public boolean growTree(ServerLevel level, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, Random random) {
+        if(!FantasyTreesConfig.can_grow_fantasy_sapling.get()) {
+            return false;
+        }
         byte size = getTreeSize(level, pos);
-        if (StructureUtils.placeStructure(getStructure(size, name, random), level, pos)) {
+        if (StructureUtils.placeStructure(getStructure(size, name, random), level, pos, size == 3 ? -5 : 0)) {
             return true;
         } else {
             return false;
