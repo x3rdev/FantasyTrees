@@ -23,13 +23,13 @@ public class TreeConfiguration implements FeatureConfiguration {
         this.trees = trees;
     }
 
-    public ResourceLocation getRandomTree(Random random) {
+    public static ResourceLocation getRandomTree(Map<ResourceLocation, Pair<Integer, Integer>> trees, Random random) {
         final int[] totalWeight = {0};
-        this.trees.values().forEach(integerIntegerPair -> totalWeight[0] += integerIntegerPair.getFirst());
+        trees.values().forEach(integerIntegerPair -> totalWeight[0] += integerIntegerPair.getFirst());
         int targetWeight = Math.round(random.nextFloat() * totalWeight[0]);
         int accWeight = 0;
-        for(ResourceLocation resourceLocation : this.trees.keySet()) {
-            accWeight += this.trees.get(resourceLocation).getFirst();
+        for(ResourceLocation resourceLocation : trees.keySet()) {
+            accWeight += trees.get(resourceLocation).getFirst();
             if(accWeight >= targetWeight) {
                 return resourceLocation;
             }

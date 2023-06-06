@@ -64,7 +64,7 @@ public final class StructureUtils {
     }
 
     public static boolean placeStructure(ResourceLocation resourceLocation, ServerLevel level, BlockPos pos) {
-        if(level.getStructureManager().get(resourceLocation).isPresent()) {
+        if(resourceLocation != null && level.getStructureManager().get(resourceLocation).isPresent()) {
             StructureTemplate structuretemplate = level.getStructureManager().get(resourceLocation).orElse(null);
             try {
                 Field f = StructureTemplate.class.getDeclaredField("palettes");
@@ -74,8 +74,8 @@ public final class StructureUtils {
                 paletteList.forEach(palette -> blocks.addAll(palette.blocks()));
                 for(StructureTemplate.StructureBlockInfo info : blocks) {
                     Scheduler.schedule(() -> {
-                        level.setBlock(pos.offset(info.pos), info.state, 18);
-                    }, info.pos.getY() * 2 + 2);
+                        level.setBlock(pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2), -5, -(structuretemplate.getSize().getZ()/2)), info.state, 18);
+                    }, info.pos.getY() * 3);
                 }
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 throw new RuntimeException(e);

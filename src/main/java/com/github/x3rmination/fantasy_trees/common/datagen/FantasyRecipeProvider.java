@@ -32,6 +32,14 @@ public class FantasyRecipeProvider extends RecipeProvider implements IConditionB
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(fantasyLogs),
                 ItemRegistry.GLOWING_COAL.get(), 0.15F, 200)
                 .unlockedBy("has_furnace", has(Blocks.FURNACE)).save(recipeConsumer);
+        ShapedRecipeBuilder.shaped(Items.TORCH, 8)
+                .define('c', ItemRegistry.GLOWING_COAL.get())
+                .define('s', Items.STICK)
+                .pattern("   ")
+                .pattern("c  ")
+                .pattern("s  ")
+                .unlockedBy("has_glowing_coal", has(ItemRegistry.GLOWING_COAL.get()))
+                .save(recipeConsumer);
         for (RegistryObject<Block> wood : BlockRegistry.WOODS.values()) {
             String name = wood.get().getRegistryName().getPath().substring(8);
             name = name.replace(name.substring(name.length() - 5), "");

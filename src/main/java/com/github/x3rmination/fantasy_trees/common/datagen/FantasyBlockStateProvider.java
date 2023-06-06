@@ -71,7 +71,8 @@ public class FantasyBlockStateProvider extends BlockStateProvider {
                         new ResourceLocation(resourceLocation.getNamespace(), resourceLocation.getPath() + "_side"),
                         new ResourceLocation(resourceLocation.getNamespace(), resourceLocation.getPath() + "_side"),
                         new ResourceLocation(resourceLocation.getNamespace(), resourceLocation.getPath() + "_side")
-                )).addModel();
+                ).texture("particle", new ResourceLocation(resourceLocation.getNamespace(), resourceLocation.getPath() + "_bottom")))
+                .addModel();
     }
 
     public void saplingBlock(SaplingBlock block, ResourceLocation resourceLocation) {

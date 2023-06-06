@@ -7,9 +7,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class FantasyLanguageProvider extends LanguageProvider {
 
     public FantasyLanguageProvider(DataGenerator gen) {
@@ -18,6 +15,7 @@ public class FantasyLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+        add("itemGroup.fantasy_trees", "Fantasy Trees Item");
         BlockItemRegistry.BLOCK_ITEMS.getEntries().forEach(entry -> {
             addTranslation(entry.get());
         });
