@@ -2,8 +2,8 @@ package com.github.x3rmination.fantasy_trees.registry;
 
 import com.github.x3rmination.fantasy_trees.FantasyTrees;
 import com.github.x3rmination.fantasy_trees.common.blocks.*;
+import com.github.x3rmination.fantasy_trees.common.blocks.grower.FantasyOakTreeGrower;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.grower.OakTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
@@ -64,7 +64,7 @@ public class BlockRegistry {
             FENCE_GATES.put(name, fence_gate);
             RegistryObject<Block> crafting_table = BLOCKS.register(String.format("fantasy_%s_crafting_table", name), () -> new FantasyCraftingTableBlock(BlockBehaviour.Properties.of(FANTASY_WOOD).strength(2.5F).sound(SoundType.WOOD).lightLevel(value -> 7)));
             CRAFTING_TABLES.put(name, crafting_table);
-            RegistryObject<Block> sapling = BLOCKS.register(String.format("fantasy_%s_sapling", name), () -> new FantasySaplingBlock(new OakTreeGrower()));
+            RegistryObject<Block> sapling = BLOCKS.register(String.format("fantasy_%s_sapling", name), () -> new FantasySaplingBlock(new FantasyOakTreeGrower()));
             SAPLINGS.put(name, sapling);
         });
     }
