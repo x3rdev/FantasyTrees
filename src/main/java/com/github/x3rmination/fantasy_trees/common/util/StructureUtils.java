@@ -75,7 +75,14 @@ public final class StructureUtils {
                 paletteList.forEach(palette -> blocks.addAll(palette.blocks()));
                 for(StructureTemplate.StructureBlockInfo info : blocks) {
                     Scheduler.schedule(() -> {
-                        level.setBlock(pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2), offset, -(structuretemplate.getSize().getZ()/2)), info.state, 18);
+                        BlockPos placePos = pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2), offset, -(structuretemplate.getSize().getZ()/2));
+                        if(FantasyTreesConfig.override_blocks.get()) {
+                            level.setBlock(placePos, info.state, 18);
+                        } else {
+                            if(level.getBlockState(placePos).isAir()) {
+                                level.setBlock(placePos, info.state, 18);
+                            }
+                        }
                     }, info.pos.getY() * FantasyTreesConfig.growth_delay.get());
                 }
             } catch (NoSuchFieldException | IllegalAccessException e) {
