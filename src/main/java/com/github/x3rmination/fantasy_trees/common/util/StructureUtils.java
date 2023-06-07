@@ -70,8 +70,6 @@ public final class StructureUtils {
     public static boolean placeStructure(ResourceLocation resourceLocation, ServerLevel level, BlockPos pos, int offset) {
         if(resourceLocation != null && level.getStructureManager().get(resourceLocation).isPresent()) {
             StructureTemplate structuretemplate = level.getStructureManager().get(resourceLocation).get();
-            FantasyTrees.LOGGER.info(Arrays.deepToString(StructureTemplate.class.getFields()));
-            FantasyTrees.LOGGER.info(Arrays.deepToString(StructureTemplate.class.getDeclaredFields()));
             try {
                 Field f = ObfuscationReflectionHelper.findField(StructureTemplate.class, "f_74482_");
                 f.setAccessible(true);
