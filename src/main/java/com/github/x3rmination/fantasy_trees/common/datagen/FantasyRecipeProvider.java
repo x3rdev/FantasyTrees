@@ -39,7 +39,7 @@ public class FantasyRecipeProvider extends RecipeProvider implements IConditionB
                 .pattern("c  ")
                 .pattern("s  ")
                 .unlockedBy("has_glowing_coal", has(ItemRegistry.GLOWING_COAL.get()))
-                .save(recipeConsumer);
+                .save(recipeConsumer, "torch_glowing_coal");
         for (RegistryObject<Block> wood : BlockRegistry.WOODS.values()) {
             String name = wood.get().getRegistryName().getPath().substring(8);
             name = name.replace(name.substring(name.length() - 5), "");
