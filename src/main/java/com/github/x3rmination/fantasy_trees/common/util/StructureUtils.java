@@ -1,5 +1,6 @@
 package com.github.x3rmination.fantasy_trees.common.util;
 
+import com.github.x3rmination.fantasy_trees.FantasyTrees;
 import com.github.x3rmination.fantasy_trees.FantasyTreesConfig;
 import com.github.x3rmination.fantasy_trees.common.features.configuration.TreeConfiguration;
 import net.minecraft.core.BlockPos;
@@ -17,9 +18,11 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,9 +69,11 @@ public final class StructureUtils {
 
     public static boolean placeStructure(ResourceLocation resourceLocation, ServerLevel level, BlockPos pos, int offset) {
         if(resourceLocation != null && level.getStructureManager().get(resourceLocation).isPresent()) {
-            StructureTemplate structuretemplate = level.getStructureManager().get(resourceLocation).orElse(null);
+            StructureTemplate structuretemplate = level.getStructureManager().get(resourceLocation).get();
+            FantasyTrees.LOGGER.info(Arrays.deepToString(StructureTemplate.class.getFields()));
+            FantasyTrees.LOGGER.info(Arrays.deepToString(StructureTemplate.class.getDeclaredFields()));
             try {
-                Field f = StructureTemplate.class.getDeclaredField("palettes");
+                Field f = ObfuscationReflectionHelper.findField(StructureTemplate.class, "f_74482_");
                 f.setAccessible(true);
                 List<StructureTemplate.Palette> paletteList = (List<StructureTemplate.Palette>) f.get(structuretemplate);
                 List<StructureTemplate.StructureBlockInfo> blocks = new ArrayList<>();
@@ -85,7 +90,7 @@ public final class StructureUtils {
                         }
                     }, info.pos.getY() * FantasyTreesConfig.growth_delay.get());
                 }
-            } catch (NoSuchFieldException | IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
