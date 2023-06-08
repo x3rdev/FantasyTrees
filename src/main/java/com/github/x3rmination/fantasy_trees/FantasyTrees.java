@@ -49,12 +49,12 @@ public class FantasyTrees {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            Regions.register(new FantasyOakRegion(new ResourceLocation(MOD_ID, "oak_region"), 10));
-            Regions.register(new FantasySpruceRegion(new ResourceLocation(MOD_ID, "spruce_region"), 10));
-            Regions.register(new FantasyBirchRegion(new ResourceLocation(MOD_ID, "birch_region"), 10));
-            Regions.register(new FantasyDarkOakRegion(new ResourceLocation(MOD_ID, "dark_oak_region"), 10));
-            Regions.register(new FantasyJungleRegion(new ResourceLocation(MOD_ID, "jungle_region"), 10));
-            Regions.register(new FantasySavanna(new ResourceLocation(MOD_ID, "savanna_region"), 10));
+            Regions.register(new FantasyOakRegion(new ResourceLocation(MOD_ID, "oak_region"), FantasyTreesConfig.oak_region_weight.get()));
+            Regions.register(new FantasySpruceRegion(new ResourceLocation(MOD_ID, "spruce_region"), FantasyTreesConfig.spruce_region_weight.get()));
+            Regions.register(new FantasyBirchRegion(new ResourceLocation(MOD_ID, "birch_region"), FantasyTreesConfig.birch_region_weight.get()));
+            Regions.register(new FantasyDarkOakRegion(new ResourceLocation(MOD_ID, "dark_oak_region"), FantasyTreesConfig.dark_oak_region_weight.get()));
+            Regions.register(new FantasyJungleRegion(new ResourceLocation(MOD_ID, "jungle_region"), FantasyTreesConfig.jungle_region_weight.get()));
+            Regions.register(new FantasySavanna(new ResourceLocation(MOD_ID, "savanna_region"), FantasyTreesConfig.savanna_region_weight.get()));
         });
     }
 
