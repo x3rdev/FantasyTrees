@@ -2,6 +2,7 @@ package com.github.x3rmination.fantasy_trees.common.util;
 
 import com.github.x3rmination.fantasy_trees.FantasyTrees;
 import com.github.x3rmination.fantasy_trees.FantasyTreesConfig;
+import com.github.x3rmination.fantasy_trees.common.blocks.FantasyLeavesBlock;
 import com.github.x3rmination.fantasy_trees.common.features.configuration.TreeConfiguration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,6 +12,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.biome.Climate;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -75,7 +77,15 @@ public final class StructureUtils {
                 f.setAccessible(true);
                 List<StructureTemplate.Palette> paletteList = (List<StructureTemplate.Palette>) f.get(structuretemplate);
                 List<StructureTemplate.StructureBlockInfo> blocks = new ArrayList<>();
-                paletteList.forEach(palette -> blocks.addAll(palette.blocks()));
+                List<StructureTemplate.StructureBlockInfo> leaves = new ArrayList<>();
+                paletteList.forEach(palette -> palette.blocks().forEach(structureBlockInfo -> {
+                    if(structureBlockInfo.state.getBlock() instanceof LeavesBlock) {
+                        leaves.add(structureBlockInfo);
+                    } else {
+                        blocks.add(structureBlockInfo);
+                    }
+                }));
+                int i = 0;
                 for(StructureTemplate.StructureBlockInfo info : blocks) {
                     Scheduler.schedule(() -> {
                         BlockPos placePos = pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2), offset, -(structuretemplate.getSize().getZ()/2));
@@ -87,7 +97,21 @@ public final class StructureUtils {
                             }
                         }
                     }, info.pos.getY() * FantasyTreesConfig.growth_delay.get());
+                    i = info.pos.getY();
                 }
+                for(StructureTemplate.StructureBlockInfo info : leaves) {
+                    Scheduler.schedule(() -> {
+                        BlockPos placePos = pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2), offset, -(structuretemplate.getSize().getZ()/2));
+                        if(FantasyTreesConfig.override_blocks.get()) {
+                            level.setBlock(placePos, info.state, 18);
+                        } else {
+                            if(level.getBlockState(placePos).isAir()) {
+                                level.setBlock(placePos, info.state, 18);
+                            }
+                        }
+                    }, (info.pos.getY() + i/2) * FantasyTreesConfig.growth_delay.get());
+                }
+
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
