@@ -6,6 +6,7 @@ import com.github.x3rmination.fantasy_trees.common.features.configuration.TreeCo
 import com.github.x3rmination.fantasy_trees.common.util.StructureUtils;
 import com.github.x3rmination.fantasy_trees.registry.BlockRegistry;
 import com.github.x3rmination.fantasy_trees.registry.ConfiguredFeatureRegistry;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
@@ -43,8 +44,10 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
         if(!FantasyTreesConfig.can_grow_fantasy_sapling.get()) {
             return false;
         }
-        byte size = getTreeSize(level, pos);
-        if (StructureUtils.placeStructure(getStructure(size, name, random), level, pos, size == 3 ? -5 : 0)) {
+        Pair<BlockPattern.BlockPatternMatch, Integer> pattern = getTreePattern(level, pos);
+        ResourceLocation structure = getStructure(pattern.getSecond(), name, random);
+        if (StructureUtils.placeStructure(structure, level, pos, pattern.getSecond() == 3 ? -5 : 0)) {
+            destroyArea(level, pattern.getFirst());
             return true;
         } else {
             return false;
@@ -96,20 +99,17 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
         return null;
     }
 
-    protected byte getTreeSize(ServerLevel level, BlockPos pos) {
+    protected Pair<BlockPattern.BlockPatternMatch, Integer> getTreePattern(ServerLevel level, BlockPos pos) {
         Block sapling = BlockRegistry.SAPLINGS.get(this.name).get();
         BlockPattern.BlockPatternMatch medium = mediumTreePattern(sapling).find(level, pos);
         if (medium != null) {
-            destroyArea(level, medium);
-            return 2;
+            return new Pair<>(medium, 2);
         }
         BlockPattern.BlockPatternMatch large = largeTreePattern(sapling).find(level, pos);
         if (large != null) {
-            destroyArea(level, large);
-            return 3;
+            return new Pair<>(large, 3);
         }
-        level.setBlock(pos, Blocks.AIR.defaultBlockState(), 18);
-        return 1;
+        return new Pair<>(null, 1);
     }
     private BlockPattern mediumTreePattern(Block sapling) {
         return BlockPatternBuilder.start()
@@ -128,9 +128,11 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
     }
 
     private void destroyArea(ServerLevel level, BlockPattern.BlockPatternMatch patternMatch) {
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                level.setBlock(patternMatch.getBlock(i, j, 0).getPos(), Blocks.AIR.defaultBlockState(), 18);
+        if(patternMatch != null) {
+            for(int i = 0; i < 3; i++) {
+                for(int j = 0; j < 3; j++) {
+                    level.setBlock(patternMatch.getBlock(i, j, 0).getPos(), Blocks.AIR.defaultBlockState(), 18);
+                }
             }
         }
     }

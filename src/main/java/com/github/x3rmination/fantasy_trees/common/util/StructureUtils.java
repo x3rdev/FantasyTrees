@@ -12,6 +12,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.biome.Climate;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.DensityFunction;
@@ -71,6 +72,7 @@ public final class StructureUtils {
 
     public static boolean placeStructure(ResourceLocation resourceLocation, ServerLevel level, BlockPos pos, int offset) {
         if(resourceLocation != null && level.getStructureManager().get(resourceLocation).isPresent()) {
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 18);
             StructureTemplate structuretemplate = level.getStructureManager().get(resourceLocation).get();
             try {
                 Field f = ObfuscationReflectionHelper.findField(StructureTemplate.class, "f_74482_");
