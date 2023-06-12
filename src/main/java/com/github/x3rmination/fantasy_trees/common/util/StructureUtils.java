@@ -90,7 +90,7 @@ public final class StructureUtils {
                 int i = 0;
                 for(StructureTemplate.StructureBlockInfo info : blocks) {
                     Scheduler.schedule(() -> {
-                        BlockPos placePos = pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2), offset, -(structuretemplate.getSize().getZ()/2));
+                        BlockPos placePos = pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2F), offset, -(structuretemplate.getSize().getZ()/2F));
                         if(FantasyTreesConfig.override_blocks.get()) {
                             level.setBlock(placePos, info.state, 18);
                         } else {
@@ -117,6 +117,7 @@ public final class StructureUtils {
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
+            return true;
         }
         return false;
     }

@@ -46,12 +46,10 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
         }
         Pair<BlockPattern.BlockPatternMatch, Integer> pattern = getTreePattern(level, pos);
         ResourceLocation structure = getStructure(pattern.getSecond(), name, random);
-        if (StructureUtils.placeStructure(structure, level, pos, pattern.getSecond() == 3 ? -5 : 0)) {
+        if(structure != null) {
             destroyArea(level, pattern.getFirst());
-            return true;
-        } else {
-            return false;
         }
+        return StructureUtils.placeStructure(structure, level, pos, pattern.getSecond() == 3 ? -5 : 0);
     }
 
     protected static ResourceLocation getStructure(int size, String name, Random random) {
@@ -127,7 +125,7 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
                 .build();
     }
 
-    private void destroyArea(ServerLevel level, BlockPattern.BlockPatternMatch patternMatch) {
+    protected void destroyArea(ServerLevel level, BlockPattern.BlockPatternMatch patternMatch) {
         if(patternMatch != null) {
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < 3; j++) {
