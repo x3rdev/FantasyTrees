@@ -101,17 +101,17 @@ public final class StructureUtils {
                     }, info.pos.getY() * FantasyTreesConfig.growth_delay.get());
                     i = info.pos.getY();
                 }
-                for(StructureTemplate.StructureBlockInfo info : leaves) {
+                for (StructureTemplate.StructureBlockInfo info : leaves) {
                     Scheduler.schedule(() -> {
-                        BlockPos placePos = pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2), offset, -(structuretemplate.getSize().getZ()/2));
-                        if(FantasyTreesConfig.override_blocks.get()) {
+                        BlockPos placePos = pos.offset(info.pos).offset(-(structuretemplate.getSize().getX() / 2), offset, -(structuretemplate.getSize().getZ() / 2));
+                        if (FantasyTreesConfig.override_blocks.get()) {
                             level.setBlock(placePos, info.state, 18);
                         } else {
-                            if(level.getBlockState(placePos).isAir()) {
+                            if (level.getBlockState(placePos).isAir()) {
                                 level.setBlock(placePos, info.state, 18);
                             }
                         }
-                    }, (info.pos.getY() + i/2) * FantasyTreesConfig.growth_delay.get());
+                    }, ((i - info.pos.getY()) + i / 2) * FantasyTreesConfig.growth_delay.get());
                 }
 
             } catch (IllegalAccessException e) {

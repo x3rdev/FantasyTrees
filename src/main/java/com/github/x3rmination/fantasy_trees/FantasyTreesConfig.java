@@ -20,7 +20,7 @@ public class FantasyTreesConfig {
     static {
         BUILDER.push("Fantasy Trees Config");
         can_grow_fantasy_sapling = BUILDER.comment("Can grow fantasy trees").define("can_grow_fantasy_sapling", true);
-        growth_delay = BUILDER.comment("Tree growth delay").defineInRange("growth_delay", 3, 0, 100);
+        growth_delay = BUILDER.comment("Tree growth delay").defineInRange("growth_delay", 7, 0, 100);
         override_blocks = BUILDER.comment("Trees growing from saplings replace blocks").define("override_blocks", true);
         oak_region_weight = BUILDER.comment("Fantasy forest biome weight").defineInRange("oak_region_weight", 10, 0, 100);
         spruce_region_weight = BUILDER.comment("Fantasy taiga biome weight").defineInRange("spruce_region_weight", 10, 0, 100);
