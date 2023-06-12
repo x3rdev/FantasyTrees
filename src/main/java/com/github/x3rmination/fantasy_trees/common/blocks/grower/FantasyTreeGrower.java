@@ -61,6 +61,9 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
                 if (name.equals("oak")) {
                     return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_OAK_SMALL_LIST, random);
                 }
+                if (name.equals("spruce")) {
+                    return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_SPRUCE_SMALL_LIST, random);
+                }
             }
             case 2 -> {
                 if (name.equals("birch")) {
