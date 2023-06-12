@@ -89,7 +89,7 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
                     return new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_large_" + (random.nextInt(5) + 1));
                 }
                 if (name.equals("spruce")) {
-                    return new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_large_" + (random.nextInt(4) + 1));
+                    return new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_large_" + (random.nextInt(3) + 1));
                 }
             }
         }

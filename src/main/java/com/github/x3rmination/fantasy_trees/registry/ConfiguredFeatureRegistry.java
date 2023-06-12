@@ -18,6 +18,13 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStatePr
 import java.util.Map;
 
 public class ConfiguredFeatureRegistry {
+
+    public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_SPRUCE_SMALL_LIST = Map.ofEntries(
+            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_small_1"), new Pair<>(5, 0)),
+            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_small_2"), new Pair<>(5, 0)),
+            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_small_3"), new Pair<>(5, 0)),
+            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_small_4"), new Pair<>(5, 0))
+    );
     public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_SPRUCE_MEDIUM_LIST = Map.ofEntries(
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_1"), new Pair<>(5, -2)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_2"), new Pair<>(5, -3)),
@@ -26,11 +33,7 @@ public class ConfiguredFeatureRegistry {
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_5"), new Pair<>(5, 0)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_6"), new Pair<>(5, 0)),
             Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_7"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_8"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_9"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_10"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_11"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_12"), new Pair<>(5, 0))
+            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_8"), new Pair<>(5, 0))
     );
 
     public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_OAK_SMALL_LIST = Map.ofEntries(
