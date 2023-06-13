@@ -111,7 +111,7 @@ public final class StructureUtils {
                                 level.setBlock(placePos, info.state, 18);
                             }
                         }
-                    }, ((i - info.pos.getY()) + i / 2) * FantasyTreesConfig.growth_delay.get());
+                    }, (2 * i - info.pos.getY()) * FantasyTreesConfig.growth_delay.get());
                 }
 
             } catch (IllegalAccessException e) {
