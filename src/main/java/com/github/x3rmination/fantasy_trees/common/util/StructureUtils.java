@@ -14,6 +14,7 @@ import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -80,8 +81,11 @@ public final class StructureUtils {
                 List<StructureTemplate.Palette> paletteList = (List<StructureTemplate.Palette>) f.get(structuretemplate);
                 List<StructureTemplate.StructureBlockInfo> blocks = new ArrayList<>();
                 List<StructureTemplate.StructureBlockInfo> leaves = new ArrayList<>();
+                List<StructureTemplate.StructureBlockInfo> vines = new ArrayList<>();
                 paletteList.forEach(palette -> palette.blocks().forEach(structureBlockInfo -> {
-                    if(structureBlockInfo.state.getBlock() instanceof LeavesBlock) {
+                    if(structureBlockInfo.state.getBlock() instanceof VineBlock) {
+                        vines.add(structureBlockInfo);
+                    } else if(structureBlockInfo.state.getBlock() instanceof LeavesBlock) {
                         leaves.add(structureBlockInfo);
                     } else {
                         blocks.add(structureBlockInfo);
@@ -89,36 +93,31 @@ public final class StructureUtils {
                 }));
                 int i = 0;
                 for(StructureTemplate.StructureBlockInfo info : blocks) {
-                    Scheduler.schedule(() -> {
-                        BlockPos placePos = pos.offset(info.pos).offset(-(structuretemplate.getSize().getX()/2), offset, -(structuretemplate.getSize().getZ()/2));
-                        if(FantasyTreesConfig.override_blocks.get()) {
-                            level.setBlock(placePos, info.state, 18);
-                        } else {
-                            if(level.getBlockState(placePos).isAir()) {
-                                level.setBlock(placePos, info.state, 18);
-                            }
-                        }
-                    }, info.pos.getY() * FantasyTreesConfig.growth_delay.get());
+                    Scheduler.schedule(() -> placeStructureBlock(info, structuretemplate, level, pos, offset), info.pos.getY() * FantasyTreesConfig.growth_delay.get());
                     i = info.pos.getY();
                 }
                 for (StructureTemplate.StructureBlockInfo info : leaves) {
-                    Scheduler.schedule(() -> {
-                        BlockPos placePos = pos.offset(info.pos).offset(-(structuretemplate.getSize().getX() / 2), offset, -(structuretemplate.getSize().getZ() / 2));
-                        if (FantasyTreesConfig.override_blocks.get()) {
-                            level.setBlock(placePos, info.state, 18);
-                        } else {
-                            if (level.getBlockState(placePos).isAir()) {
-                                level.setBlock(placePos, info.state, 18);
-                            }
-                        }
-                    }, (2 * i - info.pos.getY()) * FantasyTreesConfig.growth_delay.get());
+                    Scheduler.schedule(() -> placeStructureBlock(info, structuretemplate, level, pos, offset), (2 * i - info.pos.getY()) * FantasyTreesConfig.growth_delay.get());
                 }
-
+                for (StructureTemplate.StructureBlockInfo info : vines) {
+                    Scheduler.schedule(() -> placeStructureBlock(info, structuretemplate, level, pos, offset), (int) (((2.5 * i - info.pos.getY())) * FantasyTreesConfig.growth_delay.get()));
+                }
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
             return true;
         }
         return false;
+    }
+
+    private static void placeStructureBlock(StructureTemplate.StructureBlockInfo info, StructureTemplate structuretemplate, ServerLevel level, BlockPos pos, int offset) {
+        BlockPos placePos = pos.offset(info.pos).offset(-(structuretemplate.getSize().getX() / 2), offset, -(structuretemplate.getSize().getZ() / 2));
+        if (FantasyTreesConfig.override_blocks.get()) {
+            level.setBlock(placePos, info.state, 18);
+        } else {
+            if (level.getBlockState(placePos).isAir()) {
+                level.setBlock(placePos, info.state, 18);
+            }
+        }
     }
 }

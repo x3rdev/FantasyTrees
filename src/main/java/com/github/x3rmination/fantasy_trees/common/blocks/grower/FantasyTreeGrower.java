@@ -49,7 +49,14 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
         if(structure != null) {
             destroyArea(level, pattern.getFirst());
         }
-        return StructureUtils.placeStructure(structure, level, pos, pattern.getSecond() == 3 ? -5 : 0);
+        int offset = 0;
+        if(pattern.getSecond() == 2) {
+            offset = -3;
+        }
+        if(pattern.getSecond() == 3) {
+            offset = -5;
+        }
+        return StructureUtils.placeStructure(structure, level, pos, offset);
     }
 
     protected static ResourceLocation getStructure(int size, String name, Random random) {

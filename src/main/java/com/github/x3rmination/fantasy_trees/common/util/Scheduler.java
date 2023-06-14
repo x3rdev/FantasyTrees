@@ -22,6 +22,9 @@ public final class Scheduler {
     }
 
     public static void schedule(Runnable task, int delay) {
+        if(delay < 0) {
+            throw new IllegalArgumentException("delay cannot be negative");
+        }
         SERVER_SCHEDULE.compute(ServerLifecycleHooks.getCurrentServer().getTickCount() + delay,
                 (integer, runnables) -> {
                     if(runnables == null) {
