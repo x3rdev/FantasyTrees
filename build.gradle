@@ -21,7 +21,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'com.github.x3rmination'
-version = '1.0.1'
+version = '1.0.2'
 
 java {
     archivesBaseName = 'fantasy_trees'
