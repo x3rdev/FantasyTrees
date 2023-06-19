@@ -4,8 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.util.valueproviders.IntProvider;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -45,6 +43,10 @@ public class PlacedFeatureRegistry {
     public static final Holder<PlacedFeature> FANTASY_FOREST_GRASS_PLACED = PlacementUtils.register("fantasy_forest_grass_placed",
             ConfiguredFeatureRegistry.FANTASY_FOREST_GRASS, RarityFilter.onAverageOnceEvery(1),
             CountPlacement.of(5), PlacementUtils.HEIGHTMAP, InSquarePlacement.spread());
+
+    public static final Holder<PlacedFeature> FANTASY_VANILLA_FLOWERS_PLACED = PlacementUtils.register("fantasy_vanilla_flowers_placed",
+            ConfiguredFeatureRegistry.FANTASY_VANILLA_FLOWERS, RarityFilter.onAverageOnceEvery(1),
+            CountPlacement.of(3), PlacementUtils.HEIGHTMAP, BiomeFilter.biome(), InSquarePlacement.spread());
 
     public static final Holder<PlacedFeature> FANTASY_FLOWERS_PLACED = PlacementUtils.register("fantasy_flowers_placed",
             ConfiguredFeatureRegistry.FANTASY_FLOWERS, RarityFilter.onAverageOnceEvery(1),

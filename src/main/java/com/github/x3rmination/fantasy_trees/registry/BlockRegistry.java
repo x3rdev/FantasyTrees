@@ -3,6 +3,7 @@ package com.github.x3rmination.fantasy_trees.registry;
 import com.github.x3rmination.fantasy_trees.FantasyTrees;
 import com.github.x3rmination.fantasy_trees.common.blocks.*;
 import com.github.x3rmination.fantasy_trees.common.blocks.grower.FantasyTreeGrower;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -19,7 +20,11 @@ import java.util.Map;
 public class BlockRegistry {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, FantasyTrees.MOD_ID);
+
     public static final Material FANTASY_WOOD = new Material.Builder(MaterialColor.WOOD).build();
+
+    public static final RegistryObject<Block> FANTASY_FLOWER = BLOCKS.register("fantasy_flower",
+            () -> new FlowerBlock(() -> MobEffects.ABSORPTION, 20, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS).lightLevel(value -> 15)));
     public static final Map<String, RegistryObject<Block>> WOODS = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> LOGS = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> STRIPPED_LOGS = new HashMap<>();
@@ -31,7 +36,6 @@ public class BlockRegistry {
     public static final Map<String, RegistryObject<Block>> FENCE_GATES = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> CRAFTING_TABLES = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> SAPLINGS = new HashMap<>();
-
     public static final Map<String, RegistryObject<Block>> STRIPPED_WOODS = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> TRAPDOORS = new HashMap<>();
 

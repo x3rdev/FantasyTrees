@@ -28,6 +28,7 @@ public class ClientEvents {
     public static void clientSetup(FMLClientSetupEvent event) {
         BlockRegistry.SAPLINGS.forEach((s, blockRegistryObject) -> ItemBlockRenderTypes.setRenderLayer(blockRegistryObject.get(), RenderType.cutoutMipped()));
         BlockRegistry.DOORS.forEach((s, blockRegistryObject) -> ItemBlockRenderTypes.setRenderLayer(blockRegistryObject.get(), RenderType.cutoutMipped()));
+        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FANTASY_FLOWER.get(), RenderType.cutoutMipped());
     }
 
     @SubscribeEvent

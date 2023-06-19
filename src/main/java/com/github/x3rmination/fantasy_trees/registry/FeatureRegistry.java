@@ -30,6 +30,9 @@ public class FeatureRegistry {
     public static final RegistryObject<Feature<RandomPatchConfiguration>> FANTASY_FOREST_GRASS = FEATURES.register("fantasy_forest_grass",
             () -> new RandomPatchFeature(RandomPatchConfiguration.CODEC));
 
-    public static final RegistryObject<Feature<RandomPatchConfiguration>> FANTASY_FLOWERS = FEATURES.register("fantasy_forest_flowers",
+    public static final RegistryObject<Feature<RandomPatchConfiguration>> FANTASY_VANILLA_FLOWERS = FEATURES.register("fantasy_vanilla_flowers",
+            () -> new RandomPatchFeature(RandomPatchConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<RandomPatchConfiguration>> FANTASY_FLOWERS = FEATURES.register("fantasy_flowers",
             () -> new RandomPatchFeature(RandomPatchConfiguration.CODEC));
 }

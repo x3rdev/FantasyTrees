@@ -13,6 +13,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 
 import java.util.Map;
@@ -103,10 +104,15 @@ public class ConfiguredFeatureRegistry {
             FeatureRegistry.FANTASY_FOREST_GRASS.get(),
             FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(Blocks.TALL_GRASS.defaultBlockState(), 1).add(Blocks.FERN.defaultBlockState(), 1).build()))));
 
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> FANTASY_VANILLA_FLOWERS = FeatureUtils.register(
+            "fantasy_vanilla_flowers",
+            FeatureRegistry.FANTASY_VANILLA_FLOWERS.get(),
+            FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, flowerBlockConfiguration()));
+
     public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> FANTASY_FLOWERS = FeatureUtils.register(
             "fantasy_flowers",
             FeatureRegistry.FANTASY_FLOWERS.get(),
-            FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, flowerBlockConfiguration()));
+            FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(BlockRegistry.FANTASY_FLOWER.get()))));
 
     private static SimpleBlockConfiguration flowerBlockConfiguration() {
         SimpleWeightedRandomList.Builder<BlockState> list = SimpleWeightedRandomList.builder();
