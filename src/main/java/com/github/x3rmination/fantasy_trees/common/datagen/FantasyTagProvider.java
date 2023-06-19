@@ -1,6 +1,7 @@
 package com.github.x3rmination.fantasy_trees.common.datagen;
 
 import com.github.x3rmination.fantasy_trees.FantasyTrees;
+import com.github.x3rmination.fantasy_trees.common.blocks.FantasyLogBlock;
 import com.github.x3rmination.fantasy_trees.registry.BlockRegistry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
@@ -24,6 +25,11 @@ public class FantasyTagProvider extends BlockTagsProvider {
             if(block instanceof FenceBlock) {
                 tag(BlockTags.FENCES).add(block);
                 tag(BlockTags.WOODEN_FENCES).add(block);
+            }
+            if(block instanceof FantasyLogBlock fantasyLogBlock) {
+                if(fantasyLogBlock.getRegistryName().getPath().equals("fantasy_jungle_log")) {
+                    tag(BlockTags.JUNGLE_LOGS).add(fantasyLogBlock);
+                }
             }
         }
     }

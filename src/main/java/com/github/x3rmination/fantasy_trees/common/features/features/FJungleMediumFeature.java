@@ -4,8 +4,8 @@ import com.github.x3rmination.fantasy_trees.common.features.MediumTreeFeature;
 import com.github.x3rmination.fantasy_trees.common.features.TreeConfiguration;
 import com.mojang.serialization.Codec;
 
-public class FBirchMediumFeature extends MediumTreeFeature {
-    public FBirchMediumFeature(Codec<TreeConfiguration> pCodec) {
+public class FJungleMediumFeature extends MediumTreeFeature {
+    public FJungleMediumFeature(Codec<TreeConfiguration> pCodec) {
         super(pCodec);
     }
 }

@@ -2,7 +2,7 @@ package com.github.x3rmination.fantasy_trees.common.blocks.grower;
 
 import com.github.x3rmination.fantasy_trees.FantasyTrees;
 import com.github.x3rmination.fantasy_trees.FantasyTreesConfig;
-import com.github.x3rmination.fantasy_trees.common.features.configuration.TreeConfiguration;
+import com.github.x3rmination.fantasy_trees.common.features.TreeConfiguration;
 import com.github.x3rmination.fantasy_trees.common.util.StructureUtils;
 import com.github.x3rmination.fantasy_trees.registry.BlockRegistry;
 import com.github.x3rmination.fantasy_trees.registry.ConfiguredFeatureRegistry;
@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.state.pattern.BlockPatternBuilder;
 import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.structure.StructureSet;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
@@ -62,15 +61,21 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
     protected static ResourceLocation getStructure(int size, String name, Random random) {
         switch (size) {
             case 1 -> {
+                if (name.equals("acacia")) {
+                    return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_ACACIA_SMALL_LIST, random);
+                }
                 if (name.equals("birch")) {
                     return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_BIRCH_SMALL_LIST, random);
                 }
                 if (name.equals("oak")) {
                     return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_OAK_SMALL_LIST, random);
                 }
-//                if (name.equals("spruce")) {
-//                    return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_SPRUCE_SMALL_LIST, random);
-//                }
+                if (name.equals("jungle")) {
+                    return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_JUNGLE_SMALL_LIST, random);
+                }
+                if (name.equals("spruce")) {
+                    return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_SPRUCE_SMALL_LIST, random);
+                }
             }
             case 2 -> {
                 if (name.equals("birch")) {
@@ -78,6 +83,9 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
                 }
                 if (name.equals("oak")) {
                     return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_OAK_MEDIUM_LIST, random);
+                }
+                if (name.equals("jungle")) {
+                    return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_JUNGLE_MEDIUM_LIST, random);
                 }
                 if (name.equals("spruce")) {
                     return TreeConfiguration.getRandomTree(ConfiguredFeatureRegistry.FANTASY_SPRUCE_MEDIUM_LIST, random);

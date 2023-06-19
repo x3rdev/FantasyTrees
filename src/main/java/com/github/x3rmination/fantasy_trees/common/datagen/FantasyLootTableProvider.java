@@ -87,6 +87,7 @@ public class FantasyLootTableProvider extends LootTableProvider {
             for (RegistryObject<Block> block : BlockRegistry.SAPLINGS.values()) {
                 this.dropSelf(block.get());
             }
+            this.dropSelf(BlockRegistry.FANTASY_FLOWER.get());
         }
 
         @Override

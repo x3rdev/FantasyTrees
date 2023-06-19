@@ -9,6 +9,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -37,6 +38,9 @@ public class FantasyItemModelProvider extends ItemModelProvider {
                 ResourceLocation resourceLocation = new ResourceLocation(block.asItem().getRegistryName().getNamespace(),
                         "block/" + block.asItem().getRegistryName().getPath() + "_bottom");
                 getBuilder(block.asItem().toString()).parent(new ModelFile.UncheckedModelFile(resourceLocation));
+                return;
+            }
+            if(((BlockItem) itemRegistryObject.get()).getBlock() instanceof FlowerBlock) {
                 return;
             }
             blockItem(itemRegistryObject.get().getRegistryName());

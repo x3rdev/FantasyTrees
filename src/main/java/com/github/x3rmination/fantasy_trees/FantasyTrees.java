@@ -60,7 +60,6 @@ public class FantasyTrees {
 
     private void generateTrees(final BiomeLoadingEvent event) {
         List<Holder<PlacedFeature>> vegetal_decoration = event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_TAIGA_BIOME.get().getRegistryName())) {
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_PLACED);
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
@@ -92,6 +91,7 @@ public class FantasyTrees {
         }
         if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_SAVANNA_BIOME.get().getRegistryName())) {
             vegetal_decoration.add(VegetationPlacements.TREES_SAVANNA);
+            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_ACACIA_SMALL_PLACED);
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
             vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
         }

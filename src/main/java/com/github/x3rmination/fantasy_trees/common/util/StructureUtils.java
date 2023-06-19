@@ -1,9 +1,7 @@
 package com.github.x3rmination.fantasy_trees.common.util;
 
-import com.github.x3rmination.fantasy_trees.FantasyTrees;
 import com.github.x3rmination.fantasy_trees.FantasyTreesConfig;
-import com.github.x3rmination.fantasy_trees.common.blocks.FantasyLeavesBlock;
-import com.github.x3rmination.fantasy_trees.common.features.configuration.TreeConfiguration;
+import com.github.x3rmination.fantasy_trees.common.features.TreeConfiguration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -26,9 +24,7 @@ import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public final class StructureUtils {
 

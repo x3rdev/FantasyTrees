@@ -1,4 +1,4 @@
-package com.github.x3rmination.fantasy_trees.common.features.configuration;
+package com.github.x3rmination.fantasy_trees.common.features;
 
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;

@@ -1,23 +1,19 @@
-package com.github.x3rmination.fantasy_trees.common.features.features;
+package com.github.x3rmination.fantasy_trees.common.features;
 
-import com.github.x3rmination.fantasy_trees.common.features.configuration.TreeConfiguration;
+import com.github.x3rmination.fantasy_trees.common.features.FantasyTreeFeature;
+import com.github.x3rmination.fantasy_trees.common.features.TreeConfiguration;
 import com.github.x3rmination.fantasy_trees.common.util.StructureUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Climate;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-import terrablender.api.ParameterUtils;
 
 public class MediumTreeFeature extends FantasyTreeFeature {
 
