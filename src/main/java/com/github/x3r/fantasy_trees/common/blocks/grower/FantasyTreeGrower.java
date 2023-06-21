@@ -47,6 +47,8 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
         ResourceLocation structure = getStructure(pattern.getSecond(), name, random);
         if(structure != null) {
             destroyArea(level, pattern.getFirst());
+        } else {
+            return false;
         }
         int offset = 0;
         if(pattern.getSecond() == 2) {

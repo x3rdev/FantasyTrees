@@ -87,16 +87,15 @@ public final class StructureUtils {
                         blocks.add(structureBlockInfo);
                     }
                 }));
-                int i = 0;
+                int i = getMaxHeight(paletteList) + 1;
                 for(StructureTemplate.StructureBlockInfo info : blocks) {
                     Scheduler.schedule(() -> placeStructureBlock(info, structuretemplate, level, pos, offset), info.pos.getY() * FantasyTreesConfig.growth_delay.get());
-                    i = info.pos.getY();
                 }
                 for (StructureTemplate.StructureBlockInfo info : leaves) {
                     Scheduler.schedule(() -> placeStructureBlock(info, structuretemplate, level, pos, offset), (2 * i - info.pos.getY()) * FantasyTreesConfig.growth_delay.get());
                 }
                 for (StructureTemplate.StructureBlockInfo info : vines) {
-                    Scheduler.schedule(() -> placeStructureBlock(info, structuretemplate, level, pos, offset), (int) (((2.5 * i - info.pos.getY())) * FantasyTreesConfig.growth_delay.get()));
+                    Scheduler.schedule(() -> placeStructureBlock(info, structuretemplate, level, pos, offset), (int) ((2.5 * i - info.pos.getY()) * FantasyTreesConfig.growth_delay.get()));
                 }
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
@@ -115,5 +114,15 @@ public final class StructureUtils {
                 level.setBlock(placePos, info.state, 18);
             }
         }
+    }
+
+    private static int getMaxHeight(List<StructureTemplate.Palette> paletteList) {
+        int max = 0;
+        for (StructureTemplate.Palette palette : paletteList) {
+            for (StructureTemplate.StructureBlockInfo block : palette.blocks()) {
+                max = Math.max(max, block.pos.getY());
+            }
+        }
+        return max;
     }
 }
