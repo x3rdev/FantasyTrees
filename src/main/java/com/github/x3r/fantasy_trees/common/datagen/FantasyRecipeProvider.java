@@ -7,6 +7,8 @@ import com.github.x3r.fantasy_trees.registry.BlockRegistry;
 import com.github.x3r.fantasy_trees.registry.ItemRegistry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -52,8 +54,12 @@ public class FantasyRecipeProvider extends RecipeProvider implements IConditionB
             String name = planks.get().getRegistryName().getPath().substring(8);
             name = name.replace(name.substring(name.length() - 7), "");
             FantasyLogBlock log = (FantasyLogBlock) BlockRegistry.LOGS.get(name).get();
+            FantasyLogBlock stripped_log = (FantasyLogBlock) BlockRegistry.STRIPPED_LOGS.get(name).get();
+            FantasyLogBlock wood = (FantasyLogBlock) BlockRegistry.WOODS.get(name).get();
+            FantasyLogBlock stripped_wood = (FantasyLogBlock) BlockRegistry.STRIPPED_WOODS.get(name).get();
+
             ShapelessRecipeBuilder.shapeless(planks.get(), 4)
-                    .requires(log.asItem(), 1)
+                    .requires(Ingredient.of(log, stripped_log, wood, stripped_wood), 1)
                     .unlockedBy("has_" + name + "_log", has(log))
                     .save(recipeConsumer);
         }
