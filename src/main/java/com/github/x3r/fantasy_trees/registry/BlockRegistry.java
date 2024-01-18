@@ -7,8 +7,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -21,10 +19,8 @@ public class BlockRegistry {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, FantasyTrees.MOD_ID);
 
-    public static final Material FANTASY_WOOD = new Material.Builder(MaterialColor.WOOD).build();
-
     public static final RegistryObject<Block> FANTASY_FLOWER = BLOCKS.register("fantasy_flower",
-            () -> new FlowerBlock(() -> MobEffects.ABSORPTION, 20, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS).lightLevel(value -> 15)));
+            () -> new FlowerBlock(() -> MobEffects.ABSORPTION, 20, BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS).lightLevel(value -> 15)));
     public static final Map<String, RegistryObject<Block>> WOODS = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> LOGS = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> STRIPPED_LOGS = new HashMap<>();
@@ -58,15 +54,15 @@ public class BlockRegistry {
             PLANKS.put(name, planks);
             RegistryObject<Block> stairs = BLOCKS.register(String.format("fantasy_%s_stairs", name), () -> new StairBlock(() -> planks.get().defaultBlockState(), BlockBehaviour.Properties.copy(planks.get()).lightLevel(value -> 7)));
             STAIRS.put(name, stairs);
-            RegistryObject<Block> door = BLOCKS.register(String.format("fantasy_%s_door", name), FantasyDoorBlock::new);
+            RegistryObject<Block> door = BLOCKS.register(String.format("fantasy_%s_door", name), () -> new FantasyDoorBlock(woodType.setType()));
             DOORS.put(name, door);
-            RegistryObject<Block> trapdoor = BLOCKS.register(String.format("fantasy_%s_trapdoor", name), FantasyTrapDoorBlock::new);
+            RegistryObject<Block> trapdoor = BLOCKS.register(String.format("fantasy_%s_trapdoor", name), () -> new FantasyTrapDoorBlock(woodType.setType()));
             TRAPDOORS.put(name, trapdoor);
-            RegistryObject<Block> fence = BLOCKS.register(String.format("fantasy_%s_fence", name), () -> new FenceBlock(BlockBehaviour.Properties.of(BlockRegistry.FANTASY_WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).lightLevel(value -> 7)));
+            RegistryObject<Block> fence = BLOCKS.register(String.format("fantasy_%s_fence", name), () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).lightLevel(value -> 7)));
             FENCES.put(name, fence);
-            RegistryObject<Block> fence_gate = BLOCKS.register(String.format("fantasy_%s_fence_gate", name), () -> new FenceGateBlock(BlockBehaviour.Properties.of(FANTASY_WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).lightLevel(value -> 7)));
+            RegistryObject<Block> fence_gate = BLOCKS.register(String.format("fantasy_%s_fence_gate", name), () -> new FenceGateBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).lightLevel(value -> 7), woodType));
             FENCE_GATES.put(name, fence_gate);
-            RegistryObject<Block> crafting_table = BLOCKS.register(String.format("fantasy_%s_crafting_table", name), () -> new FantasyCraftingTableBlock(BlockBehaviour.Properties.of(FANTASY_WOOD).strength(2.5F).sound(SoundType.WOOD).lightLevel(value -> 7)));
+            RegistryObject<Block> crafting_table = BLOCKS.register(String.format("fantasy_%s_crafting_table", name), () -> new FantasyCraftingTableBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).lightLevel(value -> 7)));
             CRAFTING_TABLES.put(name, crafting_table);
             RegistryObject<Block> sapling = BLOCKS.register(String.format("fantasy_%s_sapling", name), () -> new FantasySaplingBlock(new FantasyTreeGrower(name)));
             SAPLINGS.put(name, sapling);

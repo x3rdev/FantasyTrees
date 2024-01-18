@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "p  ",
+    "pp ",
+    "ppp"
+  ],
+  "key": {
+    "p": {
+      "item": "fantasy_trees:fantasy_dark_oak_planks"
+    }
+  },
+  "result": {
+    "item": "fantasy_trees:fantasy_dark_oak_stairs",
+    "count": 4
+  }
+}

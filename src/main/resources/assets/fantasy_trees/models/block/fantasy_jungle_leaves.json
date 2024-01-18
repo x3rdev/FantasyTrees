@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "fantasy_trees:block/fantasy_jungle_leaves"
+  }
+}

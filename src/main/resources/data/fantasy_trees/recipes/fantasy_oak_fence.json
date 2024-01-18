@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "psp",
+    "psp"
+  ],
+  "key": {
+    "p": {
+      "item": "fantasy_trees:fantasy_oak_planks"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "fantasy_trees:fantasy_oak_fence",
+    "count": 3
+  }
+}

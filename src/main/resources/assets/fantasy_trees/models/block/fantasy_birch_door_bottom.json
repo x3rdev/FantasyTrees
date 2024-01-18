@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom",
+  "textures": {
+    "bottom": "fantasy_trees:block/fantasy_birch_door_bottom",
+    "top": "fantasy_trees:block/fantasy_birch_door_top"
+  }
+}

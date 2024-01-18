@@ -31,13 +31,15 @@ public class FantasyTrees {
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
         modEventBus.addListener(this::setup);
-        forgeEventBus.addListener(this::generateTrees);
         BlockRegistry.BLOCKS.register(modEventBus);
         BlockRegistry.registerFantasyBlocks();
         BlockItemRegistry.BLOCK_ITEMS.register(modEventBus);
         BlockItemRegistry.registerFantasyBlockItems();
         ItemRegistry.ITEMS.register(modEventBus);
         ItemRegistry.registerFantasyItems();
+       // BlockRegistry.BLOCKS.getEntries().forEach(blockRegistryObject -> ItemRegistry.FantasyTreesItemTab.addToMainTab(blockRegistryObject.get().asItem()));
+       //ItemRegistry.FantasyTreesItemTab.addToMainTab(ItemRegistry.GLOWING_COAL.get());
+        ItemRegistry.FantasyTreesItemTab.CREATIVE_TABS.register(modEventBus);
         StructureRegistry.STRUCTURE_FEATURES.register(modEventBus);
         FeatureRegistry.FEATURES.register(modEventBus);
         BiomeRegistry.BIOMES.register(modEventBus);
@@ -55,44 +57,5 @@ public class FantasyTrees {
             Regions.register(new FantasyJungleRegion(new ResourceLocation(MOD_ID, "jungle_region"), FantasyTreesConfig.jungle_region_weight.get()));
             Regions.register(new FantasySavanna(new ResourceLocation(MOD_ID, "savanna_region"), FantasyTreesConfig.savanna_region_weight.get()));
         });
-    }
-
-    private void generateTrees(final BiomeLoadingEvent event) {
-        List<Holder<PlacedFeature>> vegetal_decoration = event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_TAIGA_BIOME.get().getRegistryName())) {
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
-        }
-        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_FOREST_BIOME.get().getRegistryName())) {
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_OAK_SMALL_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_VANILLA_TREES);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_VANILLA_FLOWERS_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
-        }
-        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_BIRCH_FOREST_BIOME.get().getRegistryName())) {
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_BIRCH_SMALL_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_BIRCH_MEDIUM_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_VANILLA_FLOWERS_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
-        }
-        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_DARK_FOREST_BIOME.get().getRegistryName())) {
-            vegetal_decoration.add(VegetationPlacements.DARK_FOREST_VEGETATION);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
-        }
-        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_JUNGLE_BIOME.get().getRegistryName())) {
-            vegetal_decoration.add(VegetationPlacements.TREES_JUNGLE);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
-        }
-        if(Objects.equals(event.getName(), BiomeRegistry.FANTASY_SAVANNA_BIOME.get().getRegistryName())) {
-            vegetal_decoration.add(VegetationPlacements.TREES_SAVANNA);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_ACACIA_SMALL_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_PLACED);
-            vegetal_decoration.add(PlacedFeatureRegistry.FANTASY_FLOWERS_PLACED);
-        }
     }
 }

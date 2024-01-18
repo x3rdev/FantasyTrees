@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:torch_glowing_coal"
+    ]
+  },
+  "criteria": {
+    "has_glowing_coal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "fantasy_trees:glowing_coal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:torch_glowing_coal"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_glowing_coal",
+      "has_the_recipe"
+    ]
+  ]
+}
