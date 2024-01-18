@@ -3,7 +3,6 @@ package com.github.x3r.fantasy_trees.common.blocks;
 import com.github.x3r.fantasy_trees.client.FantasyCraftingMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -13,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class FantasyCraftingTableBlock extends CraftingTableBlock {
 
-    private static final Component CONTAINER_TITLE = new TranslatableComponent("container.crafting");
+    private static final Component CONTAINER_TITLE = Component.translatable("container.crafting");
 
     public FantasyCraftingTableBlock(Properties pProperties) {
         super(pProperties);

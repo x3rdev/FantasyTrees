@@ -9,8 +9,10 @@ import com.github.x3r.fantasy_trees.registry.ConfiguredFeatureRegistry;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
@@ -32,14 +34,8 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
         this.name = name;
     }
 
-    @Nullable
     @Override
-    protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random pRandom, boolean pLargeHive) {
-        return null;
-    }
-
-    @Override
-    public boolean growTree(ServerLevel level, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, Random random) {
+    public boolean growTree(ServerLevel level, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, RandomSource random) {
         if(!FantasyTreesConfig.can_grow_fantasy_sapling.get()) {
             return false;
         }
@@ -60,7 +56,7 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
         return StructureUtils.placeStructure(structure, level, pos, offset);
     }
 
-    protected static ResourceLocation getStructure(int size, String name, Random random) {
+    protected static ResourceLocation getStructure(int size, String name, RandomSource random) {
         switch (size) {
             case 1 -> {
                 if (name.equals("acacia")) {
@@ -153,5 +149,11 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
                 }
             }
         }
+    }
+
+    @Nullable
+    @Override
+    protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomSource, boolean b) {
+        return null;
     }
 }
