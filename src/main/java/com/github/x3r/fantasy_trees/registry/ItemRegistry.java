@@ -25,20 +25,15 @@ public class ItemRegistry {
     public static void registerFantasyItems() {}
 
     public static class FantasyTreesItemTab {
-        public static final List<Supplier<? extends ItemLike>> MAIN_BLOCKS = new ArrayList<>();
         public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, FantasyTrees.MOD_ID);
 
         public static final RegistryObject<CreativeModeTab> MAIN = CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.fantasy_trees"))
                 .icon(ItemRegistry.GLOWING_COAL.get().asItem()::getDefaultInstance)
                 .displayItems((pParameters, pOutput) -> {
-                    MAIN_BLOCKS.forEach(itemLike -> pOutput.accept(itemLike.get()));
+                    BlockRegistry.BLOCKS.getEntries().forEach(blockRegistryObject -> pOutput.accept(blockRegistryObject.get().asItem()));
+                    pOutput.accept(GLOWING_COAL.get());
                 })
                 .build());
-
-        public static <T extends Item> T addToMainTab (T itemLike) {
-            MAIN_BLOCKS.add(() -> itemLike);
-            return itemLike;
-        }
     }
 }

@@ -5,8 +5,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.WorldGenerationContext;
 import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
@@ -59,13 +61,19 @@ public class LargeTreeStructures extends Structure {
 
     @Override
     public @NotNull Optional<Structure.GenerationStub> findGenerationPoint(Structure.@NotNull GenerationContext context) {
-        BlockPos blockPos = context.chunkPos().getWorldPosition();
-        Optional<Structure.GenerationStub> structurePiecesGenerator =
-                JigsawPlacement.addPieces(
-                        context,
-                        this.startPool, this.startJigsawName, this.size, blockPos,
-                        false, this.projectStartToHeightmap, this.maxDistanceFromCenter);
-        return structurePiecesGenerator;
+
+
+        ChunkPos chunkpos = context.chunkPos();
+        BlockPos blockPos = new BlockPos(chunkpos.getMinBlockX(), context.chunkGenerator().getFirstFreeHeight(
+                chunkpos.getMinBlockX(),
+                chunkpos.getMinBlockZ(),
+                Heightmap.Types.WORLD_SURFACE_WG,
+                context.heightAccessor(),
+                context.randomState()), chunkpos.getMinBlockZ());
+        return JigsawPlacement.addPieces(
+                context,
+                this.startPool, this.startJigsawName, this.size, blockPos,
+                false, this.projectStartToHeightmap, this.maxDistanceFromCenter);
     }
 
     @Override
@@ -74,10 +82,10 @@ public class LargeTreeStructures extends Structure {
     }
 
     private static int getOffset(ResourceLocation resourceLocation) {
-        if(resourceLocation.getPath().equals("fantasy_dark_oak_large_1")) {
+        if (resourceLocation.getPath().equals("fantasy_dark_oak_large_1")) {
             return -15;
         }
-        if(resourceLocation.getPath().equals("fantasy_acacia_large_2")) {
+        if (resourceLocation.getPath().equals("fantasy_acacia_large_2")) {
             return 4;
         }
         return 0;

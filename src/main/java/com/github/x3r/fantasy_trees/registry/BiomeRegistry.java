@@ -1,6 +1,8 @@
 package com.github.x3r.fantasy_trees.registry;
 
 import com.github.x3r.fantasy_trees.FantasyTrees;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
@@ -13,56 +15,70 @@ import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.List;
 
 public class BiomeRegistry {
-
-    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, FantasyTrees.MOD_ID);
+    private static List<ResourceKey<Biome>> biomes = Lists.newArrayList();
 
     public static void bootstrapBiomes(BootstapContext<Biome> context) {
         HolderGetter<ConfiguredWorldCarver<?>> carverGetter = context.lookup(Registries.CONFIGURED_CARVER);
         HolderGetter<PlacedFeature> placedFeatureGetter = context.lookup(Registries.PLACED_FEATURE);
         BiomeGenerationSettings.Builder genBuilder = new BiomeGenerationSettings.Builder(placedFeatureGetter, carverGetter);
-        BIOMES.register("fantasy_taiga", () -> BiomeRegistry.buildFantasyTaiga((BiomeGenerationSettings.Builder) genBuilder
-                .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_CHECKED))
-                .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_CHECKED))
+        register(context, FANTASY_TAIGA, BiomeRegistry.buildFantasyTaiga((BiomeGenerationSettings.Builder) genBuilder
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_CHECKED))
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED))));
-        BIOMES.register("fantasy_forest", () -> BiomeRegistry.buildFantasyForest((BiomeGenerationSettings.Builder) genBuilder
-                .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_OAK_SMALL_CHECKED))
-                .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_CHECKED))
+        register(context, FANTASY_FOREST, BiomeRegistry.buildFantasyForest((BiomeGenerationSettings.Builder) genBuilder
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_OAK_SMALL_CHECKED))
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_VANILLA_FLOWERS_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED))));
-
-        BIOMES.register("fantasy_birch_forest", () -> BiomeRegistry.buildFantasyBirchForest((BiomeGenerationSettings.Builder) genBuilder
-                .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_BIRCH_SMALL_CHECKED))
-                .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_BIRCH_MEDIUM_CHECKED))
+        register(context, FANTASY_BIRCH_FOREST, BiomeRegistry.buildFantasyBirchForest((BiomeGenerationSettings.Builder) genBuilder
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_BIRCH_SMALL_CHECKED))
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_BIRCH_MEDIUM_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_VANILLA_FLOWERS_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED))));
-        BIOMES.register("fantasy_dark_forest", () -> BiomeRegistry.buildFantasyDarkForest((BiomeGenerationSettings.Builder) genBuilder
+        register(context, FANTASY_DARK_FOREST, BiomeRegistry.buildFantasyDarkForest((BiomeGenerationSettings.Builder) genBuilder
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.DARK_FOREST_VEGETATION)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED))));
-        BIOMES.register("fantasy_jungle", () -> BiomeRegistry.buildFantasyJungle((BiomeGenerationSettings.Builder) genBuilder
-                .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_JUNGLE_SMALL_CHECKED))
-                .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_JUNGLE_MEDIUM_CHECKED))
+        register(context, FANTASY_JUNGLE, BiomeRegistry.buildFantasyJungle((BiomeGenerationSettings.Builder) genBuilder
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_JUNGLE_SMALL_CHECKED))
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_JUNGLE_MEDIUM_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_VANILLA_FLOWERS_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED))));
-        BIOMES.register("fantasy_savanna", () -> BiomeRegistry.buildFantasySavanna((BiomeGenerationSettings.Builder) genBuilder
-                .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PlacedFeatureRegistry.FANTASY_ACACIA_SMALL_CHECKED)
+        register(context, FANTASY_SAVANNA, BiomeRegistry.buildFantasySavanna((BiomeGenerationSettings.Builder) genBuilder
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_ACACIA_SMALL_CHECKED)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_FOREST_GRASS_CHECKED))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatureGetter.getOrThrow(PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED))));
     }
 
+    private static void register(BootstapContext<Biome> context, ResourceKey<Biome> key, Biome biome)
+    {
+        context.register(key, biome);
+    }
 
-    public static final ResourceKey<Biome> FANTASY_TAIGA = ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_taiga"));
-    public static final ResourceKey<Biome> FANTASY_FOREST = ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_forest"));
-    public static final ResourceKey<Biome> FANTASY_BIRCH_FOREST = ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_forest"));
-    public static final ResourceKey<Biome> FANTASY_DARK_FOREST = ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_dark_forest"));
-    public static final ResourceKey<Biome> FANTASY_JUNGLE = ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_jungle"));
-    public static final ResourceKey<Biome> FANTASY_SAVANNA = ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_savanna"));
+    private static ResourceKey<Biome> registerBiome(String name)
+    {
+        ResourceKey<Biome> key = ResourceKey.create(Registries.BIOME, new ResourceLocation(FantasyTrees.MOD_ID, name));
+        biomes.add(key);
+        return key;
+    }
+
+    public static List<ResourceKey<Biome>> getBiomes()
+    {
+        return ImmutableList.copyOf(biomes);
+    }
+
+    public static final ResourceKey<Biome> FANTASY_TAIGA = registerBiome("fantasy_taiga");
+    public static final ResourceKey<Biome> FANTASY_FOREST = registerBiome("fantasy_forest");
+    public static final ResourceKey<Biome> FANTASY_BIRCH_FOREST = registerBiome("fantasy_birch_forest");
+    public static final ResourceKey<Biome> FANTASY_DARK_FOREST = registerBiome("fantasy_dark_forest");
+    public static final ResourceKey<Biome> FANTASY_JUNGLE = registerBiome("fantasy_jungle");
+    public static final ResourceKey<Biome> FANTASY_SAVANNA = registerBiome("fantasy_savanna");
 
 
 
@@ -151,12 +167,12 @@ public class BiomeRegistry {
         MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
         BiomeDefaultFeatures.baseJungleSpawns(mobspawnsettings$builder);
         globalOverworldGeneration(genBuilder);
-//        BiomeDefaultFeatures.addWarmFlowers(genBuilder);
-//        BiomeDefaultFeatures.addJungleGrass(genBuilder);
-//        BiomeDefaultFeatures.addDefaultMushrooms(genBuilder);
-//        BiomeDefaultFeatures.addDefaultExtraVegetation(genBuilder);
-//        BiomeDefaultFeatures.addJungleVines(genBuilder);
-//        BiomeDefaultFeatures.addJungleMelons(genBuilder);
+        BiomeDefaultFeatures.addWarmFlowers(genBuilder);
+        BiomeDefaultFeatures.addJungleGrass(genBuilder);
+        BiomeDefaultFeatures.addDefaultMushrooms(genBuilder);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(genBuilder);
+        BiomeDefaultFeatures.addJungleVines(genBuilder);
+        BiomeDefaultFeatures.addJungleMelons(genBuilder);
         return (new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
                 .temperature(temp)
@@ -196,8 +212,6 @@ public class BiomeRegistry {
         BiomeDefaultFeatures.addDefaultCrystalFormations(builder);
         BiomeDefaultFeatures.addDefaultUndergroundVariety(builder);
         BiomeDefaultFeatures.addDefaultSprings(builder);
-        BiomeDefaultFeatures.addSurfaceFreezing(builder);
-        BiomeDefaultFeatures.addFossilDecoration(builder);
         BiomeDefaultFeatures.addDefaultOres(builder);
     }
 }

@@ -1,0 +1,23 @@
+{
+  "type": "fantasy_trees:fantasy_birch_medium",
+  "config": {
+    "trees": {
+      "fantasy_trees:fantasy_birch_medium_1": {
+        "offset": -2,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_birch_medium_2": {
+        "offset": -2,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_birch_medium_3": {
+        "offset": -2,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_birch_medium_4": {
+        "offset": -4,
+        "weight": 5
+      }
+    }
+  }
+}
