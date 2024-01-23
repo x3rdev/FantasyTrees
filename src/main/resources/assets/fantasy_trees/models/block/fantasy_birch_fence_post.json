@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "fantasy_trees:block/fantasy_birch_planks"
+  }
+}

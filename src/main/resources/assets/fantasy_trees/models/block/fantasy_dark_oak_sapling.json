@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "fantasy_trees:item/fantasy_dark_oak_sapling"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    [
+      {
+        "item": "fantasy_trees:fantasy_acacia_log"
+      },
+      {
+        "item": "fantasy_trees:fantasy_stripped_acacia_log"
+      },
+      {
+        "item": "fantasy_trees:fantasy_acacia_wood"
+      },
+      {
+        "item": "fantasy_trees:fantasy_stripped_acacia_wood"
+      }
+    ]
+  ],
+  "result": {
+    "item": "fantasy_trees:fantasy_acacia_planks",
+    "count": 4
+  }
+}

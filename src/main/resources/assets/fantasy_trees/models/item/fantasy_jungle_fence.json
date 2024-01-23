@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_inventory",
+  "textures": {
+    "texture": "fantasy_trees:block/fantasy_jungle_planks"
+  }
+}

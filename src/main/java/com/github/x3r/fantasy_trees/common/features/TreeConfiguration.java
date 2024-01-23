@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
 import java.util.Map;
@@ -23,7 +24,7 @@ public class TreeConfiguration implements FeatureConfiguration {
         this.trees = trees;
     }
 
-    public static ResourceLocation getRandomTree(Map<ResourceLocation, Pair<Integer, Integer>> trees, Random random) {
+    public static ResourceLocation getRandomTree(Map<ResourceLocation, Pair<Integer, Integer>> trees, RandomSource random) {
         final int[] totalWeight = {0};
         trees.values().forEach(integerIntegerPair -> totalWeight[0] += integerIntegerPair.getFirst());
         int targetWeight = Math.round(random.nextFloat() * totalWeight[0]);
