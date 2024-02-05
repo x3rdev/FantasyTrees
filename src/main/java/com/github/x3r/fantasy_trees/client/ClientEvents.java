@@ -13,7 +13,7 @@ import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -30,7 +30,7 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public static void blockColorHandler(ColorHandlerEvent.Block event) {
+    public static void blockColorHandler(RegisterColorHandlersEvent.Block event) {
         BlockColors colors = event.getBlockColors();
         BlockRegistry.LEAVES.forEach((s, blockRegistryObject) -> {
             colors.register((blockState, tintGetter, blockPos, i) -> tintGetter != null && blockPos != null ? getBlockLeafColor(s, tintGetter, blockPos) : FoliageColor.getDefaultColor(), blockRegistryObject.get());
@@ -38,7 +38,7 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public static void itemColorHandler(ColorHandlerEvent.Item event) {
+    public static void itemColorHandler(RegisterColorHandlersEvent.Item event) {
         ItemColors colors = event.getItemColors();
         BlockRegistry.LEAVES.forEach((s, blockRegistryObject) -> colors.register((stack, i) -> {
             BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();

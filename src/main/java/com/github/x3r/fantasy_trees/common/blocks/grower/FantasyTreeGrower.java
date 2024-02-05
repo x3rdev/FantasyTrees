@@ -3,14 +3,14 @@ package com.github.x3r.fantasy_trees.common.blocks.grower;
 import com.github.x3r.fantasy_trees.FantasyTrees;
 import com.github.x3r.fantasy_trees.FantasyTreesConfig;
 import com.github.x3r.fantasy_trees.common.features.TreeConfiguration;
-import com.github.x3r.fantasy_trees.common.util.StructureUtils;
 import com.github.x3r.fantasy_trees.registry.BlockRegistry;
 import com.github.x3r.fantasy_trees.registry.ConfiguredFeatureRegistry;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
@@ -23,8 +23,6 @@ import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
-
 public class FantasyTreeGrower extends AbstractTreeGrower {
     private final String name;
     public FantasyTreeGrower(String name) {
@@ -32,14 +30,8 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
         this.name = name;
     }
 
-    @Nullable
     @Override
-    protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random pRandom, boolean pLargeHive) {
-        return null;
-    }
-
-    @Override
-    public boolean growTree(ServerLevel level, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, Random random) {
+    public boolean growTree(ServerLevel level, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, RandomSource random) {
         if(!FantasyTreesConfig.can_grow_fantasy_sapling.get()) {
             return false;
         }
@@ -57,10 +49,10 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
         if(pattern.getSecond() == 3) {
             offset = -5;
         }
-        return StructureUtils.placeStructure(structure, level, pos, offset);
+        return true;
     }
 
-    protected static ResourceLocation getStructure(int size, String name, Random random) {
+    protected static ResourceLocation getStructure(int size, String name, RandomSource random) {
         switch (size) {
             case 1 -> {
                 if (name.equals("acacia")) {
@@ -153,5 +145,11 @@ public class FantasyTreeGrower extends AbstractTreeGrower {
                 }
             }
         }
+    }
+
+    @Nullable
+    @Override
+    protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomSource, boolean b) {
+        return null;
     }
 }

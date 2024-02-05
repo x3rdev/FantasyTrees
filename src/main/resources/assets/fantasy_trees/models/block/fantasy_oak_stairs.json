@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "side": "fantasy_trees:block/fantasy_oak_planks",
+    "bottom": "fantasy_trees:block/fantasy_oak_planks",
+    "top": "fantasy_trees:block/fantasy_oak_planks"
+  }
+}

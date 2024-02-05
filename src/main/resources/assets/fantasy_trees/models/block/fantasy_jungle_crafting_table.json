@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "fantasy_trees:block/fantasy_jungle_crafting_table_bottom",
+    "up": "fantasy_trees:block/fantasy_jungle_crafting_table_top",
+    "north": "fantasy_trees:block/fantasy_jungle_crafting_table_side",
+    "south": "fantasy_trees:block/fantasy_jungle_crafting_table_side",
+    "east": "fantasy_trees:block/fantasy_jungle_crafting_table_side",
+    "west": "fantasy_trees:block/fantasy_jungle_crafting_table_side",
+    "particle": "fantasy_trees:block/fantasy_jungle_crafting_table_bottom"
+  }
+}

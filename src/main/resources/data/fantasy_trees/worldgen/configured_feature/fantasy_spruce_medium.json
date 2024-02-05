@@ -1,0 +1,55 @@
+{
+  "type": "fantasy_trees:fantasy_spruce_medium",
+  "config": {
+    "trees": {
+      "fantasy_trees:fantasy_spruce_medium_1": {
+        "offset": -2,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_10": {
+        "offset": 0,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_11": {
+        "offset": 0,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_12": {
+        "offset": 0,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_2": {
+        "offset": -3,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_3": {
+        "offset": 0,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_4": {
+        "offset": 0,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_5": {
+        "offset": 0,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_6": {
+        "offset": 0,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_7": {
+        "offset": 0,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_8": {
+        "offset": 0,
+        "weight": 5
+      },
+      "fantasy_trees:fantasy_spruce_medium_9": {
+        "offset": 0,
+        "weight": 5
+      }
+    }
+  }
+}

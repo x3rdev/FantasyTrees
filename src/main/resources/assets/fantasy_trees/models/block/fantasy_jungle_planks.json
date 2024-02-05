@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "fantasy_trees:block/fantasy_jungle_planks"
+  }
+}

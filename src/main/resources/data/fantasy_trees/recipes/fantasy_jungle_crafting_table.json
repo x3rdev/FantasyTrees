@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "pp ",
+    "pp "
+  ],
+  "key": {
+    "p": {
+      "item": "fantasy_trees:fantasy_jungle_planks"
+    }
+  },
+  "result": {
+    "item": "fantasy_trees:fantasy_jungle_crafting_table"
+  }
+}

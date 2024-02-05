@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "ll ",
+    "ll "
+  ],
+  "key": {
+    "l": {
+      "item": "fantasy_trees:fantasy_stripped_acacia_log"
+    }
+  },
+  "result": {
+    "item": "fantasy_trees:fantasy_stripped_acacia_wood",
+    "count": 3
+  }
+}
