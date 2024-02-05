@@ -3,7 +3,11 @@
   "start_pool": "fantasy_trees:fantasy_acacia_large_2",
   "size": 1,
   "biomes": "#fantasy_trees:has_structure/acacia_biomes",
+<<<<<<< Updated upstream
   "adapt_noise": false,
+=======
+  "terrain_adaptation": "beard_thin",
+>>>>>>> Stashed changes
   "step": "surface_structures",
   "project_start_to_heightmap": "WORLD_SURFACE_WG",
   "max_distance_from_center": 1,
