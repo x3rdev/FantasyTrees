@@ -26,16 +26,16 @@ public class FantasyOakRegion extends Region {
         this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
             builder.replaceBiome(Biomes.FOREST, BiomeRegistry.FANTASY_FOREST);
 
-            List<Climate.ParameterPoint> fantasyForestPoints = new ParameterUtils.ParameterPointListBuilder()
-                    .temperature(ParameterUtils.Temperature.COOL)
-                    .humidity(ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL)
-                    .continentalness(Climate.Parameter.span(0.25F, 1.0F))
-                    .erosion(ParameterUtils.Erosion.FULL_RANGE)
-                    .depth(ParameterUtils.Depth.SURFACE)
-                    .weirdness(Climate.Parameter.span(-0.35F, 0.35F))
-                    .build();
-
-            fantasyForestPoints.forEach(parameterPoint -> builder.replaceBiome(parameterPoint, BiomeRegistry.FANTASY_FOREST));
+//            List<Climate.ParameterPoint> fantasyForestPoints = new ParameterUtils.ParameterPointListBuilder()
+//                    .temperature(ParameterUtils.Temperature.COOL)
+//                    .humidity(ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL)
+//                    .continentalness(Climate.Parameter.span(0.25F, 1.0F))
+//                    .erosion(ParameterUtils.Erosion.FULL_RANGE)
+//                    .depth(ParameterUtils.Depth.SURFACE)
+//                    .weirdness(Climate.Parameter.span(-0.35F, 0.35F))
+//                    .build();
+//
+//            fantasyForestPoints.forEach(parameterPoint -> builder.replaceBiome(parameterPoint, BiomeRegistry.FANTASY_FOREST));
         });
     }
 }

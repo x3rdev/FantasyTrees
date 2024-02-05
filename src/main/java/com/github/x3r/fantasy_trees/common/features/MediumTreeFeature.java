@@ -23,7 +23,7 @@ public class MediumTreeFeature extends FantasyTreeFeature {
         StructureTemplateManager structuremanager = worldgenlevel.getLevel().getServer().getStructureManager();
         ResourceLocation resourceLocation = treeConfiguration.getRandomTree(treeConfiguration.trees, context.random());
         StructureTemplate structuretemplate = structuremanager.getOrCreate(resourceLocation);
-        BlockPos center = context.origin().offset(structuretemplate.getSize().getX() / 2, structuretemplate.getSize().getY() / 2, structuretemplate.getSize().getZ() / 2);
+        BlockPos center = context.origin().offset(structuretemplate.getSize().getX() / 2, 0, structuretemplate.getSize().getZ() / 2);
 //        context.level().setBlock(center, Blocks.EMERALD_BLOCK.defaultBlockState(), 4);
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structuretemplate.getSize().getX() / 2, 0, structuretemplate.getSize().getZ() / 2)).setRotation(Rotation.getRandom(context.random()));
         BlockPos placePos = new BlockPos(context.origin().getX(), center.getY() - 1 + getYOffset(treeConfiguration.trees, resourceLocation), context.origin().getZ());
