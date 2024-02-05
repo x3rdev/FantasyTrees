@@ -3,31 +3,31 @@
   "config": {
     "trees": {
       "fantasy_trees:fantasy_oak_small_1": {
-        "offset": -2,
+        "offset": -25,
         "weight": 5
       },
       "fantasy_trees:fantasy_oak_small_2": {
-        "offset": -2,
+        "offset": -25,
         "weight": 1
       },
       "fantasy_trees:fantasy_oak_small_3": {
-        "offset": -3,
+        "offset": -25,
         "weight": 5
       },
       "fantasy_trees:fantasy_oak_small_4": {
-        "offset": -2,
+        "offset": -25,
         "weight": 1
       },
       "fantasy_trees:fantasy_oak_small_5": {
-        "offset": 0,
+        "offset": -25,
         "weight": 5
       },
       "fantasy_trees:fantasy_oak_small_6": {
-        "offset": -2,
+        "offset": -25,
         "weight": 5
       },
       "fantasy_trees:fantasy_oak_small_7": {
-        "offset": -3,
+        "offset": -25,
         "weight": 5
       }
     }

@@ -1,5 +1,6 @@
 package com.github.x3r.fantasy_trees.common.structures;
 
+import com.github.x3r.fantasy_trees.common.features.TreeConfiguration;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -7,19 +8,15 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.QuartPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.WorldGenerationContext;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
-import net.minecraft.world.level.levelgen.placement.PlacementContext;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
-import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.pools.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
@@ -46,12 +43,12 @@ public class LargeTreeStructures extends Structure {
     private final int maxDistanceFromCenter;
 
     public LargeTreeStructures(Structure.StructureSettings config,
-                               Holder<StructureTemplatePool> startPool,
-                               Optional<ResourceLocation> startJigsawName,
-                               int size,
-                               HeightProvider startHeight,
-                               Optional<Heightmap.Types> projectStartToHeightmap,
-                               int maxDistanceFromCenter) {
+                            Holder<StructureTemplatePool> startPool,
+                            Optional<ResourceLocation> startJigsawName,
+                            int size,
+                            HeightProvider startHeight,
+                            Optional<Heightmap.Types> projectStartToHeightmap,
+                            int maxDistanceFromCenter) {
         super(config);
         this.startPool = startPool;
         this.startJigsawName = startJigsawName;
@@ -64,7 +61,7 @@ public class LargeTreeStructures extends Structure {
 
     @Override
     public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.TOP_LAYER_MODIFICATION;
+        return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
 
@@ -119,6 +116,21 @@ public class LargeTreeStructures extends Structure {
 
     private static int getOffset(ResourceLocation resourceLocation) {
         if (resourceLocation.getPath().equals("fantasy_dark_oak_large_1")) {
+            return -15;
+        }
+        if (resourceLocation.getPath().equals("fantasy_oak_large_1")) {
+            return -15;
+        }
+        if (resourceLocation.getPath().equals("fantasy_oak_large_2")) {
+            return -15;
+        }
+        if (resourceLocation.getPath().equals("fantasy_oak_large_3")) {
+            return -15;
+        }
+        if (resourceLocation.getPath().equals("fantasy_oak_large_4")) {
+            return -15;
+        }
+        if (resourceLocation.getPath().equals("fantasy_oak_large_5")) {
             return -15;
         }
         if (resourceLocation.getPath().equals("fantasy_acacia_large_2")) {

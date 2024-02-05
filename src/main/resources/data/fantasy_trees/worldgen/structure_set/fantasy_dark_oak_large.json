@@ -1,10 +1,6 @@
 {
   "structures": [
     {
-      "structure": "fantasy_trees:fantasy_dark_oak_large_1",
-      "weight": 1
-    },
-    {
       "structure": "fantasy_trees:fantasy_dark_oak_large_2",
       "weight": 3
     },
