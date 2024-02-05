@@ -64,7 +64,7 @@ public class LargeTreeStructures extends Structure {
 
     @Override
     public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.TOP_LAYER_MODIFICATION;
+        return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
 
