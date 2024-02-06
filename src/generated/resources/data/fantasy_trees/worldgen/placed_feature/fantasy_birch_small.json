@@ -14,28 +14,10 @@
       "heightmap": "WORLD_SURFACE_WG"
     },
     {
-      "type": "minecraft:height_range",
-      "height": {
-        "absolute": 0
-      }
-    },
-    {
       "type": "minecraft:biome"
     },
     {
       "type": "minecraft:in_square"
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:would_survive",
-        "state": {
-          "Name": "minecraft:oak_sapling",
-          "Properties": {
-            "stage": "0"
-          }
-        }
-      }
     }
   ]
 }

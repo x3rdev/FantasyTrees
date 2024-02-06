@@ -61,7 +61,7 @@ public class LargeTreeStructures extends Structure {
 
     @Override
     public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.SURFACE_STRUCTURES;
+        return GenerationStep.Decoration.TOP_LAYER_MODIFICATION;
     }
 
 
@@ -70,32 +70,32 @@ public class LargeTreeStructures extends Structure {
         if (startJigsawName.isEmpty()) {
             return Optional.empty();
         }
-        StructureTemplate structuretemplate = context.structureTemplateManager().getOrCreate(startJigsawName.get());
+        StructureTemplate structureTemplate = context.structureTemplateManager().getOrCreate(startJigsawName.get());
         BlockPos pos = context.chunkPos().getWorldPosition();
-        Rotation rotation = Rotation.getRandom(RandomSource.create());
-        BlockPos centerOffset = new BlockPos((structuretemplate.getSize().getX()/2), pos.getY(), (structuretemplate.getSize().getZ()/2)).rotate(rotation);
-        BlockPos centerPos = pos.offset(centerOffset);
+        Rotation rotation = Rotation.getRandom(context.random());
+        BlockPos centerPos = pos.offset(new BlockPos((structureTemplate.getSize().getX()/2), pos.getY(), (structureTemplate.getSize().getZ()/2)).rotate(rotation));
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState());
-        centerPos = centerPos.atY(y);
+        centerPos = centerPos.atY(y - 5 + getOffset(startJigsawName.get()));
         if(!LargeTreeStructures.isFeatureChunk(context, centerPos)) {
             return Optional.empty();
         }
-        return JigsawPlacement.addPieces(
+        return FantasyTreesJigsawPlacement.addPieces(
                 context, this.startPool, startJigsawName, this.size,
-                pos.atY(y - 5 + getOffset(startJigsawName.get())),
+                pos.atY(centerPos.getY()),
                 false,
                 this.projectStartToHeightmap,
-                this.maxDistanceFromCenter);
+                this.maxDistanceFromCenter,
+                rotation);
     }
 
-    public static boolean isFeatureChunk(Structure.@NotNull GenerationContext context, BlockPos pos) {
+    public static boolean isFeatureChunk(@NotNull Structure.GenerationContext context, BlockPos pos) {
         if(!validBiomeOnTop(context, Heightmap.Types.WORLD_SURFACE_WG)) {
             return false;
         }
         if(!StructureUtils.isChunkFlat(pos, context.randomState().sampler(), Climate.Parameter.span(-0.2F, 0.2F), Climate.Parameter.span(-0.6F, 0.6F))) {
             return false;
         }
-        if(!StructureUtils.isAreaDry(context, pos, 4)) {
+        if(!StructureUtils.isAreaDry(pos, context, 4, 3)) {
             return false;
         }
         return true;
@@ -116,21 +116,6 @@ public class LargeTreeStructures extends Structure {
 
     private static int getOffset(ResourceLocation resourceLocation) {
         if (resourceLocation.getPath().equals("fantasy_dark_oak_large_1")) {
-            return -15;
-        }
-        if (resourceLocation.getPath().equals("fantasy_oak_large_1")) {
-            return -15;
-        }
-        if (resourceLocation.getPath().equals("fantasy_oak_large_2")) {
-            return -15;
-        }
-        if (resourceLocation.getPath().equals("fantasy_oak_large_3")) {
-            return -15;
-        }
-        if (resourceLocation.getPath().equals("fantasy_oak_large_4")) {
-            return -15;
-        }
-        if (resourceLocation.getPath().equals("fantasy_oak_large_5")) {
             return -15;
         }
         if (resourceLocation.getPath().equals("fantasy_acacia_large_2")) {

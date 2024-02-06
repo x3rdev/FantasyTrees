@@ -1,5 +1,5 @@
 {
-  "feature": "fantasy_trees:fantasy_forest_grass",
+  "feature": "fantasy_trees:fantasy_oak_small",
   "placement": [
     {
       "type": "minecraft:rarity_filter",
@@ -7,11 +7,14 @@
     },
     {
       "type": "minecraft:count",
-      "count": 5
+      "count": 4
     },
     {
       "type": "minecraft:heightmap",
       "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
     },
     {
       "type": "minecraft:in_square"
