@@ -61,7 +61,7 @@ public class LargeTreeStructures extends Structure {
 
     @Override
     public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.TOP_LAYER_MODIFICATION;
+        return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
 
@@ -95,7 +95,7 @@ public class LargeTreeStructures extends Structure {
         if(!StructureUtils.isChunkFlat(pos, context.randomState().sampler(), Climate.Parameter.span(-0.2F, 0.2F), Climate.Parameter.span(-0.6F, 0.6F))) {
             return false;
         }
-        if(!StructureUtils.isAreaDry(pos, context, 4, 3)) {
+        if(!StructureUtils.isAreaDry(pos, context, 4)) {
             return false;
         }
         return true;

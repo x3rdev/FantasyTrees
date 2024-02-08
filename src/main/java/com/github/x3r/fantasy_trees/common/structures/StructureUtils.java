@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -20,28 +21,25 @@ public final class StructureUtils {
 
     private StructureUtils(){}
 
-    public static boolean isAreaDry(BlockPos blockPos, @NotNull Structure.GenerationContext context, int radius, int depth) {
-        return isAreaDry(blockPos, context.chunkGenerator(), context.heightAccessor(), radius, depth, context.randomState());
+    public static boolean isAreaDry(BlockPos blockPos, @NotNull Structure.GenerationContext context, int radius) {
+        return isAreaDry(blockPos, context.chunkGenerator(), context.heightAccessor(), radius, context.randomState());
     }
-    public static boolean isAreaDry(BlockPos blockPos, @NotNull FeaturePlaceContext<TreeConfiguration> context, int radius, int depth) {
-        return isAreaDry(blockPos, context.chunkGenerator(), context.level(), radius, depth, context.level().getLevel().getChunkSource().randomState());
+    public static boolean isAreaDry(BlockPos blockPos, @NotNull FeaturePlaceContext<TreeConfiguration> context, int radius) {
+        return isAreaDry(blockPos, context.chunkGenerator(), context.level(), radius, context.level().getLevel().getChunkSource().randomState());
     }
 
-    public static boolean isAreaDry(BlockPos blockPos, ChunkGenerator chunkGenerator, LevelHeightAccessor level, int radius, int depth, RandomState state) {
-        for (int j = 0; j < radius; j++) {
-            for(Direction direction : Direction.values()) {
-                BlockPos checkPos = blockPos.relative(direction, j);
-                NoiseColumn column = chunkGenerator.getBaseColumn(checkPos.getX(), checkPos.getZ(), level, state);
-                if(direction.getAxis().isHorizontal()) {
-                    for (int i = -depth; i < depth; i++) {
-                        if(column.getBlock(blockPos.getY()-depth).getFluidState().isSource()) {
-                            return false;
-                        }
+    public static boolean isAreaDry(BlockPos blockPos, ChunkGenerator chunkGenerator, LevelHeightAccessor level, int radius, RandomState state) {
+        int depth = 30;
+        for (int i = -radius/2; i < radius/2; i++) {
+            for (int j = -radius/2; j < radius/2; j++) {
+                NoiseColumn column = chunkGenerator.getBaseColumn(blockPos.getX()+i, blockPos.getZ()+j, level, state);
+                for (int k = 0; k < depth; k++) {
+                    if(!column.getBlock(k - depth/2).getFluidState().isEmpty()) {
+                        return false;
                     }
                 }
             }
         }
-
         return true;
     }
 

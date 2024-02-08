@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Climate;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -29,15 +30,12 @@ public class SmallTreeFeature extends FantasyTreeFeature {
         TreeConfiguration treeConfiguration = context.config();
         StructureTemplateManager structureTemplateManager = worldgenlevel.getLevel().getServer().getStructureManager();
         ResourceLocation resourceLocation = TreeConfiguration.getRandomTree(treeConfiguration.trees, context.random());
-        if(resourceLocation == null) {
-            return false;
-        }
         StructureTemplate structureTemplate = structureTemplateManager.getOrCreate(resourceLocation);
         BlockPos pos = context.origin();
         Rotation rotation = Rotation.getRandom(context.random());
         BlockPos centerPos = pos.offset(new BlockPos((structureTemplate.getSize().getX()/2), pos.getY(), (structureTemplate.getSize().getZ()/2)));
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.level(), context.level().getLevel().getChunkSource().randomState());
-        centerPos = centerPos.atY(y - 5 + getYOffset(treeConfiguration.trees, resourceLocation));
+        centerPos = centerPos.atY(y + getYOffset(treeConfiguration.trees, resourceLocation));
         if(!isFeatureChunk(context, centerPos)) {
             return false;
         }
