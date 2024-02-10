@@ -5,11 +5,16 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Climate;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
@@ -21,8 +26,23 @@ public class FantasyTreeFeature extends Feature<TreeConfiguration> {
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<TreeConfiguration> pContext) {
-        return false;
+    public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
+        WorldGenLevel worldgenlevel = context.level();
+        TreeConfiguration treeConfiguration = context.config();
+        StructureTemplateManager structureTemplateManager = worldgenlevel.getLevel().getServer().getStructureManager();
+        ResourceLocation resourceLocation = TreeConfiguration.getRandomTree(treeConfiguration.trees, context.random());
+        StructureTemplate structureTemplate = structureTemplateManager.getOrCreate(resourceLocation);
+        BlockPos pos = context.origin();
+        Rotation rotation = Rotation.getRandom(context.random());
+        BlockPos centerPos = pos.offset(new BlockPos((structureTemplate.getSize().getX()/2), pos.getY(), (structureTemplate.getSize().getZ()/2)));
+        int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.level(), context.level().getLevel().getChunkSource().randomState());
+        centerPos = centerPos.atY(y + getYOffset(treeConfiguration.trees, resourceLocation));
+        if(!isFeatureChunk(context, centerPos)) {
+            return false;
+        }
+        StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(new BlockPos(structureTemplate.getSize().getX()/2, 0, structureTemplate.getSize().getZ()/2)).setRotation(rotation);
+        structureTemplate.placeInWorld(worldgenlevel, pos.atY(centerPos.getY()), pos.atY(centerPos.getY()), settings, context.random(), 4);
+        return true;
     }
 
     public boolean isFeatureChunk(@NotNull FeaturePlaceContext<TreeConfiguration> context, BlockPos pos) {
