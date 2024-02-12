@@ -1,91 +1,70 @@
 package com.github.x3r.fantasy_trees.common.structures;
 
-import com.github.x3r.fantasy_trees.common.features.TreeConfiguration;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.QuartPos;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.StructureType;
-import net.minecraft.world.level.levelgen.structure.pools.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.minecraft.world.level.levelgen.structure.structures.DesertPyramidStructure;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class LargeTreeStructures extends Structure {
-    public static final Codec<LargeTreeStructures> CODEC = RecordCodecBuilder.<LargeTreeStructures>mapCodec(instance ->
-            instance.group(LargeTreeStructures.settingsCodec(instance),
-                    StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool),
-                    ResourceLocation.CODEC.optionalFieldOf("start_jigsaw_name").forGetter(structure -> structure.startJigsawName),
-                    Codec.intRange(0, 30).fieldOf("size").forGetter(structure -> structure.size),
-                    HeightProvider.CODEC.fieldOf("start_height").forGetter(structure -> structure.startHeight),
-                    Heightmap.Types.CODEC.optionalFieldOf("project_start_to_heightmap").forGetter(structure -> structure.projectStartToHeightmap),
-                    Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter(structure -> structure.maxDistanceFromCenter)
-            ).apply(instance, LargeTreeStructures::new)).codec();
+public class LargeTreeStructure extends Structure {
+    public static final Codec<LargeTreeStructure> CODEC = RecordCodecBuilder.<LargeTreeStructure>mapCodec(instance ->
+            instance.group(LargeTreeStructure.settingsCodec(instance),
+                    StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool)
+            ).apply(instance, LargeTreeStructure::new)).codec();
 
     private final Holder<StructureTemplatePool> startPool;
-    private final Optional<ResourceLocation> startJigsawName;
-    private final int size;
-    private final HeightProvider startHeight;
-    private final Optional<Heightmap.Types> projectStartToHeightmap;
-    private final int maxDistanceFromCenter;
 
-    public LargeTreeStructures(Structure.StructureSettings config,
-                            Holder<StructureTemplatePool> startPool,
-                            Optional<ResourceLocation> startJigsawName,
-                            int size,
-                            HeightProvider startHeight,
-                            Optional<Heightmap.Types> projectStartToHeightmap,
-                            int maxDistanceFromCenter) {
+    public LargeTreeStructure(Structure.StructureSettings config, Holder<StructureTemplatePool> startPool) {
         super(config);
         this.startPool = startPool;
-        this.startJigsawName = startJigsawName;
-        this.size = size;
-        this.startHeight = startHeight;
-        this.projectStartToHeightmap = projectStartToHeightmap;
-        this.maxDistanceFromCenter = maxDistanceFromCenter;
     }
-
 
     @Override
     public GenerationStep.Decoration step() {
         return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
-
     @Override
-    public @NotNull Optional<Structure.GenerationStub> findGenerationPoint(Structure.@NotNull GenerationContext context) {
-        if (startJigsawName.isEmpty()) {
+    protected Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
+        if(startPool.unwrapKey().isEmpty()) {
             return Optional.empty();
         }
-        StructureTemplate structureTemplate = context.structureTemplateManager().getOrCreate(startJigsawName.get());
+        ResourceLocation key = startPool.unwrapKey().get().location();
+        StructureTemplate structureTemplate = context.structureTemplateManager().getOrCreate(key);
         BlockPos pos = context.chunkPos().getWorldPosition();
         Rotation rotation = Rotation.getRandom(context.random());
         BlockPos centerPos = pos.offset(new BlockPos((structureTemplate.getSize().getX()/2), pos.getY(), (structureTemplate.getSize().getZ()/2)).rotate(rotation));
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState());
-        centerPos = centerPos.atY(y - 5 + getOffset(startJigsawName.get()));
-        if(!LargeTreeStructures.isFeatureChunk(context, centerPos)) {
+        centerPos = centerPos.atY(y + getOffset(key));
+        if(!LargeTreeStructure.isFeatureChunk(context, centerPos)) {
             return Optional.empty();
         }
         return FantasyTreesJigsawPlacement.addPieces(
-                context, this.startPool, startJigsawName, this.size,
+                context,
+                this.startPool,
+                Optional.empty(),
+                1,
                 pos.atY(centerPos.getY()),
                 false,
-                this.projectStartToHeightmap,
-                this.maxDistanceFromCenter,
+                Optional.empty(),
+                1,
                 rotation);
     }
 

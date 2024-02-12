@@ -34,6 +34,7 @@ public final class StructureUtils {
             for (int j = -radius/2; j < radius/2; j++) {
                 NoiseColumn column = chunkGenerator.getBaseColumn(blockPos.getX()+i, blockPos.getZ()+j, level, state);
                 for (int k = 0; k < depth; k++) {
+//                    System.out.println(blockPos + " " + column.getBlock(k - depth/2));
                     if(!column.getBlock(k - depth/2).getFluidState().isEmpty()) {
                         return false;
                     }

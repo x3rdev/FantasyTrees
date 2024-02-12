@@ -56,9 +56,9 @@ public class FantasyTreeFeature extends Feature<TreeConfiguration> {
         if(!context.level().getBlockState(pos.above()).isAir() || !context.level().getBlockState(pos).isCollisionShapeFullBlock(context.level(), pos)) {
             return false;
         }
-        if(!StructureUtils.isAreaDry(pos, context, 2)) {
-            return false;
-        }
+//        if(!StructureUtils.isAreaDry(pos, context, 2)) {
+//            return false;
+//        }
         return true;
     }
 
