@@ -34,7 +34,6 @@ public final class StructureUtils {
             for (int j = -radius/2; j < radius/2; j++) {
                 NoiseColumn column = chunkGenerator.getBaseColumn(blockPos.getX()+i, blockPos.getZ()+j, level, state);
                 for (int k = 0; k < depth; k++) {
-//                    System.out.println(blockPos + " " + column.getBlock(k - depth/2));
                     if(!column.getBlock(k - depth/2).getFluidState().isEmpty()) {
                         return false;
                     }
@@ -43,7 +42,6 @@ public final class StructureUtils {
         }
         return true;
     }
-
     public static boolean isChunkFlat(BlockPos pos, Climate.Sampler sampler, Climate.Parameter acceptableDepth, Climate.Parameter acceptableWeird) {
         double depth =  sampler.depth().compute(new DensityFunction.SinglePointContext(pos.getX(), pos.getY(), pos.getZ()));
         boolean f0 = depth >= Climate.unquantizeCoord(acceptableDepth.min()) && depth <= Climate.unquantizeCoord(acceptableDepth.max());

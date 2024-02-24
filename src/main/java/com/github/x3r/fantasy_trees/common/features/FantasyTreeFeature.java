@@ -35,7 +35,8 @@ public class FantasyTreeFeature extends Feature<TreeConfiguration> {
         ResourceLocation resourceLocation = TreeConfiguration.getRandomTree(treeConfiguration.trees, context.random());
         StructureTemplate structureTemplate = structureTemplateManager.getOrCreate(resourceLocation);
         BlockPos pos = context.origin();
-        Rotation rotation = Rotation.getRandom(context.random());
+//        Rotation rotation = Rotation.getRandom(context.random());
+        Rotation rotation = Rotation.NONE;
         BlockPos offsetPos = new BlockPos((structureTemplate.getSize().getX()/2), pos.getY(), (structureTemplate.getSize().getZ()/2));
         BlockPos centerPos = pos.offset(offsetPos.rotate(rotation));
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.level(), context.level().getLevel().getChunkSource().randomState());
@@ -44,6 +45,9 @@ public class FantasyTreeFeature extends Feature<TreeConfiguration> {
             return false;
         }
         BlockPos placePos = pos.atY(centerPos.getY());
+//        for (int i = 0; i < 30; i++) {
+//            worldgenlevel.setBlock(placePos.above(i), Blocks.REDSTONE_BLOCK.defaultBlockState(), 3);
+//        }
         StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(BlockPos.ZERO).setRotation(rotation);
         structureTemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
         return true;
@@ -56,9 +60,9 @@ public class FantasyTreeFeature extends Feature<TreeConfiguration> {
         if(!context.level().getBlockState(pos.above()).isAir() || !context.level().getBlockState(pos).isCollisionShapeFullBlock(context.level(), pos)) {
             return false;
         }
-//        if(!StructureUtils.isAreaDry(pos, context, 2)) {
-//            return false;
-//        }
+        if(!StructureUtils.isAreaDry(pos, context, 2)) {
+            return false;
+        }
         return true;
     }
 

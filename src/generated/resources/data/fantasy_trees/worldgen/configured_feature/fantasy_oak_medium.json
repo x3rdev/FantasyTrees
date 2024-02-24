@@ -2,10 +2,6 @@
   "type": "fantasy_trees:fantasy_oak_medium",
   "config": {
     "trees": {
-      "fantasy_trees:fantasy_oak_medium_1": {
-        "offset": 0,
-        "weight": 4
-      },
       "fantasy_trees:fantasy_oak_medium_3": {
         "offset": -2,
         "weight": 15
