@@ -67,7 +67,7 @@ public class BiomeRegistry {
         globalOverworldGeneration(genBuilder);
         BiomeDefaultFeatures.addDefaultSoftDisks(genBuilder);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_OLD_GROWTH_SPRUCE_TAIGA);
-        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_OLD_GROWTH_PINE_TAIGA);
+//        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_OLD_GROWTH_PINE_TAIGA);
         BiomeDefaultFeatures.addDefaultFlowers(genBuilder);
         BiomeDefaultFeatures.addTaigaGrass(genBuilder);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_SPRUCE_SMALL_CHECKED);
