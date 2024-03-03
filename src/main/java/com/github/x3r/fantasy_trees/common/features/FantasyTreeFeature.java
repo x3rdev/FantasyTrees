@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -31,25 +32,23 @@ public class FantasyTreeFeature extends Feature<TreeConfiguration> {
     public boolean place(FeaturePlaceContext<TreeConfiguration> context) {
         WorldGenLevel worldgenlevel = context.level();
         TreeConfiguration treeConfiguration = context.config();
-        StructureTemplateManager structureTemplateManager = worldgenlevel.getLevel().getServer().getStructureManager();
+        StructureTemplateManager structureTemplateManager = worldgenlevel.getServer().getStructureManager();
         ResourceLocation resourceLocation = TreeConfiguration.getRandomTree(treeConfiguration.trees, context.random());
         StructureTemplate structureTemplate = structureTemplateManager.getOrCreate(resourceLocation);
         BlockPos pos = context.origin();
 //        Rotation rotation = Rotation.getRandom(context.random());
         Rotation rotation = Rotation.NONE;
         BlockPos offsetPos = new BlockPos((structureTemplate.getSize().getX()/2), pos.getY(), (structureTemplate.getSize().getZ()/2));
-        BlockPos centerPos = pos.offset(offsetPos.rotate(rotation));
+        BlockPos centerPos = pos.offset(offsetPos);
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.level(), context.level().getLevel().getChunkSource().randomState());
         centerPos = centerPos.atY(y + getYOffset(treeConfiguration.trees, resourceLocation));
         if(!isFeatureChunk(context, centerPos)) {
             return false;
         }
         BlockPos placePos = pos.atY(centerPos.getY());
-//        for (int i = 0; i < 30; i++) {
-//            worldgenlevel.setBlock(placePos.above(i), Blocks.REDSTONE_BLOCK.defaultBlockState(), 3);
-//        }
-        StructurePlaceSettings settings = new StructurePlaceSettings().setRandom(context.random()).setRotationPivot(BlockPos.ZERO).setRotation(rotation);
-        structureTemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 4);
+//        BlockPos pos2 = new BlockPos((placePos.getX()/16)*16, placePos.getY(), (placePos.getZ()/16)*16);
+        StructurePlaceSettings settings = new StructurePlaceSettings().setKeepLiquids(false).setRandom(context.random()).setRotationPivot(offsetPos).setRotation(rotation);
+        structureTemplate.placeInWorld(worldgenlevel, placePos, placePos, settings, context.random(), 3);
         return true;
     }
 
@@ -57,9 +56,9 @@ public class FantasyTreeFeature extends Feature<TreeConfiguration> {
         if(!StructureUtils.isChunkFlat(pos, context.level().getLevel().getChunkSource().randomState().sampler(), Climate.Parameter.span(-0.3F, 0.3F), Climate.Parameter.span(-0.6F, 0.6F))) {
             return false;
         }
-        if(!context.level().getBlockState(pos.above()).isAir() || !context.level().getBlockState(pos).isCollisionShapeFullBlock(context.level(), pos)) {
-            return false;
-        }
+//        if(!context.level().getBlockState(pos.above()).isAir() || !context.level().getBlockState(pos).isCollisionShapeFullBlock(context.level(), pos)) {
+//            return false;
+//        }
         if(!StructureUtils.isAreaDry(pos, context, 2)) {
             return false;
         }
