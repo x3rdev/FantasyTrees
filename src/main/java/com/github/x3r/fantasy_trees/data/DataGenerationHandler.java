@@ -4,6 +4,7 @@ import com.github.x3r.fantasy_trees.FantasyTrees;
 import com.github.x3r.fantasy_trees.registry.BiomeRegistry;
 import com.github.x3r.fantasy_trees.registry.ConfiguredFeatureRegistry;
 import com.github.x3r.fantasy_trees.registry.PlacedFeatureRegistry;
+import com.github.x3r.fantasy_trees.registry.StructureRegistry;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -21,9 +22,12 @@ import java.util.Set;
 public class DataGenerationHandler
 {
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-            .add(Registries.CONFIGURED_FEATURE, ConfiguredFeatureRegistry::bootstrap)
-            .add(Registries.PLACED_FEATURE, PlacedFeatureRegistry::bootstrap)
-            .add(Registries.BIOME, BiomeRegistry::bootstrapBiomes);
+//            .add(Registries.CONFIGURED_FEATURE, ConfiguredFeatureRegistry::bootstrap)
+//            .add(Registries.PLACED_FEATURE, PlacedFeatureRegistry::bootstrap)
+            .add(Registries.BIOME, BiomeRegistry::bootstrapBiomes)
+            .add(Registries.TEMPLATE_POOL, StructureRegistry::bootstrapTemplatePools)
+            .add(Registries.STRUCTURE_SET, StructureRegistry::bootstrapStructureSets)
+            .add(Registries.STRUCTURE, StructureRegistry::bootstrap);
 
 
     @SubscribeEvent

@@ -19,36 +19,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import java.util.List;
 
 public class BiomeRegistry {
-    private static List<ResourceKey<Biome>> biomes = Lists.newArrayList();
-
-    public static void bootstrapBiomes(BootstapContext<Biome> context) {
-        HolderGetter<PlacedFeature> placedFeatureGetter = context.lookup(Registries.PLACED_FEATURE);
-        HolderGetter<ConfiguredWorldCarver<?>> carverGetter = context.lookup(Registries.CONFIGURED_CARVER);
-        register(context, FANTASY_TAIGA, BiomeRegistry.buildFantasyTaiga(placedFeatureGetter, carverGetter));
-        register(context, FANTASY_FOREST, BiomeRegistry.buildFantasyForest(placedFeatureGetter, carverGetter));
-        register(context, FANTASY_BIRCH_FOREST, BiomeRegistry.buildFantasyBirchForest(placedFeatureGetter, carverGetter));
-        register(context, FANTASY_DARK_FOREST, BiomeRegistry.buildFantasyDarkForest(placedFeatureGetter, carverGetter));
-        register(context, FANTASY_JUNGLE, BiomeRegistry.buildFantasyJungle(placedFeatureGetter, carverGetter));
-        register(context, FANTASY_SAVANNA, BiomeRegistry.buildFantasySavanna(placedFeatureGetter, carverGetter));
-    }
-
-    private static void register(BootstapContext<Biome> context, ResourceKey<Biome> key, Biome biome)
-    {
-        context.register(key, biome);
-    }
-
-    private static ResourceKey<Biome> registerBiome(String name)
-    {
-        ResourceKey<Biome> key = ResourceKey.create(Registries.BIOME, new ResourceLocation(FantasyTrees.MOD_ID, name));
-        biomes.add(key);
-        return key;
-    }
-
-    public static List<ResourceKey<Biome>> getBiomes()
-    {
-        return ImmutableList.copyOf(biomes);
-    }
-
+    protected static final List<ResourceKey<Biome>> BIOMES = Lists.newArrayList();
     public static final ResourceKey<Biome> FANTASY_TAIGA = registerBiome("fantasy_taiga");
     public static final ResourceKey<Biome> FANTASY_FOREST = registerBiome("fantasy_forest");
     public static final ResourceKey<Biome> FANTASY_BIRCH_FOREST = registerBiome("fantasy_birch_forest");
@@ -57,6 +28,31 @@ public class BiomeRegistry {
     public static final ResourceKey<Biome> FANTASY_SAVANNA = registerBiome("fantasy_savanna");
 
 
+    public static void bootstrapBiomes(BootstapContext<Biome> context) {
+        HolderGetter<PlacedFeature> placedFeatureGetter = context.lookup(Registries.PLACED_FEATURE);
+        HolderGetter<ConfiguredWorldCarver<?>> carverGetter = context.lookup(Registries.CONFIGURED_CARVER);
+//        register(context, FANTASY_TAIGA, BiomeRegistry.buildFantasyTaiga(placedFeatureGetter, carverGetter));
+//        register(context, FANTASY_FOREST, BiomeRegistry.buildFantasyForest(placedFeatureGetter, carverGetter));
+//        register(context, FANTASY_BIRCH_FOREST, BiomeRegistry.buildFantasyBirchForest(placedFeatureGetter, carverGetter));
+//        register(context, FANTASY_DARK_FOREST, BiomeRegistry.buildFantasyDarkForest(placedFeatureGetter, carverGetter));
+//        register(context, FANTASY_JUNGLE, BiomeRegistry.buildFantasyJungle(placedFeatureGetter, carverGetter));
+//        register(context, FANTASY_SAVANNA, BiomeRegistry.buildFantasySavanna(placedFeatureGetter, carverGetter));
+    }
+
+    private static void register(BootstapContext<Biome> context, ResourceKey<Biome> key, Biome biome) {
+        context.register(key, biome);
+    }
+
+    private static ResourceKey<Biome> registerBiome(String name) {
+        ResourceKey<Biome> key = ResourceKey.create(Registries.BIOME, new ResourceLocation(FantasyTrees.MOD_ID, name));
+        BIOMES.add(key);
+        return key;
+    }
+
+    public static List<ResourceKey<Biome>> getBiomes()
+    {
+        return ImmutableList.copyOf(BIOMES);
+    }
 
     public static Biome buildFantasyTaiga(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         float temp = 0.25F;
