@@ -1,11 +1,10 @@
 {
-  "name": "fantasy_trees:fantasy_spruce_large_3",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "fantasy_trees:fantasy_spruce_large_3",
+        "location": "fantasy_trees:fantasy_birch_large_1",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

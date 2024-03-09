@@ -24,15 +24,14 @@ public class DataGenerationHandler
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
 //            .add(Registries.CONFIGURED_FEATURE, ConfiguredFeatureRegistry::bootstrap)
 //            .add(Registries.PLACED_FEATURE, PlacedFeatureRegistry::bootstrap)
-            .add(Registries.BIOME, BiomeRegistry::bootstrapBiomes)
-            .add(Registries.TEMPLATE_POOL, StructureRegistry::bootstrapTemplatePools)
+            .add(Registries.STRUCTURE, StructureRegistry::bootstrap)
             .add(Registries.STRUCTURE_SET, StructureRegistry::bootstrapStructureSets)
-            .add(Registries.STRUCTURE, StructureRegistry::bootstrap);
+//            .add(Registries.BIOME, BiomeRegistry::bootstrapBiomes);
+    ;
 
 
     @SubscribeEvent
-    public static void onGatherData(GatherDataEvent event)
-    {
+    public static void onGatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();

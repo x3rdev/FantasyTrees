@@ -1,8 +1,0 @@
-{
-  "type": "fantasy_trees:large_tree_structures",
-  "start_pool": "fantasy_trees:fantasy_birch_large_1",
-  "biomes": "#fantasy_trees:has_structure/birch_biomes",
-  "step": "surface_structures",
-  "project_start_to_heightmap": "WORLD_SURFACE_WG",
-  "spawn_overrides": {}
-}
