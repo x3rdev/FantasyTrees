@@ -24,6 +24,7 @@ public class DataGenerationHandler
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
 //            .add(Registries.CONFIGURED_FEATURE, ConfiguredFeatureRegistry::bootstrap)
 //            .add(Registries.PLACED_FEATURE, PlacedFeatureRegistry::bootstrap)
+            .add(Registries.TEMPLATE_POOL, StructureRegistry::bootstrapStructurePools)
             .add(Registries.STRUCTURE, StructureRegistry::bootstrap)
             .add(Registries.STRUCTURE_SET, StructureRegistry::bootstrapStructureSets)
 //            .add(Registries.BIOME, BiomeRegistry::bootstrapBiomes);

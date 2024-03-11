@@ -3,12 +3,9 @@ package com.github.x3r.fantasy_trees;
 import com.github.x3r.fantasy_trees.common.biome.region.*;
 import com.github.x3r.fantasy_trees.registry.*;
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,9 +19,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 import terrablender.api.Regions;
-
-import java.util.List;
-import java.util.Objects;
 
 @Mod("fantasy_trees")
 public class FantasyTrees {

@@ -1,5 +1,6 @@
 package com.github.x3r.fantasy_trees.common.structures;
 
+import com.github.x3r.fantasy_trees.registry.StructureRegistry;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -91,7 +92,7 @@ public class LargeTreeStructure extends Structure {
 
     @Override
     public StructureType<?> type() {
-        return null;
+        return StructureRegistry.LARGE_TREE_STRUCTURES.get();
     }
 
     private static int getOffset(ResourceLocation resourceLocation) {
