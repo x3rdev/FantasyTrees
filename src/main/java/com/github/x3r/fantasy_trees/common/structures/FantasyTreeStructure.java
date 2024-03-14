@@ -20,17 +20,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class LargeTreeStructure extends Structure {
-    public static final Codec<LargeTreeStructure> CODEC = RecordCodecBuilder.<LargeTreeStructure>mapCodec(instance ->
-            instance.group(LargeTreeStructure.settingsCodec(instance),
-                    StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool)
-            ).apply(instance, LargeTreeStructure::new)).codec();
+public class FantasyTreeStructure extends Structure {
+    public static final Codec<FantasyTreeStructure> CODEC = RecordCodecBuilder.<FantasyTreeStructure>mapCodec(instance ->
+            instance.group(FantasyTreeStructure.settingsCodec(instance),
+                    StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool),
+                    Codec.INT.fieldOf("offset").forGetter(structure -> structure.offset)
+            ).apply(instance, FantasyTreeStructure::new)).codec();
 
     private final Holder<StructureTemplatePool> startPool;
+    private final int offset;
 
-    public LargeTreeStructure(Structure.StructureSettings config, Holder<StructureTemplatePool> startPool) {
+    public FantasyTreeStructure(Structure.StructureSettings config, Holder<StructureTemplatePool> startPool, int offset) {
         super(config);
         this.startPool = startPool;
+        this.offset = offset;
     }
 
     @Override
@@ -46,11 +49,12 @@ public class LargeTreeStructure extends Structure {
         ResourceLocation key = startPool.unwrapKey().get().location();
         StructureTemplate structureTemplate = context.structureTemplateManager().getOrCreate(key);
         BlockPos pos = context.chunkPos().getWorldPosition();
-        Rotation rotation = Rotation.getRandom(context.random());
+        Rotation rotation = Rotation.NONE;
+//                Rotation.getRandom(context.random());
         BlockPos centerPos = pos.offset(new BlockPos((structureTemplate.getSize().getX()/2), pos.getY(), (structureTemplate.getSize().getZ()/2)).rotate(rotation));
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState());
-        centerPos = centerPos.atY(y + getOffset(key));
-        if(!LargeTreeStructure.isFeatureChunk(context, centerPos)) {
+        centerPos = centerPos.atY(y + offset);
+        if(!FantasyTreeStructure.isFeatureChunk(context, centerPos)) {
             return Optional.empty();
         }
         return FantasyTreesJigsawPlacement.addPieces(
@@ -89,15 +93,5 @@ public class LargeTreeStructure extends Structure {
     @Override
     public StructureType<?> type() {
         return StructureRegistry.FANTASY_TREE_STRUCTURES.get();
-    }
-
-    private static int getOffset(ResourceLocation resourceLocation) {
-        if (resourceLocation.getPath().equals("fantasy_dark_oak_large_1")) {
-            return -15;
-        }
-        if (resourceLocation.getPath().equals("fantasy_acacia_large_2")) {
-            return 4;
-        }
-        return 0;
     }
 }

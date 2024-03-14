@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1930858313,
+    "separation": 1,
+    "spacing": 2
+  },
+  "structures": [
+    {
+      "structure": "fantasy_trees:fantasy_jungle_small",
+      "weight": 1
+    }
+  ]
+}

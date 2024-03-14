@@ -1,7 +1,0 @@
-{
-  "type": "fantasy_trees:fantasy_tree_structures",
-  "biomes": "#fantasy_trees:tags/worldgen/biome/has_structure/dark_oak_biomes",
-  "spawn_overrides": {},
-  "start_pool": "fantasy_trees:fantasy_dark_oak_small",
-  "step": "surface_structures"
-}

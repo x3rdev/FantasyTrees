@@ -1,6 +1,7 @@
 {
   "type": "fantasy_trees:fantasy_tree_structures",
-  "biomes": "#fantasy_trees:tags/worldgen/biome/has_structure/oak_biomes",
+  "biomes": "#fantasy_trees:has_structure/oak_biomes",
+  "offset": 0,
   "spawn_overrides": {},
   "start_pool": "fantasy_trees:fantasy_oak_medium",
   "step": "surface_structures"
