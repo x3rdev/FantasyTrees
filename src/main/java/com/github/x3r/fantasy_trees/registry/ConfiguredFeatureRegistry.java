@@ -1,10 +1,6 @@
 package com.github.x3r.fantasy_trees.registry;
 
 import com.github.x3r.fantasy_trees.FantasyTrees;
-import com.github.x3r.fantasy_trees.common.features.TreeConfiguration;
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.core.Holder;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
@@ -16,146 +12,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
-import net.minecraftforge.registries.RegistryObject;
-
-import java.util.Map;
 
 public class ConfiguredFeatureRegistry {
-
-    public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_ACACIA_SMALL_LIST = Map.ofEntries(
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_acacia_small_1"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_acacia_small_2"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_acacia_small_3"), new Pair<>(5, 0))
-    );
-
-    public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_BIRCH_SMALL_LIST = Map.ofEntries(
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_1"), new Pair<>(15, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_2"), new Pair<>(5, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_3"), new Pair<>(15, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_4"), new Pair<>(5, -3)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_5"), new Pair<>(15, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_6"), new Pair<>(2, -3)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_7"), new Pair<>(15, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_8"), new Pair<>(15, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_9"), new Pair<>(15, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_small_10"), new Pair<>(15, 0))
-
-    );
-
-    public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_BIRCH_MEDIUM_LIST = Map.ofEntries(
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_medium_1"), new Pair<>(5, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_medium_2"), new Pair<>(5, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_medium_3"), new Pair<>(5, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_birch_medium_4"), new Pair<>(5, -4))
-    );
-
-    public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_OAK_SMALL_LIST = Map.ofEntries(
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_small_1"), new Pair<>(5, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_small_2"), new Pair<>(1, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_small_3"), new Pair<>(5, -3)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_small_4"), new Pair<>(1, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_small_5"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_small_6"), new Pair<>(5,-2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_small_7"), new Pair<>(5, -3))
-    );
-
-    public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_JUNGLE_SMALL_LIST = Map.ofEntries(
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_jungle_small_1"), new Pair<>(5, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_jungle_small_2"), new Pair<>(5, -2))
-    );
-
-    public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_JUNGLE_MEDIUM_LIST = Map.ofEntries(
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_jungle_medium_1"), new Pair<>(4, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_jungle_medium_2"), new Pair<>(4, 0))
-    );
-
-    public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_OAK_MEDIUM_LIST = Map.ofEntries(
-//            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_medium_1"), new Pair<>(4, 0)),
-//            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_medium_2"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_medium_3"), new Pair<>(15, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_medium_4"), new Pair<>(15, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_oak_medium_5"), new Pair<>(15, -2))
-    );
-    public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_SPRUCE_SMALL_LIST = Map.ofEntries(
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_small_1"), new Pair<>(5, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_small_2"), new Pair<>(5, -3)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_small_3"), new Pair<>(5, 0))
-    );
-    public static final Map<ResourceLocation, Pair<Integer, Integer>> FANTASY_SPRUCE_MEDIUM_LIST = Map.ofEntries(
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_1"), new Pair<>(5, -2)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_2"), new Pair<>(5, -3)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_3"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_4"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_5"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_6"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_7"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_8"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_9"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_10"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_11"), new Pair<>(5, 0)),
-            Map.entry(new ResourceLocation(FantasyTrees.MOD_ID, "fantasy_spruce_medium_12"), new Pair<>(5, 0))
-    );
-
     public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name)
     {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(FantasyTrees.MOD_ID, name));
     }
-
-    public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_ACACIA_SMALL = createKey("fantasy_acacia_small");
-    public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_BIRCH_SMALL  = createKey("fantasy_birch_small");
-    public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_BIRCH_MEDIUM  = createKey("fantasy_birch_medium");
-    public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_OAK_SMALL  = createKey("fantasy_oak_small");
-    public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_OAK_MEDIUM  = createKey("fantasy_oak_medium");
-    public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_JUNGLE_SMALL  = createKey("fantasy_jungle_small");
-    public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_JUNGLE_MEDIUM  = createKey("fantasy_jungle_medium");
-    public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_SPRUCE_SMALL  = createKey("fantasy_spruce_small");
-    public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_SPRUCE_MEDIUM  = createKey("fantasy_spruce_medium");
     public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_FOREST_GRASS  = createKey("fantasy_forest_grass");
     public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_VANILLA_FLOWERS  = createKey("fantasy_vanilla_flowers");
     public static final ResourceKey<ConfiguredFeature<?,?>> FANTASY_FLOWERS  = createKey("fantasy_flowers");
 
-    public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context)
-    {
-        register(context,
-                FANTASY_ACACIA_SMALL,
-                FeatureRegistry.FANTASY_ACACIA_SMALL.get(),
-                new TreeConfiguration(FANTASY_ACACIA_SMALL_LIST));
-        register(context,
-                FANTASY_BIRCH_SMALL,
-                FeatureRegistry.FANTASY_BIRCH_SMALL.get(),
-                new TreeConfiguration(FANTASY_BIRCH_SMALL_LIST));
-        register(context,
-                FANTASY_BIRCH_MEDIUM,
-                FeatureRegistry.FANTASY_BIRCH_MEDIUM.get(),
-                new TreeConfiguration(FANTASY_BIRCH_MEDIUM_LIST));
-        register(context,
-                FANTASY_OAK_SMALL,
-                FeatureRegistry.FANTASY_OAK_SMALL.get(),
-                new TreeConfiguration(FANTASY_OAK_SMALL_LIST));
-        register(context,
-                FANTASY_OAK_MEDIUM,
-                FeatureRegistry.FANTASY_OAK_MEDIUM.get(),
-                new TreeConfiguration(FANTASY_OAK_MEDIUM_LIST));
-        register(context,
-                FANTASY_JUNGLE_SMALL,
-                FeatureRegistry.FANTASY_JUNGLE_SMALL.get(),
-                new TreeConfiguration(FANTASY_JUNGLE_SMALL_LIST));
-        register(context,
-                FANTASY_JUNGLE_MEDIUM,
-                FeatureRegistry.FANTASY_JUNGLE_MEDIUM.get(),
-                new TreeConfiguration(FANTASY_JUNGLE_MEDIUM_LIST));
-        register(context,
-                FANTASY_SPRUCE_SMALL,
-                FeatureRegistry.FANTASY_SPRUCE_SMALL.get(),
-                new TreeConfiguration(FANTASY_SPRUCE_SMALL_LIST));
-        register(context,
-                FANTASY_SPRUCE_MEDIUM,
-                FeatureRegistry.FANTASY_SPRUCE_MEDIUM.get(),
-                new TreeConfiguration(FANTASY_SPRUCE_MEDIUM_LIST));
+    public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         register(context,
                 FANTASY_FOREST_GRASS,
                 FeatureRegistry.FANTASY_FOREST_GRASS.get(),

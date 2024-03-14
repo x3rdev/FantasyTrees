@@ -2,12 +2,10 @@ package com.github.x3r.fantasy_trees.registry;
 
 import com.github.x3r.fantasy_trees.FantasyTrees;
 import com.github.x3r.fantasy_trees.common.structures.LargeTreeStructure;
-import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.*;
-import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -19,9 +17,6 @@ import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -33,7 +28,7 @@ import java.util.function.Function;
 public class StructureRegistry {
 
     public static final DeferredRegister<StructureType<?>> STRUCTURE_FEATURES = DeferredRegister.create(Registries.STRUCTURE_TYPE, FantasyTrees.MOD_ID);
-    public static final RegistryObject<StructureType<LargeTreeStructure>> LARGE_TREE_STRUCTURES = STRUCTURE_FEATURES.register("large_tree_structures", () -> () -> LargeTreeStructure.CODEC);
+    public static final RegistryObject<StructureType<LargeTreeStructure>> FANTASY_TREE_STRUCTURES = STRUCTURE_FEATURES.register("fantasy_tree_structures", () -> () -> LargeTreeStructure.CODEC);
 
     public static final List<String> TREES = List.of(
             "fantasy_acacia_small", "fantasy_acacia_medium","fantasy_acacia_large",

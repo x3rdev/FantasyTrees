@@ -31,12 +31,12 @@ public class BiomeRegistry {
     public static void bootstrapBiomes(BootstapContext<Biome> context) {
         HolderGetter<PlacedFeature> placedFeatureGetter = context.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> carverGetter = context.lookup(Registries.CONFIGURED_CARVER);
-//        register(context, FANTASY_TAIGA, BiomeRegistry.buildFantasyTaiga(placedFeatureGetter, carverGetter));
-//        register(context, FANTASY_FOREST, BiomeRegistry.buildFantasyForest(placedFeatureGetter, carverGetter));
-//        register(context, FANTASY_BIRCH_FOREST, BiomeRegistry.buildFantasyBirchForest(placedFeatureGetter, carverGetter));
-//        register(context, FANTASY_DARK_FOREST, BiomeRegistry.buildFantasyDarkForest(placedFeatureGetter, carverGetter));
-//        register(context, FANTASY_JUNGLE, BiomeRegistry.buildFantasyJungle(placedFeatureGetter, carverGetter));
-//        register(context, FANTASY_SAVANNA, BiomeRegistry.buildFantasySavanna(placedFeatureGetter, carverGetter));
+        register(context, FANTASY_TAIGA, BiomeRegistry.buildFantasyTaiga(placedFeatureGetter, carverGetter));
+        register(context, FANTASY_FOREST, BiomeRegistry.buildFantasyForest(placedFeatureGetter, carverGetter));
+        register(context, FANTASY_BIRCH_FOREST, BiomeRegistry.buildFantasyBirchForest(placedFeatureGetter, carverGetter));
+        register(context, FANTASY_DARK_FOREST, BiomeRegistry.buildFantasyDarkForest(placedFeatureGetter, carverGetter));
+        register(context, FANTASY_JUNGLE, BiomeRegistry.buildFantasyJungle(placedFeatureGetter, carverGetter));
+        register(context, FANTASY_SAVANNA, BiomeRegistry.buildFantasySavanna(placedFeatureGetter, carverGetter));
     }
 
     private static void register(BootstapContext<Biome> context, ResourceKey<Biome> key, Biome biome) {
@@ -66,8 +66,6 @@ public class BiomeRegistry {
 //        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_OLD_GROWTH_PINE_TAIGA);
         BiomeDefaultFeatures.addDefaultFlowers(genBuilder);
         BiomeDefaultFeatures.addTaigaGrass(genBuilder);
-        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_SPRUCE_SMALL_CHECKED);
-        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_SPRUCE_MEDIUM_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED);
         return (new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
@@ -88,8 +86,6 @@ public class BiomeRegistry {
         BiomeDefaultFeatures.commonSpawns(mobspawnsettings$builder);
         globalOverworldGeneration(genBuilder);
         BiomeDefaultFeatures.addDefaultSoftDisks(genBuilder);
-        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_OAK_SMALL_CHECKED);
-        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_OAK_MEDIUM_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_FOREST_GRASS_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_VANILLA_FLOWERS_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED);
@@ -112,8 +108,6 @@ public class BiomeRegistry {
         BiomeDefaultFeatures.commonSpawns(mobspawnsettings$builder);
         globalOverworldGeneration(genBuilder);
         BiomeDefaultFeatures.addDefaultSoftDisks(genBuilder);
-        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_BIRCH_SMALL_CHECKED);
-        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_BIRCH_MEDIUM_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_FOREST_GRASS_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_VANILLA_FLOWERS_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED);
@@ -166,8 +160,6 @@ public class BiomeRegistry {
         BiomeDefaultFeatures.addDefaultExtraVegetation(genBuilder);
         BiomeDefaultFeatures.addJungleVines(genBuilder);
         BiomeDefaultFeatures.addJungleMelons(genBuilder);
-        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_JUNGLE_SMALL_CHECKED);
-        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_JUNGLE_MEDIUM_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_VANILLA_FLOWERS_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED);
         return (new Biome.BiomeBuilder()
@@ -186,7 +178,6 @@ public class BiomeRegistry {
         BiomeGenerationSettings.Builder genBuilder = new BiomeGenerationSettings.Builder(placedFeatureGetter, carverGetter);
         MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
         globalOverworldGeneration(genBuilder);
-        genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_ACACIA_SMALL_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_FOREST_GRASS_CHECKED);
         genBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacedFeatureRegistry.FANTASY_FLOWERS_CHECKED);
         return (new Biome.BiomeBuilder()

@@ -6,19 +6,15 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.QuartPos;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.structure.Structure;
-import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
-import net.minecraft.world.level.levelgen.structure.structures.DesertPyramidStructure;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import org.jetbrains.annotations.NotNull;
 
@@ -76,23 +72,23 @@ public class LargeTreeStructure extends Structure {
         if(!StructureUtils.isChunkFlat(pos, context.randomState().sampler(), Climate.Parameter.span(-0.2F, 0.2F), Climate.Parameter.span(-0.6F, 0.6F))) {
             return false;
         }
-        if(!StructureUtils.isAreaDry(pos, context, 4)) {
+        if(!StructureUtils.isAreaDry(pos, context.chunkGenerator(), context.heightAccessor(),4, context.randomState())) {
             return false;
         }
         return true;
     }
 
     public static boolean validBiomeOnTop(GenerationContext context, Heightmap.Types pHeightmapType) {
-        int $$1 = context.chunkPos().getMiddleBlockX();
-        int $$2 = context.chunkPos().getMiddleBlockZ();
-        int $$3 = context.chunkGenerator().getFirstOccupiedHeight($$1, $$2, pHeightmapType, context.heightAccessor(), context.randomState());
-        Holder<Biome> $$4 = context.chunkGenerator().getBiomeSource().getNoiseBiome(QuartPos.fromBlock($$1), QuartPos.fromBlock($$3), QuartPos.fromBlock($$2), context.randomState().sampler());
-        return context.validBiome().test($$4);
+        int x = context.chunkPos().getMiddleBlockX();
+        int z = context.chunkPos().getMiddleBlockZ();
+        int height = context.chunkGenerator().getFirstOccupiedHeight(x, z, pHeightmapType, context.heightAccessor(), context.randomState());
+        Holder<Biome> biome = context.chunkGenerator().getBiomeSource().getNoiseBiome(QuartPos.fromBlock(x), QuartPos.fromBlock(height), QuartPos.fromBlock(z), context.randomState().sampler());
+        return context.validBiome().test(biome);
     }
 
     @Override
     public StructureType<?> type() {
-        return StructureRegistry.LARGE_TREE_STRUCTURES.get();
+        return StructureRegistry.FANTASY_TREE_STRUCTURES.get();
     }
 
     private static int getOffset(ResourceLocation resourceLocation) {
