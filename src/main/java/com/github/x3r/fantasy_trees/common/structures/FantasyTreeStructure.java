@@ -23,17 +23,14 @@ import java.util.Optional;
 public class FantasyTreeStructure extends Structure {
     public static final Codec<FantasyTreeStructure> CODEC = RecordCodecBuilder.<FantasyTreeStructure>mapCodec(instance ->
             instance.group(FantasyTreeStructure.settingsCodec(instance),
-                    StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool),
-                    Codec.INT.fieldOf("offset").forGetter(structure -> structure.offset)
+                    StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool)
             ).apply(instance, FantasyTreeStructure::new)).codec();
 
     private final Holder<StructureTemplatePool> startPool;
-    private final int offset;
 
-    public FantasyTreeStructure(Structure.StructureSettings config, Holder<StructureTemplatePool> startPool, int offset) {
+    public FantasyTreeStructure(Structure.StructureSettings config, Holder<StructureTemplatePool> startPool) {
         super(config);
         this.startPool = startPool;
-        this.offset = offset;
     }
 
     @Override
@@ -53,7 +50,7 @@ public class FantasyTreeStructure extends Structure {
 //                Rotation.getRandom(context.random());
         BlockPos centerPos = pos.offset(new BlockPos((structureTemplate.getSize().getX()/2), pos.getY(), (structureTemplate.getSize().getZ()/2)).rotate(rotation));
         int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState());
-        centerPos = centerPos.atY(y + offset);
+        centerPos = centerPos.atY(y);
         if(!FantasyTreeStructure.isFeatureChunk(context, centerPos)) {
             return Optional.empty();
         }
@@ -65,29 +62,18 @@ public class FantasyTreeStructure extends Structure {
                 pos.atY(centerPos.getY()),
                 false,
                 Optional.empty(),
-                1,
+                128,
                 rotation);
     }
 
     public static boolean isFeatureChunk(@NotNull Structure.GenerationContext context, BlockPos pos) {
-        if(!validBiomeOnTop(context, Heightmap.Types.WORLD_SURFACE_WG)) {
+        if(!StructureUtils.isChunkFlat(pos, context.randomState().sampler(), Climate.Parameter.span(-0.3F, 0.3F), Climate.Parameter.span(-0.5F, 0.5F))) {
             return false;
         }
-        if(!StructureUtils.isChunkFlat(pos, context.randomState().sampler(), Climate.Parameter.span(-0.2F, 0.2F), Climate.Parameter.span(-0.6F, 0.6F))) {
-            return false;
-        }
-        if(!StructureUtils.isAreaDry(pos, context.chunkGenerator(), context.heightAccessor(),4, context.randomState())) {
-            return false;
-        }
+//        if(!StructureUtils.isAreaDry(pos, context.chunkGenerator(), context.heightAccessor(),4, context.randomState())) {
+//            return false;
+//        }
         return true;
-    }
-
-    public static boolean validBiomeOnTop(GenerationContext context, Heightmap.Types pHeightmapType) {
-        int x = context.chunkPos().getMiddleBlockX();
-        int z = context.chunkPos().getMiddleBlockZ();
-        int height = context.chunkGenerator().getFirstOccupiedHeight(x, z, pHeightmapType, context.heightAccessor(), context.randomState());
-        Holder<Biome> biome = context.chunkGenerator().getBiomeSource().getNoiseBiome(QuartPos.fromBlock(x), QuartPos.fromBlock(height), QuartPos.fromBlock(z), context.randomState().sampler());
-        return context.validBiome().test(biome);
     }
 
     @Override
