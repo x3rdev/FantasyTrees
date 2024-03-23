@@ -76,7 +76,7 @@ public class FantasyTreesJigsawPlacement {
                 List<PoolElementStructurePiece> list = Lists.newArrayList();
                 list.add(poolelementstructurepiece);
                 if (pMaxDepth > 0) {
-                    AABB aabb = new AABB((i - pMaxDistanceFromCenter), (i1 - pMaxDistanceFromCenter), (j - pMaxDistanceFromCenter), (double)(i + pMaxDistanceFromCenter + 1), (double)(i1 + pMaxDistanceFromCenter + 1), (double)(j + pMaxDistanceFromCenter + 1));
+                    AABB aabb = new AABB((i - pMaxDistanceFromCenter), (i1 - pMaxDistanceFromCenter), (j - pMaxDistanceFromCenter), i + pMaxDistanceFromCenter + 1, i1 + pMaxDistanceFromCenter + 1, j + pMaxDistanceFromCenter + 1);
                     VoxelShape voxelshape = Shapes.join(Shapes.create(aabb), Shapes.create(AABB.of(boundingbox)), BooleanOp.ONLY_FIRST);
                     JigsawPlacement.addPieces(pContext.randomState(), pMaxDepth, pUseExpansionHack, chunkgenerator, structuretemplatemanager, levelheightaccessor, worldgenrandom, registry, poolelementstructurepiece, list, voxelshape);
                     list.forEach(p_227237_::addPiece);

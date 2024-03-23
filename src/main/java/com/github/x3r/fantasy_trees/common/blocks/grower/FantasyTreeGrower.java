@@ -1,10 +1,7 @@
 package com.github.x3r.fantasy_trees.common.blocks.grower;
 
-import com.github.x3r.fantasy_trees.FantasyTrees;
 import com.github.x3r.fantasy_trees.FantasyTreesConfig;
-import com.github.x3r.fantasy_trees.common.features.TreeConfiguration;
 import com.github.x3r.fantasy_trees.registry.BlockRegistry;
-import com.github.x3r.fantasy_trees.registry.ConfiguredFeatureRegistry;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;

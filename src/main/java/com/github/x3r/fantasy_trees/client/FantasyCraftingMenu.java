@@ -8,7 +8,7 @@ import net.minecraft.world.inventory.CraftingMenu;
 
 public class FantasyCraftingMenu extends CraftingMenu {
 
-    private ContainerLevelAccess access;
+    private final ContainerLevelAccess access;
 
     public FantasyCraftingMenu(int pContainerId, Inventory pPlayerInventory, ContainerLevelAccess pAccess) {
         super(pContainerId, pPlayerInventory, pAccess);

@@ -1,8 +1,6 @@
 package com.github.x3r.fantasy_trees.registry;
 
 import com.github.x3r.fantasy_trees.FantasyTrees;
-import com.github.x3r.fantasy_trees.common.features.TreeConfiguration;
-import com.github.x3r.fantasy_trees.common.features.features.*;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.RandomPatchFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;

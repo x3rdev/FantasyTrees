@@ -67,13 +67,10 @@ public class FantasyTreeStructure extends Structure {
     }
 
     public static boolean isFeatureChunk(@NotNull Structure.GenerationContext context, BlockPos pos) {
-        if(!StructureUtils.isChunkFlat(pos, context.randomState().sampler(), Climate.Parameter.span(-0.3F, 0.3F), Climate.Parameter.span(-0.5F, 0.5F))) {
-            return false;
-        }
+        return StructureUtils.isChunkFlat(pos, context.randomState().sampler(), Climate.Parameter.span(-0.3F, 0.3F), Climate.Parameter.span(-0.5F, 0.5F));
 //        if(!StructureUtils.isAreaDry(pos, context.chunkGenerator(), context.heightAccessor(),4, context.randomState())) {
 //            return false;
 //        }
-        return true;
     }
 
     @Override

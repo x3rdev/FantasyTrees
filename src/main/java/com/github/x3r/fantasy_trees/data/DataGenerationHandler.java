@@ -28,7 +28,6 @@ public class DataGenerationHandler
             .add(Registries.STRUCTURE, StructureRegistry::bootstrap)
             .add(Registries.STRUCTURE_SET, StructureRegistry::bootstrapStructureSets)
             .add(Registries.BIOME, BiomeRegistry::bootstrapBiomes);
-    ;
 
 
     @SubscribeEvent
