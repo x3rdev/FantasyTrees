@@ -13,12 +13,12 @@ public final class StructureUtils {
     private StructureUtils(){}
 
     public static boolean isAreaDry(BlockPos blockPos, ChunkGenerator chunkGenerator, LevelHeightAccessor level, int radius, RandomState state) {
-        int depth = 30;
-        for (int i = -radius/2; i < radius/2; i++) {
-            for (int j = -radius/2; j < radius/2; j++) {
+        int depth = 4;
+        for (int i = -radius; i < radius; i++) {
+            for (int j = -radius; j < radius; j++) {
                 NoiseColumn column = chunkGenerator.getBaseColumn(blockPos.getX()+i, blockPos.getZ()+j, level, state);
-                for (int k = 0; k < depth; k++) {
-                    if(!column.getBlock(k - depth/2).getFluidState().isEmpty()) {
+                for (int k = -depth; k < depth; k++) {
+                    if(!column.getBlock(k - depth).getFluidState().isEmpty()) {
                         return false;
                     }
                 }

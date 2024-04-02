@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "p": {
+      "item": "fantasy_trees:fantasy_spruce_planks"
+    }
+  },
+  "pattern": [
+    "p  ",
+    "pp ",
+    "ppp"
+  ],
+  "result": {
+    "count": 4,
+    "item": "fantasy_trees:fantasy_spruce_stairs"
+  },
+  "show_notification": true
+}

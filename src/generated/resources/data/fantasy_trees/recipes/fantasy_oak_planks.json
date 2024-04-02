@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    [
+      {
+        "item": "fantasy_trees:fantasy_oak_log"
+      },
+      {
+        "item": "fantasy_trees:fantasy_stripped_oak_log"
+      },
+      {
+        "item": "fantasy_trees:fantasy_oak_wood"
+      },
+      {
+        "item": "fantasy_trees:fantasy_stripped_oak_wood"
+      }
+    ]
+  ],
+  "result": {
+    "count": 4,
+    "item": "fantasy_trees:fantasy_oak_planks"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "fantasy_trees:block/fantasy_spruce_planks",
-    "bottom": "fantasy_trees:block/fantasy_spruce_planks",
-    "top": "fantasy_trees:block/fantasy_spruce_planks"
-  }
-}

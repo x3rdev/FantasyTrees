@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "fantasy_trees:block/fantasy_acacia_log",
+    "side": "fantasy_trees:block/fantasy_acacia_log"
+  }
+}

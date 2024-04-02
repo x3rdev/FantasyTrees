@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "fantasy_trees:block/fantasy_birch_log",
-    "end": "fantasy_trees:block/fantasy_birch_log_top"
-  }
-}

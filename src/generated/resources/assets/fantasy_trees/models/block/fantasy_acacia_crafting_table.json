@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "fantasy_trees:block/fantasy_acacia_crafting_table_bottom",
+    "east": "fantasy_trees:block/fantasy_acacia_crafting_table_side",
+    "north": "fantasy_trees:block/fantasy_acacia_crafting_table_side",
+    "particle": "fantasy_trees:block/fantasy_acacia_crafting_table_bottom",
+    "south": "fantasy_trees:block/fantasy_acacia_crafting_table_side",
+    "up": "fantasy_trees:block/fantasy_acacia_crafting_table_top",
+    "west": "fantasy_trees:block/fantasy_acacia_crafting_table_side"
+  }
+}

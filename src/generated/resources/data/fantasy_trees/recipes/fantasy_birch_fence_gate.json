@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "p": {
+      "item": "fantasy_trees:fantasy_birch_planks"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "   ",
+    "sps",
+    "sps"
+  ],
+  "result": {
+    "item": "fantasy_trees:fantasy_birch_fence_gate"
+  },
+  "show_notification": true
+}

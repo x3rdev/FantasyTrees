@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "c": {
+      "item": "fantasy_trees:glowing_coal"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "   ",
+    "c  ",
+    "s  "
+  ],
+  "result": {
+    "count": 8,
+    "item": "minecraft:torch"
+  },
+  "show_notification": true
+}

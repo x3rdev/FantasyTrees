@@ -1,0 +1,27 @@
+// 1.20.1	2024-04-01T19:32:29.8335958	Fantasy Trees Block Tags
+892895bc7e2bee9970af8a221dbf8b99de98b317 data/forge/tags/blocks/fences.json
+892895bc7e2bee9970af8a221dbf8b99de98b317 data/forge/tags/blocks/fences/wooden.json
+03149d9a370b39c9b42c1724300a1a38b680dad8 data/forge/tags/blocks/fence_gates.json
+03149d9a370b39c9b42c1724300a1a38b680dad8 data/forge/tags/blocks/fence_gates/wooden.json
+1822022e16a8bb3f9ecea117473e78013f404a17 data/minecraft/tags/blocks/completes_find_tree_tutorial.json
+47e80d4ab2d547f1b8eb7bda2bdaa416de474369 data/minecraft/tags/blocks/doors.json
+892895bc7e2bee9970af8a221dbf8b99de98b317 data/minecraft/tags/blocks/fences.json
+03149d9a370b39c9b42c1724300a1a38b680dad8 data/minecraft/tags/blocks/fence_gates.json
+718461924200c0d31a82128f7dc0497b45198118 data/minecraft/tags/blocks/leaves.json
+ab3848a26fd39990102dd2461a3082c4afacb046 data/minecraft/tags/blocks/logs.json
+ab3848a26fd39990102dd2461a3082c4afacb046 data/minecraft/tags/blocks/logs_that_burn.json
+28a3de42a324d4fa594e2f3938f9279abd9b2945 data/minecraft/tags/blocks/mineable/axe.json
+718461924200c0d31a82128f7dc0497b45198118 data/minecraft/tags/blocks/mineable/hoe.json
+c276c4e518bb7d616c333365f4605b63e33df448 data/minecraft/tags/blocks/overworld_natural_logs.json
+1822022e16a8bb3f9ecea117473e78013f404a17 data/minecraft/tags/blocks/parrots_spawnable_on.json
+f731452f1098ec5f11902cc016e3063a0bf2a075 data/minecraft/tags/blocks/planks.json
+718461924200c0d31a82128f7dc0497b45198118 data/minecraft/tags/blocks/replaceable_by_trees.json
+4dc72c930d02d3ab4aec29a551b2568d5b153275 data/minecraft/tags/blocks/saplings.json
+aef9ad10add8d751c3b579e7c528f2529906bbb6 data/minecraft/tags/blocks/stairs.json
+59a1262ada7ad8113e14d1c4909618f9d4ba4f41 data/minecraft/tags/blocks/sword_efficient.json
+b1427e71b10a040ba70adfac3c65aab9ad5b64d1 data/minecraft/tags/blocks/trapdoors.json
+03149d9a370b39c9b42c1724300a1a38b680dad8 data/minecraft/tags/blocks/unstable_bottom_center.json
+47e80d4ab2d547f1b8eb7bda2bdaa416de474369 data/minecraft/tags/blocks/wooden_doors.json
+892895bc7e2bee9970af8a221dbf8b99de98b317 data/minecraft/tags/blocks/wooden_fences.json
+aef9ad10add8d751c3b579e7c528f2529906bbb6 data/minecraft/tags/blocks/wooden_stairs.json
+b1427e71b10a040ba70adfac3c65aab9ad5b64d1 data/minecraft/tags/blocks/wooden_trapdoors.json

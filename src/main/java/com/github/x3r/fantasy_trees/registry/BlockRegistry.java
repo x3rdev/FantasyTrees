@@ -23,6 +23,7 @@ public class BlockRegistry {
             () -> new FlowerBlock(() -> MobEffects.ABSORPTION, 20, BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS).lightLevel(value -> 15)));
     public static final Map<String, RegistryObject<Block>> WOODS = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> LOGS = new HashMap<>();
+    public static final Map<String, RegistryObject<Block>> STRIPPED_WOODS = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> STRIPPED_LOGS = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> LEAVES = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> PLANKS = new HashMap<>();
@@ -32,7 +33,6 @@ public class BlockRegistry {
     public static final Map<String, RegistryObject<Block>> FENCE_GATES = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> CRAFTING_TABLES = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> SAPLINGS = new HashMap<>();
-    public static final Map<String, RegistryObject<Block>> STRIPPED_WOODS = new HashMap<>();
     public static final Map<String, RegistryObject<Block>> TRAPDOORS = new HashMap<>();
 
     protected static final WoodType[] WOOD_TYPES = {WoodType.OAK, WoodType.SPRUCE, WoodType.BIRCH, WoodType.ACACIA, WoodType.JUNGLE, WoodType.DARK_OAK};

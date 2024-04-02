@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "l": {
+      "item": "fantasy_trees:fantasy_dark_oak_log"
+    }
+  },
+  "pattern": [
+    "   ",
+    "ll ",
+    "ll "
+  ],
+  "result": {
+    "count": 3,
+    "item": "fantasy_trees:fantasy_dark_oak_wood"
+  },
+  "show_notification": true
+}

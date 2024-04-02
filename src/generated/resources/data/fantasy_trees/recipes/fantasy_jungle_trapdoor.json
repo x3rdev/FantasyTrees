@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "p": {
+      "item": "fantasy_trees:fantasy_jungle_planks"
+    }
+  },
+  "pattern": [
+    "   ",
+    "ppp",
+    "ppp"
+  ],
+  "result": {
+    "count": 3,
+    "item": "fantasy_trees:fantasy_jungle_trapdoor"
+  },
+  "show_notification": true
+}
