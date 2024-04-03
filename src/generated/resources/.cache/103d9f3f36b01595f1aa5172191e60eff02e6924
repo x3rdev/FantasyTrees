@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-22T19:18:22.478199	Registries
+// 1.20.1	2024-04-02T17:04:31.0670791	Registries
 55d567e621ec5c916bf2de186de2419dbde59f9e data/fantasy_trees/worldgen/biome/fantasy_birch_forest.json
 81931ca2ef6721e194b43c65029c2eeadbc86695 data/fantasy_trees/worldgen/biome/fantasy_dark_forest.json
 55d567e621ec5c916bf2de186de2419dbde59f9e data/fantasy_trees/worldgen/biome/fantasy_forest.json
@@ -7,7 +7,7 @@
 ac2fa3c4927567cd344401f44cbf9fc484ba9b72 data/fantasy_trees/worldgen/biome/fantasy_taiga.json
 e1a2280d6fc9c047da265e958b6d9bc04f8af843 data/fantasy_trees/worldgen/configured_feature/fantasy_flowers.json
 8a835f246886e9e63d4f6bf6dc1705ccb65e8d1b data/fantasy_trees/worldgen/configured_feature/fantasy_forest_grass.json
-6baf858917f65e33279dd0457b7a035332363161 data/fantasy_trees/worldgen/configured_feature/fantasy_vanilla_flowers.json
+77f8d82e08edc0886c898136cfddb4a4690565f4 data/fantasy_trees/worldgen/configured_feature/fantasy_vanilla_flowers.json
 49036d959dd197d77941fdba380638f339390f4f data/fantasy_trees/worldgen/placed_feature/fantasy_flowers.json
 ea8b8301abb48601127f88662ad7788591aad21d data/fantasy_trees/worldgen/placed_feature/fantasy_forest_grass.json
 49036d959dd197d77941fdba380638f339390f4f data/fantasy_trees/worldgen/placed_feature/fantasy_vanilla_flowers.json

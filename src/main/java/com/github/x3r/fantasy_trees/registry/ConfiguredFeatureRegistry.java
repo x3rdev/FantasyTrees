@@ -60,6 +60,7 @@ public class ConfiguredFeatureRegistry {
         list.add(Blocks.PEONY.defaultBlockState(), 1);
         list.add(Blocks.CORNFLOWER.defaultBlockState(), 1);
         list.add(Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 1);
+        list.add(BlockRegistry.FANTASY_FLOWER.get().defaultBlockState(), 2);
         list.build();
         return new SimpleBlockConfiguration(new WeightedStateProvider(list));
     }

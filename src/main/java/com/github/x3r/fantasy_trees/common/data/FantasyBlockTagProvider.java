@@ -14,9 +14,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-public class FantasyTagProvider extends BlockTagsProvider {
+public class FantasyBlockTagProvider extends BlockTagsProvider {
 
-    public FantasyTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+    public FantasyBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, FantasyTrees.MOD_ID, existingFileHelper);
     }
 
@@ -100,6 +100,7 @@ public class FantasyTagProvider extends BlockTagsProvider {
             tag(BlockTags.MINEABLE_WITH_AXE).add(block.get());
             tag(BlockTags.WOODEN_TRAPDOORS).add(block.get());
         }
+
     }
 
     @Override

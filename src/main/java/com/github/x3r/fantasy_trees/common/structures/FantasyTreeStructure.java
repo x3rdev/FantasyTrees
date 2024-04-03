@@ -1,7 +1,5 @@
 package com.github.x3r.fantasy_trees.common.structures;
 
-import com.github.x3r.fantasy_trees.FantasyTrees;
-import com.github.x3r.fantasy_trees.registry.BiomeRegistry;
 import com.github.x3r.fantasy_trees.registry.StructureRegistry;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -9,8 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.QuartPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -24,6 +20,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public class FantasyTreeStructure extends Structure {
+
+    public static final int TREE_OFFSET = 4;
     public static final Codec<FantasyTreeStructure> CODEC = RecordCodecBuilder.<FantasyTreeStructure>mapCodec(instance ->
             instance.group(FantasyTreeStructure.settingsCodec(instance),
                     StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool)
@@ -54,7 +52,7 @@ public class FantasyTreeStructure extends Structure {
         if(!FantasyTreeStructure.isValidBiome(context, pos.atY(100), key)) {
             return Optional.empty();
         }
-        int y = context.chunkGenerator().getFirstOccupiedHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.OCEAN_FLOOR_WG, context.heightAccessor(), context.randomState());
+        int y = context.chunkGenerator().getFirstFreeHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.OCEAN_FLOOR_WG, context.heightAccessor(), context.randomState()) - TREE_OFFSET;
         centerPos = centerPos.atY(y);
         if(!FantasyTreeStructure.isFeatureChunk(context, centerPos)) {
             return Optional.empty();
@@ -79,7 +77,7 @@ public class FantasyTreeStructure extends Structure {
         if(!StructureUtils.isChunkFlat(pos, context.randomState().sampler(), Climate.Parameter.span(-0.3F, 0.3F), Climate.Parameter.span(-0.5F, 0.5F))) {
             return false;
         }
-        if(!StructureUtils.isAreaDry(pos, context.chunkGenerator(), context.heightAccessor(), 4, context.randomState())) {
+        if(!StructureUtils.isAreaDry(pos, context.chunkGenerator(), context.heightAccessor(), 2, context.randomState())) {
             return false;
         }
         return true;

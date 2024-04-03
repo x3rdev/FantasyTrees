@@ -15,7 +15,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Set;
 
@@ -37,8 +36,10 @@ public class DataGenerationHandler
         PackOutput output = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
+        FantasyBlockTagProvider tagProvider = new FantasyBlockTagProvider(output, event.getLookupProvider(), existingFileHelper);
+        generator.addProvider(event.includeServer(), tagProvider);
+        generator.addProvider(event.includeServer(), new FantasyItemTagProvider(output, event.getLookupProvider(), tagProvider.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(output, event.getLookupProvider(), BUILDER, Set.of(FantasyTrees.MOD_ID)));
-        generator.addProvider(event.includeServer(), new FantasyTagProvider(output, event.getLookupProvider(), existingFileHelper));
         generator.addProvider(event.includeServer(), new FantasyBlockStateProvider(output, existingFileHelper));
         generator.addProvider(event.includeServer(), new FantasyItemModelProvider(output, existingFileHelper));
         generator.addProvider(event.includeServer(), new FantasyLanguageProvider(output));

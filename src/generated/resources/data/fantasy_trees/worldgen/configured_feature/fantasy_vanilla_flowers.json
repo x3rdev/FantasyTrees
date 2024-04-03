@@ -127,6 +127,12 @@
                   "Name": "minecraft:lily_of_the_valley"
                 },
                 "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "fantasy_trees:fantasy_flower"
+                },
+                "weight": 2
               }
             ]
           }

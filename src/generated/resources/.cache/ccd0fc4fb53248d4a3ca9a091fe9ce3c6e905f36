@@ -1,0 +1,15 @@
+// 1.20.1	2024-04-02T17:04:31.0650777	Tags for minecraft:item mod id fantasy_trees
+eb169f8cd2055986385ab560d92b1c6c55c7e2fe data/minecraft/tags/items/doors.json
+2e42cffb875bbeab8d23371a59b07a6547732771 data/minecraft/tags/items/fences.json
+65cbbf34e95dabc5e948aa562ddbfba0b093649d data/minecraft/tags/items/fence_gates.json
+a20744736143c945f6b1af24506e03942942b4a7 data/minecraft/tags/items/leaves.json
+dbd8f5768b22f58b3b6e49c824942c4e60db8da6 data/minecraft/tags/items/logs.json
+dbd8f5768b22f58b3b6e49c824942c4e60db8da6 data/minecraft/tags/items/logs_that_burn.json
+ec7581d80442da72f80e2affa2d9c1de4912eae6 data/minecraft/tags/items/planks.json
+2d777f76caf02dcb7d907446bc359c25f5d0dc1d data/minecraft/tags/items/saplings.json
+406df718c8d285d61003a56c7ebe682f26f6623f data/minecraft/tags/items/stairs.json
+2503a28263ce7698f277e67cd79111b66a59abae data/minecraft/tags/items/trapdoors.json
+eb169f8cd2055986385ab560d92b1c6c55c7e2fe data/minecraft/tags/items/wooden_doors.json
+2e42cffb875bbeab8d23371a59b07a6547732771 data/minecraft/tags/items/wooden_fences.json
+406df718c8d285d61003a56c7ebe682f26f6623f data/minecraft/tags/items/wooden_stairs.json
+2503a28263ce7698f277e67cd79111b66a59abae data/minecraft/tags/items/wooden_trapdoors.json
