@@ -34,121 +34,136 @@ public class StructureRegistry {
     public static final DeferredRegister<StructureType<?>> STRUCTURE_FEATURES = DeferredRegister.create(Registries.STRUCTURE_TYPE, FantasyTrees.MOD_ID);
     public static final RegistryObject<StructureType<FantasyTreeStructure>> FANTASY_TREE_STRUCTURES = STRUCTURE_FEATURES.register("fantasy_tree_structures", () -> () -> FantasyTreeStructure.CODEC);
 
+    public static final List<Pair<String, Integer>> ACACIA_LARGE_WEIGHTS = List.of(
+            Pair.of("fantasy_acacia_large_1", 1),
+            Pair.of("fantasy_acacia_large_2", 1),
+            Pair.of("fantasy_acacia_large_3", 1)
+    );
+    public static final List<Pair<String, Integer>> ACACIA_SMALL_WEIGHTS = List.of(
+            Pair.of("fantasy_acacia_small_1", 1),
+            Pair.of("fantasy_acacia_small_2", 1),
+            Pair.of("fantasy_acacia_small_3", 1)
+    );
+    public static final List<Pair<String, Integer>> BIRCH_LARGE_WEIGHTS = List.of(
+            Pair.of("fantasy_birch_large_1", 1)
+    );
+    public static final List<Pair<String, Integer>> BIRCH_MEDIUM_WEIGHTS = List.of(
+            Pair.of("fantasy_birch_medium_1", 1),
+            Pair.of("fantasy_birch_medium_2", 1),
+            Pair.of("fantasy_birch_medium_3", 1),
+            Pair.of("fantasy_birch_medium_4", 1)
+    );
+    public static final List<Pair<String, Integer>> BIRCH_SMALL_WEIGHTS = List.of(
+            Pair.of("fantasy_birch_small_1", 1),
+            Pair.of("fantasy_birch_small_2", 1),
+            Pair.of("fantasy_birch_small_3", 1),
+            Pair.of("fantasy_birch_small_4", 1),
+            Pair.of("fantasy_birch_small_5", 1),
+            Pair.of("fantasy_birch_small_6", 1),
+            Pair.of("fantasy_birch_small_7", 1),
+            Pair.of("fantasy_birch_small_8", 1),
+            Pair.of("fantasy_birch_small_9", 1),
+            Pair.of("fantasy_birch_small_10", 1)
+    );
+    public static final List<Pair<String, Integer>> DARK_OAK_LARGE_WEIGHTS = List.of(
+            Pair.of("fantasy_dark_oak_large_2", 1),
+            Pair.of("fantasy_dark_oak_large_3", 1),
+            Pair.of("fantasy_dark_oak_large_4", 1)
+    );
+    public static final List<Pair<String, Integer>> JUNGLE_LARGE_WEIGHTS = List.of(
+            Pair.of("fantasy_jungle_large_1", 1),
+            Pair.of("fantasy_jungle_large_2", 1),
+            Pair.of("fantasy_jungle_large_3", 1)
+    );
+    public static final List<Pair<String, Integer>> JUNGLE_MEDIUM_WEIGHTS = List.of(
+            Pair.of("fantasy_jungle_medium_1", 1),
+            Pair.of("fantasy_jungle_medium_2", 1)
+    );
+    public static final List<Pair<String, Integer>> JUNGLE_SMALL_WEIGHTS = List.of(
+            Pair.of("fantasy_jungle_small_1", 1),
+            Pair.of("fantasy_jungle_small_2", 1)
+    );
+    public static final List<Pair<String, Integer>> OAK_LARGE_WEIGHTS = List.of(
+            Pair.of("fantasy_oak_large_1", 1),
+            Pair.of("fantasy_oak_large_2", 1),
+            Pair.of("fantasy_oak_large_3", 1),
+            Pair.of("fantasy_oak_large_4", 1),
+            Pair.of("fantasy_oak_large_5", 1)
+    );
+    public static final List<Pair<String, Integer>> OAK_MEDIUM_WEIGHTS = List.of(
+            Pair.of("fantasy_oak_medium_1", 1),
+            Pair.of("fantasy_oak_medium_2", 1),
+            Pair.of("fantasy_oak_medium_3", 1),
+            Pair.of("fantasy_oak_medium_4", 1),
+            Pair.of("fantasy_oak_medium_5", 1)
+    );
+    public static final List<Pair<String, Integer>> OAK_SMALL_WEIGHTS = List.of(
+            Pair.of("fantasy_oak_small_1", 1),
+            Pair.of("fantasy_oak_small_2", 1),
+            Pair.of("fantasy_oak_small_3", 1),
+            Pair.of("fantasy_oak_small_4", 1),
+            Pair.of("fantasy_oak_small_4", 1),
+            Pair.of("fantasy_oak_small_5", 1),
+            Pair.of("fantasy_oak_small_6", 1),
+            Pair.of("fantasy_oak_small_7", 1)
+    );
+    public static final List<Pair<String, Integer>> SPRUCE_LARGE_WEIGHTS = List.of(
+            Pair.of("fantasy_spruce_large_1", 1),
+            Pair.of("fantasy_spruce_large_2", 1),
+            Pair.of("fantasy_spruce_large_3", 1)
+    );
+    public static final List<Pair<String, Integer>> SPRUCE_MEDIUM_WEIGHTS = List.of(
+            Pair.of("fantasy_spruce_medium_1", 1),
+            Pair.of("fantasy_spruce_medium_2", 1),
+            Pair.of("fantasy_spruce_medium_3", 1),
+            Pair.of("fantasy_spruce_medium_4", 1),
+            Pair.of("fantasy_spruce_medium_5", 1),
+            Pair.of("fantasy_spruce_medium_6", 1),
+            Pair.of("fantasy_spruce_medium_7", 1),
+            Pair.of("fantasy_spruce_medium_8", 1),
+            Pair.of("fantasy_spruce_medium_9", 1),
+            Pair.of("fantasy_spruce_medium_10", 1),
+            Pair.of("fantasy_spruce_medium_11", 1),
+            Pair.of("fantasy_spruce_medium_12", 1)
+    );
+    public static final List<Pair<String, Integer>> SPRUCE_SMALL_WEIGHTS = List.of(
+            Pair.of("fantasy_spruce_small_1", 1),
+            Pair.of("fantasy_spruce_small_2", 1),
+            Pair.of("fantasy_spruce_small_3", 1)
+    );
 
     public static void bootstrapStructurePools(BootstapContext<StructureTemplatePool> context) {
         Holder.Reference<StructureTemplatePool> empty = context.lookup(Registries.TEMPLATE_POOL).getOrThrow(Pools.EMPTY);
         registerStructurePool(context, "fantasy_acacia_large", empty,
-                List.of(
-                        Pair.of("fantasy_acacia_large_1", 1),
-                        Pair.of("fantasy_acacia_large_2", 1),
-                        Pair.of("fantasy_acacia_large_3", 1)
-                ));
+                ACACIA_LARGE_WEIGHTS);
         registerStructurePool(context, "fantasy_acacia_small", empty,
-                List.of(
-                        Pair.of("fantasy_acacia_small_1", 1),
-                        Pair.of("fantasy_acacia_small_2", 1),
-                        Pair.of("fantasy_acacia_small_3", 1)
-                ));
+                ACACIA_SMALL_WEIGHTS);
         registerStructurePool(context, "fantasy_birch_large", empty,
-                List.of(
-                        Pair.of("fantasy_birch_large_1", 1)
-                ));
+                BIRCH_LARGE_WEIGHTS);
         registerStructurePool(context, "fantasy_birch_medium", empty,
-                List.of(
-                        Pair.of("fantasy_birch_medium_1", 1),
-                        Pair.of("fantasy_birch_medium_2", 1),
-                        Pair.of("fantasy_birch_medium_3", 1),
-                        Pair.of("fantasy_birch_medium_4", 1)
-                ));
+                BIRCH_MEDIUM_WEIGHTS);
         registerStructurePool(context, "fantasy_birch_small", empty,
-                List.of(
-                        Pair.of("fantasy_birch_small_1", 1),
-                        Pair.of("fantasy_birch_small_2", 1),
-                        Pair.of("fantasy_birch_small_3", 1),
-                        Pair.of("fantasy_birch_small_4", 1),
-                        Pair.of("fantasy_birch_small_5", 1),
-                        Pair.of("fantasy_birch_small_6", 1),
-                        Pair.of("fantasy_birch_small_7", 1),
-                        Pair.of("fantasy_birch_small_8", 1),
-                        Pair.of("fantasy_birch_small_9", 1),
-                        Pair.of("fantasy_birch_small_10", 1)
-                ));
+                BIRCH_SMALL_WEIGHTS);
         registerStructurePool(context, "fantasy_dark_oak_large", empty,
-                List.of(
-                        Pair.of("fantasy_dark_oak_large_2", 1),
-                        Pair.of("fantasy_dark_oak_large_3", 1),
-                        Pair.of("fantasy_dark_oak_large_4", 1)
-                ));
+                DARK_OAK_LARGE_WEIGHTS);
         registerStructurePool(context, "fantasy_jungle_large", empty,
-                List.of(
-                        Pair.of("fantasy_jungle_large_1", 1),
-                        Pair.of("fantasy_jungle_large_2", 1),
-                        Pair.of("fantasy_jungle_large_3", 1)
-                ));
+                JUNGLE_LARGE_WEIGHTS);
         registerStructurePool(context, "fantasy_jungle_medium", empty,
-                List.of(
-                        Pair.of("fantasy_jungle_medium_1", 1),
-                        Pair.of("fantasy_jungle_medium_2", 1)
-                ));
+                JUNGLE_MEDIUM_WEIGHTS);
         registerStructurePool(context, "fantasy_jungle_small", empty,
-                List.of(
-                        Pair.of("fantasy_jungle_small_1", 1),
-                        Pair.of("fantasy_jungle_small_2", 1)
-                ));
+                JUNGLE_SMALL_WEIGHTS);
         registerStructurePool(context, "fantasy_oak_large", empty,
-                List.of(
-                        Pair.of("fantasy_oak_large_1", 1),
-                        Pair.of("fantasy_oak_large_2", 1),
-                        Pair.of("fantasy_oak_large_3", 1),
-                        Pair.of("fantasy_oak_large_4", 1),
-                        Pair.of("fantasy_oak_large_5", 1)
-                ));
+                OAK_LARGE_WEIGHTS);
         registerStructurePool(context, "fantasy_oak_medium", empty,
-                List.of(
-                        Pair.of("fantasy_oak_medium_1", 1),
-                        Pair.of("fantasy_oak_medium_2", 1),
-                        Pair.of("fantasy_oak_medium_3", 1),
-                        Pair.of("fantasy_oak_medium_4", 1),
-                        Pair.of("fantasy_oak_medium_5", 1)
-                ));
+                OAK_MEDIUM_WEIGHTS);
         registerStructurePool(context, "fantasy_oak_small", empty,
-                List.of(
-                        Pair.of("fantasy_oak_small_1", 1),
-                        Pair.of("fantasy_oak_small_2", 1),
-                        Pair.of("fantasy_oak_small_3", 1),
-                        Pair.of("fantasy_oak_small_4", 1),
-                        Pair.of("fantasy_oak_small_4", 1),
-                        Pair.of("fantasy_oak_small_5", 1),
-                        Pair.of("fantasy_oak_small_6", 1),
-                        Pair.of("fantasy_oak_small_7", 1)
-                ));
+                OAK_SMALL_WEIGHTS);
         registerStructurePool(context, "fantasy_spruce_large", empty,
-                List.of(
-                        Pair.of("fantasy_spruce_large_1", 1),
-                        Pair.of("fantasy_spruce_large_2", 1),
-                        Pair.of("fantasy_spruce_large_3", 1)
-                ));
+                SPRUCE_LARGE_WEIGHTS);
         registerStructurePool(context, "fantasy_spruce_medium", empty,
-                List.of(
-                        Pair.of("fantasy_spruce_medium_1", 1),
-                        Pair.of("fantasy_spruce_medium_2", 1),
-                        Pair.of("fantasy_spruce_medium_3", 1),
-                        Pair.of("fantasy_spruce_medium_4", 1),
-                        Pair.of("fantasy_spruce_medium_5", 1),
-                        Pair.of("fantasy_spruce_medium_6", 1),
-                        Pair.of("fantasy_spruce_medium_7", 1),
-                        Pair.of("fantasy_spruce_medium_8", 1),
-                        Pair.of("fantasy_spruce_medium_9", 1),
-                        Pair.of("fantasy_spruce_medium_10", 1),
-                        Pair.of("fantasy_spruce_medium_11", 1),
-                        Pair.of("fantasy_spruce_medium_12", 1)
-                ));
+                SPRUCE_MEDIUM_WEIGHTS);
         registerStructurePool(context, "fantasy_spruce_small", empty,
-                List.of(
-                        Pair.of("fantasy_spruce_small_1", 1),
-                        Pair.of("fantasy_spruce_small_2", 1),
-                        Pair.of("fantasy_spruce_small_3", 1)
-                ));
+                SPRUCE_SMALL_WEIGHTS);
     }
 
     private static void registerStructurePool(BootstapContext<StructureTemplatePool> context, String name, Holder<StructureTemplatePool> fallback, List<Pair<String, Integer>> weights) {
