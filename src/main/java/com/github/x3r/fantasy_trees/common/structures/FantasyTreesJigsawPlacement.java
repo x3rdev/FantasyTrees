@@ -28,15 +28,13 @@ import java.util.Optional;
 
 public class FantasyTreesJigsawPlacement {
 
-    public static Optional<Structure.GenerationStub> addPieces(Structure.GenerationContext pContext, Holder<StructureTemplatePool> pStartPool, Optional<ResourceLocation> pStartJigsawName, int pMaxDepth, BlockPos pPos, boolean pUseExpansionHack, Optional<Heightmap.Types> pProjectStartToHeightmap, int pMaxDistanceFromCenter, Rotation rotation) {
+    public static Optional<Structure.GenerationStub> addPieces(Structure.GenerationContext pContext, Holder<StructureTemplatePool> pStartPool, Optional<ResourceLocation> pStartJigsawName, int pMaxDepth, BlockPos pPos, boolean pUseExpansionHack, Optional<Heightmap.Types> pProjectStartToHeightmap, int pMaxDistanceFromCenter, StructurePoolElement structurepoolelement, Rotation rotation) {
         RegistryAccess registryaccess = pContext.registryAccess();
         ChunkGenerator chunkgenerator = pContext.chunkGenerator();
         StructureTemplateManager structuretemplatemanager = pContext.structureTemplateManager();
         LevelHeightAccessor levelheightaccessor = pContext.heightAccessor();
         WorldgenRandom worldgenrandom = pContext.random();
         Registry<StructureTemplatePool> registry = registryaccess.registryOrThrow(Registries.TEMPLATE_POOL);
-        StructureTemplatePool structuretemplatepool = pStartPool.value();
-        StructurePoolElement structurepoolelement = structuretemplatepool.getRandomTemplate(worldgenrandom);
         if (structurepoolelement == EmptyPoolElement.INSTANCE) {
             return Optional.empty();
         } else {

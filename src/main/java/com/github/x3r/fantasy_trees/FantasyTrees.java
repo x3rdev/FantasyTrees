@@ -26,9 +26,6 @@ public class FantasyTrees {
     public static final String MOD_ID = "fantasy_trees";
 
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, FantasyTrees.MOD_ID);
-    public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES = DeferredRegister.create(Registries.CONFIGURED_FEATURE, MOD_ID);
-    public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registries.PLACED_FEATURE, MOD_ID);
-
     public FantasyTrees() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
@@ -42,10 +39,10 @@ public class FantasyTrees {
         ItemRegistry.ITEMS.register(modEventBus);
         ItemRegistry.registerFantasyItems();
         ItemRegistry.FantasyTreesItemTab.CREATIVE_TABS.register(modEventBus);
-        StructureRegistry.STRUCTURE_FEATURES.register(modEventBus);
         FeatureRegistry.FEATURES.register(modEventBus);
-        CONFIGURED_FEATURES.register(modEventBus);
-        PLACED_FEATURES.register(modEventBus);
+        ProcessorRegistry.PROCESSORS.register(modEventBus);
+        StructureRegistry.STRUCTURE_FEATURES.register(modEventBus);
+
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FantasyTreesConfig.SPEC, "fantasy_trees-common.toml");
 

@@ -6,6 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.QuartPos;
+import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Rotation;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +23,7 @@ import java.util.Optional;
 
 public class FantasyTreeStructure extends Structure {
 
-    public static final int TREE_OFFSET = 4;
+    public static final int TREE_OFFSET = 3;
     public static final Codec<FantasyTreeStructure> CODEC = RecordCodecBuilder.<FantasyTreeStructure>mapCodec(instance ->
             instance.group(FantasyTreeStructure.settingsCodec(instance),
                     StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool)
@@ -44,12 +46,12 @@ public class FantasyTreeStructure extends Structure {
         if(startPool.unwrapKey().isEmpty()) {
             return Optional.empty();
         }
-        ResourceLocation key = startPool.unwrapKey().get().location();
-        StructureTemplate structureTemplate = context.structureTemplateManager().getOrCreate(key);
-        BlockPos pos = context.chunkPos().getWorldPosition();
         Rotation rotation = Rotation.getRandom(context.random());
-        BlockPos centerPos = pos.offset(new BlockPos((structureTemplate.getSize().getX()/2), pos.getY(), (structureTemplate.getSize().getZ()/2)).rotate(rotation));
-        if(!FantasyTreeStructure.isValidBiome(context, pos.atY(100), key)) {
+        StructurePoolElement element = startPool.get().getRandomTemplate(context.random());
+        Vec3i size = element.getSize(context.structureTemplateManager(), rotation);
+        BlockPos pos = context.chunkPos().getWorldPosition();
+        BlockPos centerPos = pos.offset(new BlockPos(size.getX()/2, 100, size.getZ()/2).rotate(rotation));
+        if(!FantasyTreeStructure.isValidBiome(context, centerPos)) {
             return Optional.empty();
         }
         int y = context.chunkGenerator().getFirstFreeHeight(centerPos.getX(), centerPos.getZ(), Heightmap.Types.OCEAN_FLOOR_WG, context.heightAccessor(), context.randomState()) - TREE_OFFSET;
@@ -66,10 +68,11 @@ public class FantasyTreeStructure extends Structure {
                 false,
                 Optional.empty(),
                 128,
+                element,
                 rotation);
     }
 
-    public static boolean isValidBiome(Structure.GenerationContext context, BlockPos blockpos, ResourceLocation key) {
+    public static boolean isValidBiome(Structure.GenerationContext context, BlockPos blockpos) {
         return context.validBiome().test(context.chunkGenerator().getBiomeSource().getNoiseBiome(QuartPos.fromBlock(blockpos.getX()), QuartPos.fromBlock(blockpos.getY()), QuartPos.fromBlock(blockpos.getZ()), context.randomState().sampler()));
     }
 
@@ -77,7 +80,7 @@ public class FantasyTreeStructure extends Structure {
         if(!StructureUtils.isChunkFlat(pos, context.randomState().sampler(), Climate.Parameter.span(-0.3F, 0.3F), Climate.Parameter.span(-0.5F, 0.5F))) {
             return false;
         }
-        if(!StructureUtils.isAreaDry(pos, context.chunkGenerator(), context.heightAccessor(), 2, context.randomState())) {
+        if(!StructureUtils.isVolumeDry(pos, context.chunkGenerator(), context.heightAccessor(), 2, context.randomState())) {
             return false;
         }
         return true;

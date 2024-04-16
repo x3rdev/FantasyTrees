@@ -1,24 +1,8 @@
-buildscript {
-    repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
-        maven { url = 'https://maven.minecraftforge.net/' }
-        maven { url = 'https://maven.parchmentmc.org' }
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-    }
-    dependencies {
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.+', changing: true
-        classpath 'org.parchmentmc:librarian:1.+'
-    }
-}
-
 plugins {
-    id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
-
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
-apply plugin: 'org.spongepowered.mixin'
 
 group = 'com.github.x3rmination'
 version = '1.1.0'
@@ -38,10 +22,10 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
-
             property 'forge.logging.console.level', 'debug'
-
             property 'forge.enabledGameTestNamespaces', 'fantasy_trees'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 fantasy_trees {
@@ -54,10 +38,10 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
-
             property 'forge.logging.console.level', 'debug'
-
             property 'forge.enabledGameTestNamespaces', 'fantasy_trees'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 fantasy_trees {
@@ -70,10 +54,10 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
-
             property 'forge.logging.console.level', 'debug'
-
             property 'forge.enabledGameTestNamespaces', 'fantasy_trees'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 fantasy_trees {
@@ -86,8 +70,9 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
-
             property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             args '--mod', 'fantasy_trees', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
@@ -100,39 +85,26 @@ minecraft {
     }
 }
 
-processResources {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+mixin {
+    add sourceSets.main, 'mixins.fantasy_trees.refmap.json'
+    config 'mixins.fantasy_trees.json'
+
+    debug.export = true
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     repositories {
-        maven {
-            url "https://cursemaven.com"
-            content {
-                includeGroup "curse.maven"
-            }
-        }
+        maven { url "https://cursemaven.com" }
     }
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.20.1-47.1.47'
+    minecraft 'net.minecraftforge:forge:1.20.1-47.2.18'
     implementation fg.deobf("curse.maven:cyanide-541676:4824162")
     implementation fg.deobf('com.github.glitchfiend:TerraBlender-forge:1.20.1-3.0.1.2')
-
-    // Real mod deobf dependency examples - these get remapped to your current mappings
-    // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
-    // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency
-    // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
-
-    // Examples using mod jars from ./libs
-    // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
-
-    // For more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
 }
 

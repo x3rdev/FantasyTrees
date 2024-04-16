@@ -2,6 +2,7 @@ package com.github.x3r.fantasy_trees.registry;
 
 import com.github.x3r.fantasy_trees.FantasyTrees;
 import com.github.x3r.fantasy_trees.common.structures.FantasyTreeStructure;
+import com.github.x3r.fantasy_trees.common.worldgen.WaterLoggingFixProcessor;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStruct
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -168,9 +170,11 @@ public class StructureRegistry {
 
     private static void registerStructurePool(BootstapContext<StructureTemplatePool> context, String name, Holder<StructureTemplatePool> fallback, List<Pair<String, Integer>> weights) {
         List<Pair<Function<StructureTemplatePool.Projection, ? extends StructurePoolElement>, Integer>> list = new ArrayList<>();
+        Holder<StructureProcessorList> processorListHolder = Holder.direct(new StructureProcessorList(List.of(new WaterLoggingFixProcessor())));
         for (Pair<String, Integer> weight : weights) {
-            list.add(Pair.of(StructurePoolElement.single(FantasyTrees.MOD_ID + ":" + weight.getFirst()), weight.getSecond()));
+            list.add(Pair.of(StructurePoolElement.single(FantasyTrees.MOD_ID + ":" + weight.getFirst(), processorListHolder), weight.getSecond()));
         }
+
         context.register(ResourceKey.create(Registries.TEMPLATE_POOL, new ResourceLocation(FantasyTrees.MOD_ID, name)),
                 new StructureTemplatePool(fallback, list, StructureTemplatePool.Projection.RIGID));
     }
