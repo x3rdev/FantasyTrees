@@ -95,9 +95,7 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    repositories {
-        maven { url "https://cursemaven.com" }
-    }
+    maven { url "https://cursemaven.com" }
 }
 
 dependencies {
