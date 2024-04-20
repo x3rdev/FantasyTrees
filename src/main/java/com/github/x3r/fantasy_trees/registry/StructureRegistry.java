@@ -97,7 +97,15 @@ public class StructureRegistry {
             Pair.of("fantasy_oak_medium_2", 1),
             Pair.of("fantasy_oak_medium_3", 1),
             Pair.of("fantasy_oak_medium_4", 1),
-            Pair.of("fantasy_oak_medium_5", 1)
+            Pair.of("fantasy_oak_medium_5", 1),
+            Pair.of("fantasy_oak_medium_6", 1),
+            Pair.of("fantasy_oak_medium_7", 1),
+            Pair.of("fantasy_oak_medium_8", 1),
+            Pair.of("fantasy_oak_medium_9", 1),
+            Pair.of("fantasy_oak_medium_10", 1),
+            Pair.of("fantasy_oak_medium_11", 1),
+            Pair.of("fantasy_oak_medium_12", 1),
+            Pair.of("fantasy_oak_medium_13", 1)
     );
     public static final List<Pair<String, Integer>> OAK_SMALL_WEIGHTS = List.of(
             Pair.of("fantasy_oak_small_1", 1),

@@ -74,6 +74,126 @@
         "projection": "rigid"
       },
       "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "fantasy_trees:fantasy_oak_medium_6",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "fantasy_trees:water_logging_fix_processor"
+            }
+          ]
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "fantasy_trees:fantasy_oak_medium_7",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "fantasy_trees:water_logging_fix_processor"
+            }
+          ]
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "fantasy_trees:fantasy_oak_medium_8",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "fantasy_trees:water_logging_fix_processor"
+            }
+          ]
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "fantasy_trees:fantasy_oak_medium_9",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "fantasy_trees:water_logging_fix_processor"
+            }
+          ]
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "fantasy_trees:fantasy_oak_medium_10",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "fantasy_trees:water_logging_fix_processor"
+            }
+          ]
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "fantasy_trees:fantasy_oak_medium_11",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "fantasy_trees:water_logging_fix_processor"
+            }
+          ]
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "fantasy_trees:fantasy_oak_medium_12",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "fantasy_trees:water_logging_fix_processor"
+            }
+          ]
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "fantasy_trees:fantasy_oak_medium_13",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "fantasy_trees:water_logging_fix_processor"
+            }
+          ]
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
     }
   ],
   "fallback": "minecraft:empty"
