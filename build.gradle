@@ -1,11 +1,13 @@
 plugins {
+    id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-group = 'com.github.x3rmination'
 version = '1.1.1'
+group = 'com.github.x3rmination'
+
 
 java {
     archivesBaseName = 'fantasy_trees'

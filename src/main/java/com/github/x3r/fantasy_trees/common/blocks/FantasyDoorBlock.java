@@ -9,6 +9,6 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 public class FantasyDoorBlock extends DoorBlock {
     public FantasyDoorBlock(BlockSetType type) {
         super(BlockBehaviour.Properties.of()
-                .strength(3.0F).sound(SoundType.WOOD).noOcclusion().lightLevel(value -> 7), type);
+                .strength(3.0F).sound(SoundType.WOOD).noOcclusion().lightLevel(BlockRegistry.lightLevel()), type);
     }
 }

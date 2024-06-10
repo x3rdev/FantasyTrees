@@ -16,6 +16,7 @@ public class FantasyTreesConfig {
     public static final ForgeConfigSpec.IntValue dark_oak_region_weight;
     public static final ForgeConfigSpec.IntValue jungle_region_weight;
     public static final ForgeConfigSpec.IntValue savanna_region_weight;
+    public static final ForgeConfigSpec.BooleanValue glowing_trees;
 
     static {
         BUILDER.push("Fantasy Trees Config");
@@ -28,6 +29,7 @@ public class FantasyTreesConfig {
         dark_oak_region_weight = BUILDER.comment("Fantasy dark forest biome weight").defineInRange("dark_oak_region_weight", 10, 0, 100);
         jungle_region_weight = BUILDER.comment("Fantasy jungle biome weight").defineInRange("jungle_region_weight", 10, 0, 100);
         savanna_region_weight = BUILDER.comment("Fantasy savanna biome weight").defineInRange("savanna_region_weight", 10, 0, 100);
+        glowing_trees = BUILDER.comment("Should tree blocks emit light").define("glowing_trees", true);
 
         BUILDER.pop();
         SPEC = BUILDER.build();
