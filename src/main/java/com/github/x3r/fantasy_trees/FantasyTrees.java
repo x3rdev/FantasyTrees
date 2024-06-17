@@ -43,7 +43,6 @@ public class FantasyTrees {
         ProcessorRegistry.PROCESSORS.register(modEventBus);
         StructureRegistry.STRUCTURE_FEATURES.register(modEventBus);
 
-
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FantasyTreesConfig.SPEC, "fantasy_trees-common.toml");
 
     }
@@ -56,6 +55,8 @@ public class FantasyTrees {
             Regions.register(new FantasyDarkOakRegion(new ResourceLocation(MOD_ID, "dark_oak_region"), FantasyTreesConfig.dark_oak_region_weight.get()));
             Regions.register(new FantasyJungleRegion(new ResourceLocation(MOD_ID, "jungle_region"), FantasyTreesConfig.jungle_region_weight.get()));
             Regions.register(new FantasySavanna(new ResourceLocation(MOD_ID, "savanna_region"), FantasyTreesConfig.savanna_region_weight.get()));
+            BlockRegistry.addFantasyStrippableBlocks();
         });
     }
+
 }

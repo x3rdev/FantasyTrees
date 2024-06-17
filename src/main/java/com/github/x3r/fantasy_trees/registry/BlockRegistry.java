@@ -4,6 +4,7 @@ import com.github.x3r.fantasy_trees.FantasyTrees;
 import com.github.x3r.fantasy_trees.FantasyTreesConfig;
 import com.github.x3r.fantasy_trees.common.blocks.*;
 import com.github.x3r.fantasy_trees.common.blocks.grower.FantasyTreeGrower;
+import com.github.x3r.fantasy_trees.mixins.AxeItemAccess;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -15,6 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.function.ToIntFunction;
 
@@ -73,6 +75,15 @@ public class BlockRegistry {
     }
 
     public static ToIntFunction<BlockState> lightLevel() {
-        return (i) -> FantasyTreesConfig.glowing_trees.get() ? 15 : 0;
+        return value -> FantasyTreesConfig.SPEC.isLoaded() && FantasyTreesConfig.glowing_trees.get() ? 15 : 0;
+    }
+
+    public static void addFantasyStrippableBlocks() {
+        Map<Block, Block> strippables = new IdentityHashMap<>(AxeItemAccess.getStrippables());
+        Arrays.stream(WOOD_TYPES).forEach(woodType -> {
+            strippables.put(WOODS.get(woodType.name()).get(), STRIPPED_WOODS.get(woodType.name()).get());
+            strippables.put(LOGS.get(woodType.name()).get(), STRIPPED_LOGS.get(woodType.name()).get());
+        });
+        AxeItemAccess.setStrippables(strippables);
     }
 }

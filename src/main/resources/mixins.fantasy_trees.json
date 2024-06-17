@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "mixins.fantasy_trees.refmap.json",
   "mixins": [
-    "StructureTemplateMixin"
+    "StructureTemplateMixin",
+    "AxeItemAccess"
   ],
   "client": [],
   "injectors": {
